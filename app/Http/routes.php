@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function () {
+    return "This was an edit that was deployed through git";
+});
