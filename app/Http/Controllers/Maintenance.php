@@ -11,7 +11,12 @@ class Maintenance extends Controller
 
     public function deploy(){
 
-    	$commands = ['echo test','echo test2','ls'];
+    	$commands = [
+    		'git pull origin '.app()->envrionment(),
+    		'git checkout '.app()->envrionment(),
+    		'php artisan config:cache',
+    		'php artisan migrate'
+    	];
 
     	$output = [];
 
