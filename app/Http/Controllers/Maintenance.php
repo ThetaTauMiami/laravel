@@ -13,14 +13,14 @@ class Maintenance extends Controller
 
     	echo 'testing deploy';
 
-    	echo app()->environment();
+    	$env = app()->environment();
 
-    	// $commands = [
-    	// 	'git pull origin '.app()->envrionment(),
-    	// 	'git checkout '.app()->envrionment(),
-    	// 	'php artisan config:cache',
-    	// 	'php artisan migrate'
-    	// ];
+    	$commands = [
+    		'git pull origin '.$env,
+    		'git checkout '.$env,
+    		'php artisan config:cache',
+    		'php artisan migrate'
+    	];
 
     	echo 'commands made';
 
