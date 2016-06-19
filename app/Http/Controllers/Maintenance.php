@@ -11,6 +11,8 @@ class Maintenance extends Controller
 
     public function deploy(){
 
+    	echo 'testing deploy';
+
     	$commands = [
     		'git pull origin '.app()->envrionment(),
     		'git checkout '.app()->envrionment(),
