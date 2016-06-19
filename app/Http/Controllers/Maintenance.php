@@ -13,10 +13,13 @@ class Maintenance extends Controller
 
     	$commands = ['echo test','echo test2','ls'];
 
-    	SSH::run($commands, function($line)
-		{
-		    echo $line.PHP_EOL;
-		});
+    	$output = [];
+
+    	foreach($commands as $command){
+    		array_push($output, shell_exec($command) )
+    	}
+
+    	var_dump($output);
 
     }
 }
