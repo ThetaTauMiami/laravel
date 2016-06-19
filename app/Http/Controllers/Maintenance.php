@@ -16,7 +16,7 @@ class Maintenance extends Controller
     	$output = [];
 
     	foreach($commands as $command){
-    		array_push($output, shell_exec($command) )
+    		array_push($output, shell_exec($command) );
     	}
 
     	var_dump($output);
