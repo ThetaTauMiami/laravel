@@ -20,9 +20,12 @@ class Maintenance extends Controller
     		'php artisan migrate'
     	];
 
-    	$output = [];
+    	echo 'commands made';
 
+    	$output = [];
+    	echo 'before execution';
     	foreach($commands as $command){
+    		echo 'about to execute '.$command;
     		array_push($output, shell_exec($command) );
     	}
 
