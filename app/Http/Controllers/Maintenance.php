@@ -22,7 +22,7 @@ class Maintenance extends Controller
     	// 	'php artisan config:cache',
     	// 	'php artisan migrate'
     	// ];
-        $commands = ['cd ../','cd ../','ls'];
+        $commands = ['cd ~/'.$env,'ls'];
 
     	echo 'commands made';
 
