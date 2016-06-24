@@ -11,8 +11,7 @@ class Maintenance extends Controller
 
     public function deploy(){
 
-        view("maintenance.deploy");
-        //return "test";
+        return view("maintenance.deploy");
 
     }
 }
