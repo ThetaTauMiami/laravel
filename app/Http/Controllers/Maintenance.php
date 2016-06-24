@@ -14,7 +14,7 @@ class Maintenance extends Controller
 
     public function deploy(){
 
-        $process = new Process('cd ../;echo done;ls;cd ../;echo done2;ls;');
+        $process = new Process('cd ../;git pull -f origin dev;php artisan migrate;');
         $process->setTimeout(30);
         $process->run();
 
