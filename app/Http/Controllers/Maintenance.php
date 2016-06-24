@@ -14,17 +14,9 @@ class Maintenance extends Controller
 
     public function deploy(){
 
-        $process = new Process('ls -lsa');
+        $process = new Process('cd ../;echo done;ls;cd ../;echo done2;ls;');
         $process->setTimeout(30);
         $process->run();
-
-        $process2 = new Process('cd ../');
-        $process2->setTimeout(30);
-        $process2->run();
-
-        $process3 = new Process('ls');
-        $process3->setTimeout(30);
-        $process3->run();
 
         // executes after the command finishes
         if (!$process->isSuccessful()) {
@@ -32,8 +24,6 @@ class Maintenance extends Controller
         }
 
         echo $process->getOutput();
-        echo $process2->getOutput();
-        echo $process3->getOutput();
 
     }
 }
