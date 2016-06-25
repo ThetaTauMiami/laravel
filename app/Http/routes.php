@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/deploy', 'Maintenance@deploy');
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
