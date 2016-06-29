@@ -1,0 +1,45 @@
+.nav.navbar-nav.navbar-right li a {
+    color: #8a4747;
+}
+.nav.navbar-nav.navbar-right li a:hover {
+    background-color: #8a4747;
+    border-color: #8a4747;
+    color: #FFFFFF;
+}
+
+.navbar {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    margin-bottom: 0;
+}
+
+#nav {
+    color: #8a4747;
+    font-family: "DejaVu Sans Light";
+
+}
+
+.footer-distributed {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #999;
+}
+
+.navbar-right button {
+    margin-top: 7px;
+}
+
+.btn {
+    border-radius: 0 !important;
+    font-weight: 700;
+}
+
+.jumbotron {
+    text-align: center;
+    color: #FFFFFF;
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(165, 165, 165));
+    font-family: "DejaVu Sans Light";
+    margin-bottom: 0;
+}

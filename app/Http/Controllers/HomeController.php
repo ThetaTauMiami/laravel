@@ -21,9 +21,42 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('home');
+    }
+    */
+
+    public function index() {
+        return view('index');
+    }
+
+    public function gallery() {
+        return view('gallery');
+    }
+
+    public function events() {
+        return view('events');
+    }
+
+    public function recruitment() {
+        return view('recruitment');
+    }
+
+    public function members() {
+        return view('members');
+    }
+
+    public function alumni() {
+        return view('alumni');
+    }
+
+    public function contact() {
+        return view('contact');
+    }
+
+    public function login() {
+        return view('login');
     }
 }
