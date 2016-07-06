@@ -15,7 +15,9 @@ class CreateEventsTable extends Migration
         Schema::create('event', function (Blueprint $table) {
             $table->increments('id');
             $table->string('eventName')->index();
-            $table->integer('userID');
+            $table->integer('creator'); //person who created event
+            $table->string('pointType');
+            $table->integer('points');
         });
     }
 
