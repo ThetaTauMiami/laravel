@@ -13,7 +13,7 @@ class CreateEventPointsTable extends Migration
     public function up()
     {
         Schema::create('event_points', function (Blueprint $table) {
-            $table->integer('eventId')->index();
+            $table->integer('id')->index();
             $table->string('pointType')->index();
             $table->integer('semester');
             $table->integer('points');
