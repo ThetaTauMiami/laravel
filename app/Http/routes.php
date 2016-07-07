@@ -11,14 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('/deploy', 'Maintenance@deploy');
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+// seems to be the same thing as index? ~MD
+//Route::get('/home', 'HomeController@index');
 
 
 
