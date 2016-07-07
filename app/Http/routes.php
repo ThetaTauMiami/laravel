@@ -18,9 +18,9 @@ Route::get('/', function () {
 Route::get('/deploy', 'Maintenance@deploy');
 Route::auth();
 
-/*Route::get('/home', 'HomeController@index');*/
+Route::get('/home', 'HomeController@index');
 
-Route::get('/', 'HomeController@index');
+
 
 Route::get('gallery', 'HomeController@gallery');
 
@@ -34,5 +34,5 @@ Route::get('alumni', 'HomeController@alumni');
 
 Route::get('contact', 'HomeController@contact');
 
-Route::get('login', 'HomeController@login');
+
 

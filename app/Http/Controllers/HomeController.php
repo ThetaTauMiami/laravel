@@ -12,25 +12,23 @@ class HomeController extends Controller
      *
      * @return void
      */
+    /*
     public function __construct()
     {
         $this->middleware('auth');
     }
-
+*/
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
-
+*/
     public function index()
     {
         return view('home');
     }
-    */
 
-    public function index() {
-        return view('index');
-    }
+
 
     public function gallery() {
         return view('gallery');
@@ -56,7 +54,5 @@ class HomeController extends Controller
         return view('contact');
     }
 
-    public function login() {
-        return view('login');
-    }
+
 }
