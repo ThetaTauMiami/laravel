@@ -11,27 +11,54 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+// Note: Middleware to be applied on controller in __construct(), not routes level ~MD
+// All routes in this file have the 'Web' middleware applied, and is not designed for RESTful APIs
+// 		refer to app/Providers/RouteServiceProvider to manage default route middleware
 
-Route::get('/deploy', 'Maintenance@deploy');
+
+
+
+/* +--------------------------------------+
+   | Public/Home Routes                   |
+   +--------------------------------------+
+*/
+
+
+Route::get('/', 			'HomeController@index');
+Route::get('gallery', 		'HomeController@gallery');
+Route::get('events', 		'HomeController@events');
+Route::get('recruitment', 	'HomeController@recruitment');
+Route::get('members', 		'HomeController@members');
+Route::get('alumni', 		'HomeController@alumni');
+Route::get('contact', 		'HomeController@contact');
+
+
+
+/* +--------------------------------------+
+   | Private/User Routes                  |
+   +--------------------------------------+
+*/
+
+
+///// TODO /////
+
+
+
+/* +--------------------------------------+
+   | USER AUTHORIZATION ROUTES            |
+   +--------------------------------------+
+*/
+
+// These routes are located in the following file and map to 'Auth\AuthController'
+// vendor/laravel/framework/src/Illuminate/Routing/Router.php ~MD
 Route::auth();
 
-// seems to be the same thing as index? ~MD
-//Route::get('/home', 'HomeController@index');
 
 
+/* +--------------------------------------+
+   | Maintenance Routes                   |
+   +--------------------------------------+
+*/
 
-Route::get('gallery', 'HomeController@gallery');
-
-Route::get('events', 'HomeController@events');
-
-Route::get('recruitment', 'HomeController@recruitment');
-
-Route::get('members', 'HomeController@members');
-
-Route::get('alumni', 'HomeController@alumni');
-
-Route::get('contact', 'HomeController@contact');
-
-
+Route::get('/deploy', 'Maintenance@deploy');
 

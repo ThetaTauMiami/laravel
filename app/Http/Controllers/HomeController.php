@@ -26,37 +26,38 @@ class HomeController extends Controller
 */
     public function index(Request $request)
     {
+        // check if someone is logged in, if so send user to view
         if($request->user()){
-            return view('home',['user'=>$request->user()]);
+            return view('pages.home',['user'=>$request->user()]);
         }else{
-            return view('home');
+            return view('pages.home');
         }
     }
 
 
 
     public function gallery() {
-        return view('gallery');
+        return view('pages.gallery');
     }
 
     public function events() {
-        return view('events');
+        return view('pages.events');
     }
 
     public function recruitment() {
-        return view('recruitment');
+        return view('pages.recruitment');
     }
 
     public function members() {
-        return view('members');
+        return view('pages.members');
     }
 
     public function alumni() {
-        return view('alumni');
+        return view('pages.alumni');
     }
 
     public function contact() {
-        return view('contact');
+        return view('pages.contact');
     }
 
 
