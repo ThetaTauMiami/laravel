@@ -33,7 +33,7 @@ class SocialMediaController extends Controller
      *
      * @return Response
      */
-    public function LinkedInHandleProviderCallback(Request $request)
+    public function LinkedInHandleProviderCallback()
     {
         $oauthuser = Socialite::driver('linkedin')->user();
 
