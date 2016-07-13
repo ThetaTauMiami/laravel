@@ -55,9 +55,9 @@ Route::auth();
 
 
 Route::get('/linkedin', 
-	'Auth/SocialMediaController@LinkedInRedirectToProvider');
+	'Auth\SocialMediaController@LinkedInRedirectToProvider');
 Route::get('/linkedin/callback', 
-	'Auth/SocialMediaController@LinkedInHandleProviderCallback');
+	'Auth\SocialMediaController@LinkedInHandleProviderCallback');
 
 
 
