@@ -33,11 +33,11 @@ class SocialMediaController extends Controller
      *
      * @return Response
      */
-    public function LinkedInHandleProviderCallback()
+    public function LinkedInHandleProviderCallback(Request $request)
     {
         $user = Socialite::driver('linkedin')->user();
 
-        echo "It Worked, Authenticated".$user->token;
+        echo "It Worked, Authenticated".$request->code;
 
         // should grab token and then redirect to another page
     }
