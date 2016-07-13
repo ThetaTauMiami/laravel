@@ -29,17 +29,22 @@ class SocialMediaController extends Controller
     }
 
     /**
-     * Obtain the user information from GitHub.
+     * Obtain the user information from callback and redirect.
      *
      * @return Response
      */
     public function LinkedInHandleProviderCallback(Request $request)
     {
-        $user = Socialite::driver('linkedin')->user();
+        $oauthuser = Socialite::driver('linkedin')->user();
 
-        echo "It Worked, Authenticated".$request->code;
+        $user = auth()->user();
 
-        // should grab token and then redirect to another page
+        $user->linkedin_token = $oauthuser->token;
+
+        $user->save();
+
+        return redirect()->route('/');
+
     }
     
 }
