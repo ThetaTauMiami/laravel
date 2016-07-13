@@ -39,4 +39,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+
+    // ******** Social Media Keys *********
+    'linkedin' => [
+        'client_id' => env('LINKEDIN_CLIENT_ID'),
+        'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
+        'redirect_uri' => env('LINKEDIN_CALLBACK_ROUTE')
+    ],
+
 ];

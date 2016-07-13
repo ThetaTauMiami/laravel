@@ -54,6 +54,12 @@ Route::get('contact', 		'HomeController@contact');
 Route::auth();
 
 
+Route::get('/linkedin', 
+	'Auth/SocialMediaController@LinkedInRedirectToProvider');
+Route::get('/linkedin/callback', 
+	'Auth/SocialMediaController@LinkedInHandleProviderCallback');
+
+
 
 /* +--------------------------------------+
    | Maintenance Routes                   |
