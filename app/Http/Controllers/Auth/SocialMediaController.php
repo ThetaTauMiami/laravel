@@ -37,6 +37,8 @@ class SocialMediaController extends Controller
     {
         $user = Socialite::driver('linkedin')->user();
 
+        echo "It Worked, Authenticated";
+
         // for Testing token only
         view('pages.home',['user'=>$user->token.' '.$user->getName()]);
     }
