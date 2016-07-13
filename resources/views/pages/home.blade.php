@@ -8,8 +8,17 @@
 <?php
 
 
-if(isset($user)) echo '<h1>Welcome '.$user->name.'!</h1>';
-else echo '<h1>Welcome, please log in</h1>';
+if(isset($user)){
+
+	echo '<h1>Welcome '.$user->name.'!</h1>';
+	if($user->linkedin_token != ''){
+		echo 'You are authenticated with linked in';
+	}
+} 
+else {
+
+	echo '<h1>Welcome, please log in</h1>';
+}
 
 ?>
 
