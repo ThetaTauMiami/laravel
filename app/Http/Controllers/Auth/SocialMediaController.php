@@ -43,7 +43,7 @@ class SocialMediaController extends Controller
 
         $user->save();
 
-        return Redirect::to('/');
+        return redirect('/');
 
     }
     
