@@ -1,11 +1,13 @@
 @extends('layouts.default')
-
+<link href="{{ asset('/css/login.css') }}" rel="stylesheet">
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
+                <img id="profile-img" class="profile-img-card center-block" src="{{ asset('/img/login-logo.png') }}" />
+                <p id="profile-name" class="profile-name-card">Theta Tau of Miami University Login</p>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
@@ -53,8 +55,11 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>
+                                <a href="register"><button class="btn btn-danger" type=
+                                    "button">Register Here</button></a>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+
                             </div>
                         </div>
                     </form>

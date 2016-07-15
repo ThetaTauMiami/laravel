@@ -39,7 +39,7 @@
 .jumbotron {
     text-align: center;
     color: #FFFFFF;
-    background-image: linear-gradient(rgb(255, 255, 255), rgb(165, 165, 165));
     font-family: "DejaVu Sans Light";
     margin-bottom: 0;
+    background-size: cover;
 }

@@ -1,8 +1,9 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="jumbotron">
-        <h1>RECRUITMENT INFO</h1>
+	<div class="jumbotron" style="background-image:url('{{ asset('img/banner.jpg') }}'); background-position: center;">
+			<h1>RECRUITMENT INFO</h1>
+
     </div>
    	<div class="row">
 		<div class="col-xs-12">

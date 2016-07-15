@@ -13,3 +13,5 @@ composer.phar
 .idea/laravel.iml
 .idea/modules.xml
 .idea/workspace.xml
+.idea/workspace.xml
+composer.lock

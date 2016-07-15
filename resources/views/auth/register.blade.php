@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+<link href="{{ asset('/css/login.css') }}" rel="stylesheet">
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,7 +9,8 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
-
+                        <img id="profile-img" class="profile-img-card center-block" src="{{ asset('/img/login-logo.png') }}" />
+                        <p id="profile-name" class="profile-name-card">Theta Tau of Miami University Registration</p>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 

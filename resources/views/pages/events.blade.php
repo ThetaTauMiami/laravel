@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="jumbotron">
+    <div class="jumbotron" style="background-image:url('{{ asset('img/banner.jpg') }}'); background-position: center;">
         <h1>EVENTS</h1>
     </div>
     	<div class="row">

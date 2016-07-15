@@ -23,11 +23,13 @@
                 <li>
                     <a href="recruitment">RECRUITMENT</a>
                 </li>
-                <li>
-                    <a href="members">MEMBERS</a>
-                </li>
-                <li>
-                    <a href="alumni">ALUMNI</a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">MEMBERS
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="members">ACTIVES</a></li>
+                        <li><a href="alumni">ALUMNI</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="contact">CONTACT</a>
