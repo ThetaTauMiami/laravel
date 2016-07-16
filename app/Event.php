@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Event extends Model
 {
-    public function creator()
+    public function user()
     {
-      return $this->hasOne('App\User');
+      return $this->belongsTo('App\User');
     }
+
+    public $timestamps = false;
 }

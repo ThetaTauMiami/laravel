@@ -6,10 +6,17 @@
     </div>
     	<div class="row">
 		<div class="col-xs-12">
-			<h1>Content Goes Here</h1>
-			<p>
-				...
-			</p>
+      <a href="createEvent"><button class="btn btn-warning" type=
+          "button">Create New Event</button></a>
+			<h1>All Events</h1>
+
+      @foreach ($events as $event)
+        <div>
+          {{ $event->eventName }};
+        </div>
+
+      @endforeach
+
 		</div>
 	</div>
 @stop

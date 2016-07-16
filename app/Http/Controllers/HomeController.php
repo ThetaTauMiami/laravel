@@ -60,5 +60,9 @@ class HomeController extends Controller
         return view('pages.contact');
     }
 
+    public function createEvent() {
+        return view('pages.createEvent');
+    }
+
 
 }

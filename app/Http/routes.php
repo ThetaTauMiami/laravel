@@ -26,11 +26,12 @@
 
 Route::get('/', 			'HomeController@index');
 Route::get('gallery', 		'HomeController@gallery');
-Route::get('events', 		'HomeController@events');
+Route::get('events', 		'EventsController@index');
 Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('members', 		'HomeController@members');
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
+
 
 
 
@@ -41,8 +42,11 @@ Route::get('contact', 		'HomeController@contact');
 
 
 ///// TODO /////
-
-
+Route::group( [ 'middleware' => ['web'] ], function ()
+{
+	Route::get('createEvent', 'HomeController@createEvent');
+	Route::post('createEvent', 'EventsController@store');
+});
 
 /* +--------------------------------------+
    | USER AUTHORIZATION ROUTES            |
@@ -54,9 +58,9 @@ Route::get('contact', 		'HomeController@contact');
 Route::auth();
 
 
-Route::get('/linkedin', 
+Route::get('/linkedin',
 	'Auth\SocialMediaController@LinkedInRedirectToProvider');
-Route::get('/linkedin/callback', 
+Route::get('/linkedin/callback',
 	'Auth\SocialMediaController@LinkedInHandleProviderCallback');
 
 
@@ -67,4 +71,3 @@ Route::get('/linkedin/callback',
 */
 
 Route::get('/deploy', 'Maintenance@deploy');
-
