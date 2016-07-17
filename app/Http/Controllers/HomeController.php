@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth;
+//use App\Http\Controllers\Auth;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -61,7 +62,16 @@ class HomeController extends Controller
     }
 
     public function createEvent() {
+      if (!Auth::check()){
+        return redirect('/login');
+      }
+      else{
         return view('pages.createEvent');
+      }
+    }
+
+    public function login() {
+        return view('auth.login');
     }
 
 

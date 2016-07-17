@@ -18,8 +18,14 @@ class EventsController extends Controller
     }
 
 
-    public function store(Request $request)
+    protected function store(Request $request)
     {
+        $this->validate($request, [
+            'eventName' => 'required|unique:events,eventName',
+            'pointType' => 'required',
+            'points' => 'required|digits_between:1,2',
+            'user_id' => 'required'
+        ]);
 
         $event = new Event;
         $event->eventName = $request->eventName;
@@ -27,11 +33,6 @@ class EventsController extends Controller
         $event->points = $request->points;
         $event->user_id = $request->user_id;
         $event->save();
-
-        /*DB::table('events')->insertGetId(['eventName' => $request->eventName,
-                                          'pointType' => $request->pointType,
-                                          'points' => $request->points,
-                                          'creator' => $request->creator]);*/
 
         return \Redirect::to('/events');
     }
