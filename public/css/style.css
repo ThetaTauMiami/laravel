@@ -1,3 +1,7 @@
+body {
+    padding-top: 50px;
+}
+
 .nav.navbar-nav.navbar-right li a {
     color: #8a4747;
 }
@@ -10,7 +14,7 @@
 .navbar {
     background-color: #FFFFFF;
     border-color: #FFFFFF;
-    margin-bottom: 0;
+    margin-bottom: 0px;
 }
 
 #nav {
@@ -42,4 +46,25 @@
     font-family: "DejaVu Sans Light";
     margin-bottom: 0;
     background-size: cover;
+}
+
+#homeHeading {
+    font-family: "DejaVu Sans Light";
+}
+
+
+.member {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.member-info {
+    text-align: center;
+    width: 207px;
+
+}
+
+.member-image {
+    height: 310px;
+    width: 207px;
 }

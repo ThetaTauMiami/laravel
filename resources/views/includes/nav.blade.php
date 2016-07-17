@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button class="navbar-toggle" data-target="#myNavbar"
@@ -7,7 +7,7 @@
                                                                                                                        "icon-bar"></span></button> <a class="navbar-brand" href=
             "/"><span id="nav">THETA TAU | MIAMI UNIVERSITY</span></a>
             <a href="/"><img src=
-                             "{{asset('/img/navbar-logo.png')}}"></a>
+                             "{{asset('/img/navbar-logo.png')}}" class="navbar-brand"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">

@@ -11,8 +11,6 @@
 <br>
 
 
-@include('includes.footer')
-
 
 @include('includes.scripts')
 
