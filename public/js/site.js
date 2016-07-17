@@ -1,5 +1,5 @@
 
-/*
+
 // animate scrolling whenever an anchor link is clicked
 $(function() {
 	
@@ -18,4 +18,4 @@ $(function() {
       }
     }
   });
-});*/
+});
