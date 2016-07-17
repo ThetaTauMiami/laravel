@@ -12,7 +12,7 @@
 
       @foreach ($events as $event)
         <div>
-          {{ $event->eventName }};
+          {{ $event->eventName }}
         </div>
 
       @endforeach

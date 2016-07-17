@@ -8,7 +8,7 @@
               <div class="panel-heading">Create New Event</div>
               <div class="panel-body">
                   <form class="form-horizontal" role="form" method="POST" action="/createEvent">
-                    <div class="form-group">
+                    <div class="form-group{{ $errors->has('eventName') ? ' has-error' : '' }}">
                       <label for="eventName" class="col-md-4 control-label">Event Name</label>
 
                       <div class="col-md-6">
@@ -34,7 +34,10 @@
                       <label for="points" class="col-md-4 control-label">Number of Points</label>
                       <div class="col-md-6">
                         <input id="points" type="text" class="form-control" name="points" value="{{ old('points') }}">
+
                       </div>
+
+
                     </div>
 
                     <div class="form-group">
@@ -47,6 +50,15 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="user_id" value="{{ $user = Auth::user()->id }}">
                   </form>
+                  @if (count($errors) > 0)
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
               </div>
             </div>
           </div>
