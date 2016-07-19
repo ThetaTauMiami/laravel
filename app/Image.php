@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     //We dun goofed again
-    protected $table = 'image';
+    protected $table = 'images';
 
     public function poster()
     {
