@@ -31,6 +31,7 @@ Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('members', 		'HomeController@members');
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
+Route::get('gallery/{event}', 		'GalleryController@retrieveByEvent');
 
 
 
@@ -46,6 +47,7 @@ Route::group( [ 'middleware' => ['web'] ], function ()
 {
 	Route::get('createEvent', 'HomeController@createEvent');
 	Route::post('createEvent', 'EventsController@store');
+	Route::post('gallery', 'GalleryController@store');
 });
 
 /* +--------------------------------------+

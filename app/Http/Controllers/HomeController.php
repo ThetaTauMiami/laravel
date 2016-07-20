@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth;
 use Auth;
+use DB;
 
 class HomeController extends Controller
 {
@@ -38,7 +39,8 @@ class HomeController extends Controller
 
 
     public function gallery() {
-        return view('pages.gallery');
+        $events = DB::table('events')->get();
+        return view('pages.gallery', compact('events'));
     }
 
     public function events() {

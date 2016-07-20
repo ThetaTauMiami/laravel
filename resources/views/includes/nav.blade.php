@@ -15,26 +15,26 @@
                     <a href="/">HOME</a>
                 </li>
                 <li>
-                    <a href="gallery">GALLERY</a>
+                    <a href="/gallery">GALLERY</a>
                 </li>
                 <li>
-                    <a href="events">EVENTS</a>
+                    <a href="/events">EVENTS</a>
                 </li>
                 <li>
-                    <a href="recruitment">RECRUITMENT</a>
+                    <a href="/recruitment">RECRUITMENT</a>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">MEMBERS
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="members">ACTIVES</a></li>
-                        <li><a href="alumni">ALUMNI</a></li>
+                        <li><a href="/members">ACTIVES</a></li>
+                        <li><a href="/alumni">ALUMNI</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="contact">CONTACT</a>
+                    <a href="/contact">CONTACT</a>
                 </li>
-                    <a href="login"><button class="btn btn-warning" type=
+                    <a href="/login"><button class="btn btn-warning" type=
                         "button">LOG IN</button></a>
             </ul>
 
