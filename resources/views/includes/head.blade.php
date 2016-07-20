@@ -12,4 +12,11 @@
           rel="stylesheet">
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/footer-distributed.css') }}" rel="stylesheet">
+    <!-- Chrome, Firefox OS, Opera and Vivaldi -->
+    <meta name="theme-color" content="#5B0000">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#5B0000">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#5B0000">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>

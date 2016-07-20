@@ -12,7 +12,7 @@ body {
   font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
 }
 hr {
-  border-color: #8a4747;
+  border-color: #5B0000;
   border-width: 3px;
   max-width: 50px;
 }
@@ -23,7 +23,7 @@ a {
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-  color: #8a4747;
+  color: #5B0000;
 }
 a:hover,
 a:focus {
@@ -43,7 +43,7 @@ p {
   margin-bottom: 20px;
 }
 .bg-primary {
-  background-color: #8a4747;
+  background-color: #5B0000;
 }
 .bg-dark {
   background-color: #222222;
@@ -70,7 +70,7 @@ aside {
   transition: all 0.35s;
 }
 .navbar-default .navbar-header .navbar-brand {
-  color: #8a4747;
+  color: #5B0000;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
@@ -94,11 +94,11 @@ aside {
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus:hover {
-  color: #8a4747;
+  color: #5B0000;
 }
 .navbar-default .nav > li.active > a,
 .navbar-default .nav > li.active > a:focus {
-  color: #8a4747 !important;
+  color: #5B0000 !important;
   background-color: transparent;
 }
 .navbar-default .nav > li.active > a:hover,
@@ -130,7 +130,7 @@ aside {
     border-color: rgba(34, 34, 34, 0.05);
   }
   .navbar-default.affix .navbar-header .navbar-brand {
-    color: #8a4747;
+    color: #5B0000;
     font-size: 14px;
   }
   .navbar-default.affix .navbar-header .navbar-brand:hover,
@@ -143,7 +143,7 @@ aside {
   }
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
-    color: #8a4747;
+    color: #5B0000;
   }
 }
 header {
@@ -281,7 +281,7 @@ header .header-content .header-content-inner p {
   margin: 0 auto 20px;
 }
 .text-primary {
-  color: #8a4747;
+  color: #5B0000;
 }
 .no-gutter > [class*='col-'] {
   padding-right: 0;
@@ -337,8 +337,8 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: white;
-  background-color: #8a4747;
-  border-color: #8a4747;
+  background-color: #5B0000;
+  border-color: #5B0000;
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
@@ -350,8 +350,8 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: white;
-  background-color: #8a4747;
-  border-color: #8a4747;
+  background-color: #5B0000;
+  border-color: #5B0000;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -376,11 +376,11 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #8a4747;
-  border-color: #8a4747;
+  background-color: #5B0000;
+  border-color: #5B0000;
 }
 .btn-primary .badge {
-  color: #8a4747;
+  color: #5B0000;
   background-color: white;
 }
 .btn {

@@ -3,11 +3,11 @@ body {
 }
 
 .nav.navbar-nav.navbar-right li a {
-    color: #8a4747;
+    color: #5B0000;
 }
 .nav.navbar-nav.navbar-right li a:hover {
-    background-color: #8a4747;
-    border-color: #8a4747;
+    background-color: #5B0000;
+    border-color: #5B0000;
     color: #FFFFFF;
 }
 
@@ -18,7 +18,7 @@ body {
 }
 
 #nav {
-    color: #8a4747;
+    color: #5B0000;
     font-family: "DejaVu Sans Light";
 
 }
@@ -68,3 +68,13 @@ body {
     height: 310px;
     width: 207px;
 }
+
+.img-responsive {
+    margin-bottom:20px;
+}
+
+
+#gallery {
+    margin-top: 20px;
+}
+
