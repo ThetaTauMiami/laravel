@@ -13,10 +13,11 @@ class CreateRolesTable extends Migration
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
-          $table->string('role_name')->unique();
-          $table->string('role_type');
-          $table->integer('rank_order');
-        }
+            $table->increments('id');
+            $table->string('name');
+            $table->string('type');
+            $table->integer('rank_order');
+        });
     }
 
     /**
@@ -26,6 +27,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::Drop('roles');
+        Schema::drop('roles');
     }
 }

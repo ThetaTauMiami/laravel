@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class FixingImagesEventId extends Migration
+class CreateAttendanceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class FixingImagesEventId extends Migration
      */
     public function up()
     {
-      Schema::table('images', function ($table) {
-        $table->renameColumn('eventid', 'event_id');
-      });
+        Schema::create('attendance', function (Blueprint $table) {
+            $table->integer('event_id')->index();
+            $table->integer('user_id')->index();
+        });
     }
 
     /**
@@ -24,8 +25,6 @@ class FixingImagesEventId extends Migration
      */
     public function down()
     {
-        Schema::table('images', function ($table) {
-          $table->renameColumn('event_id', 'eventid');
-        });
+        Schema::drop('attendance');
     }
 }

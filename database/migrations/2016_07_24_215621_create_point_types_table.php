@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSemestersTable extends Migration
+class CreatePointTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateSemestersTable extends Migration
      */
     public function up()
     {
-      Schema::create('semesters', function (Blueprint $table) {
-        $table->string('semester_name');
-        $table->date('date_start');
-        $table->date('date_end')->nullable();
-      }
+        Schema::create('point_types', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('num_required');
+        });
     }
 
     /**
@@ -26,6 +26,6 @@ class CreateSemestersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('semesters');
+        Schema::drop('point_types');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLinkedinToken extends Migration
+class CreateHasRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class AddLinkedinToken extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('linkedin_token')->default('');
+        Schema::create('has_role', function (Blueprint $table) {
+            $table->integer('user_id')->index();
+            $table->integer('role_id')->index();
+            $table->integer('semester_id')->index();
         });
     }
 
@@ -24,8 +26,6 @@ class AddLinkedinToken extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('linkedin_token');
-        });
+        Schema::drop('has_role');
     }
 }
