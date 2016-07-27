@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Album');
     }
+
+    public function role()
+    {
+      return $this->hasOne('App\Role');
+    }
 }
