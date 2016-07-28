@@ -1,10 +1,20 @@
 @extends('layouts.default')
-<link href="css/members.css" rel="stylesheet">
+<style>
+	body {
+		padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+	}
+
+	.img-center {
+		margin: 0 auto;
+	}
+</style>
 @section('content')
+
 	<div class="jumbotron" style=
-	"background-image:url('{{ asset('img/banner.jpg') }}'); background-position: center;">
+	"background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
 		<h1>ALUMNI</h1>
 	</div>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
@@ -15,6 +25,7 @@
 		</div>
 	</div>
 
+	<div class="container">
 	<div class="row">
 		<div class="col-lg-4 col-sm-6 text-center">
 			<a href="#">
@@ -77,5 +88,6 @@
 			<p>Mechanical Engineering</p>
 			<p>Class of 2018</p>
 		</div>
+	</div>
 	</div>
 @stop
