@@ -92,158 +92,17 @@
         </div>
 
     <div class="row">
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div><div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div><div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div>
-        <div class="col-lg-4 col-sm-6 text-center">
-            <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-            </a>
-            <h3>Jimmy D'Amico
-                <small>Roll #69 | Epsilon Class</small>
-            </h3>
-            <p>Mechanical Engineering</p>
-            <p>Class of 2018</p>
-        </div>
-    </div>
+        @foreach ($members as $member)
+          <div class="col-lg-4 col-sm-6 text-center">
+              <a href="#">
+                  <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+              </a>
+              <h3>{{$member->first_name}} {{$member->last_name}}
+                  <small>{{$member->roll_number}} | {{$member->chapter_class}}</small>
+              </h3>
+              <p>{{$member->school_class}}</p>
+          </div>
+        @endforeach
+      </div>
 </div>
 @stop

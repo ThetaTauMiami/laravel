@@ -27,67 +27,17 @@
 
 	<div class="container">
 	<div class="row">
-		<div class="col-lg-4 col-sm-6 text-center">
-			<a href="#">
-			<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-			</a>
-			<h3>Jimmy D'Amico
-				<small>Roll #69 | Epsilon Class</small>
-			</h3>
-			<p>Mechanical Engineering</p>
-			<p>Class of 2018</p>
-
-		</div>
-		<div class="col-lg-4 col-sm-6 text-center">
-			<a href="#">
-				<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-			</a>
-			<h3>Jimmy D'Amico
-				<small>Roll #69 | Epsilon Class</small>
-			</h3>
-			<p>Mechanical Engineering</p>
-			<p>Class of 2018</p>
-		</div>
-		<div class="col-lg-4 col-sm-6 text-center">
-			<a href="#">
-				<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-			</a>
-			<h3>Jimmy D'Amico
-				<small>Roll #69 | Epsilon Class</small>
-			</h3>
-			<p>Mechanical Engineering</p>
-			<p>Class of 2018</p>
-		</div>
-		<div class="col-lg-4 col-sm-6 text-center">
-			<a href="#">
-				<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-			</a>
-			<h3>Jimmy D'Amico
-				<small>Roll #69 | Epsilon Class</small>
-			</h3>
-			<p>Mechanical Engineering</p>
-			<p>Class of 2018</p>
-		</div>
-		<div class="col-lg-4 col-sm-6 text-center">
-			<a href="#">
-				<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-			</a>
-			<h3>Jimmy D'Amico
-				<small>Roll #69 | Epsilon Class</small>
-			</h3>
-			<p>Mechanical Engineering</p>
-			<p>Class of 2018</p>
-		</div>
-		<div class="col-lg-4 col-sm-6 text-center">
-			<a href="#">
-				<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-			</a>
-			<h3>Jimmy D'Amico
-				<small>Roll #69 | Epsilon Class</small>
-			</h3>
-			<p>Mechanical Engineering</p>
-			<p>Class of 2018</p>
-		</div>
+		@foreach ($alumni as $alum)
+			<div class="col-lg-4 col-sm-6 text-center">
+					<a href="#">
+							<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+					</a>
+					<h3>{{$alum->first_name}} {{$alum->last_name}}
+							<small>{{$alum->roll_number}} | {{$alum->chapter_class}}</small>
+					</h3>
+					<p>{{$alum->school_class}}</p>
+			</div>
+		@endforeach
 	</div>
 	</div>
 @stop
