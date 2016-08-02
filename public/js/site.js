@@ -19,3 +19,15 @@ $(function() {
     }
   });
 });
+
+
+
+
+
+
+// mask inputs with custom patterns
+$(document).ready(function(){
+
+  $('.phone-mask').inputmask("(999)999-9999");
+
+});

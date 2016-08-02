@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBidTable extends Migration
+class CreateBidsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,12 @@ class CreateBidTable extends Migration
      */
     public function up()
     {
-        Schema::create('bid', function (Blueprint $table) {
+        Schema::create('bids', function (Blueprint $table) {
             $table->string('email')->index();
             $table->string('token')->index();
-            $table->string('class_name');
+            $table->string('chapter_class');
             $table->integer('roll_number');
+            $table->string('school_class');
             $table->dateTime('created_at');
         });
     }
@@ -28,6 +29,6 @@ class CreateBidTable extends Migration
      */
     public function down()
     {
-        Schema::drop('bid');
+        Schema::drop('bids');
     }
 }
