@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <link href="css/creative.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
     <header>
         <div class="header-content">
             <div class="header-content-inner">
@@ -10,7 +10,7 @@
                 <h1 id="homeHeading">Theta Tau</h1>
                 <hr>
                 <h2 id="homeHeading">Tau Delta Chapter of Miami University</h2>
-                <h4>Professional Engineering Fraternity</h4>
+                <h4 id="homeHeading">Professional Engineering Fraternity</h4>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
             </div>
         </div>

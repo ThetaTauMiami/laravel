@@ -1,3 +1,4 @@
+/*General CSS for the Entire Site*/
 body {
     padding-top: 50px;
 }
@@ -21,14 +22,6 @@ body {
     color: #5B0000;
     font-family: "DejaVu Sans Light";
 
-}
-
-.footer-distributed {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background: #999;
 }
 
 .navbar-right button {
@@ -78,3 +71,5 @@ body {
     margin-top: 20px;
 }
 
+
+/*Home Page CSS Below*/

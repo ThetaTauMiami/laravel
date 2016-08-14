@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-    //We dun goofed again
-    protected $table = 'images';
 
     public function user()
     {
@@ -18,6 +16,7 @@ class Image extends Model
     {
       return $this->belongsTo('App\Event');
     }
+
 
     public function album()
     {

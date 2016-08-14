@@ -2,12 +2,13 @@
 
 @section('content')
 
-	<div class="jumbotron" style="background-image:url('{{ asset('img/banner.jpg') }}'); background-position: center;">
+	<div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
         <h1>GALLERY</h1>
     </div>
+    <div class="container">
     <div class="row">
 		<div class="col-xs-12">
-			<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+			<!--<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>-->
 			<script>
 					$(function() {
 					    $( "#button" ).click(function() {
@@ -152,6 +153,9 @@
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
                 </a>
             </div>
+        </div>
+        </div>
+        </div>
         </div>
     <!-- /.container -->
 @stop

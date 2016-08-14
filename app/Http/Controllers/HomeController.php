@@ -52,11 +52,19 @@ class HomeController extends Controller
     }
 
     public function members() {
-        return view('pages.members');
+      $members = DB::table('users')
+        ->where('active_status', 1)
+        ->orderby('roll_number')
+        ->get();
+        return view('pages.members', compact('members'));
     }
 
     public function alumni() {
-        return view('pages.alumni');
+      $alumni = DB::table('users')
+        ->where('active_status', 0)
+        ->orderby('roll_number')
+        ->get();
+        return view('pages.alumni', compact('alumni'));
     }
 
     public function contact() {

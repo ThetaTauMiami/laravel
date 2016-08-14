@@ -11,8 +11,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name','last_name', 'email', 'password','phone','image_id','resume_path','chapter_class','roll_number','school_class'
     ];
 
     /**
@@ -42,5 +44,10 @@ class User extends Authenticatable
     public function album()
     {
       return $this->hasMany('App\Album');
+    }
+
+    public function role()
+    {
+      return $this->hasOne('App\Role');
     }
 }

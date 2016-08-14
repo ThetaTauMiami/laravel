@@ -50,14 +50,32 @@ Route::group( [ 'middleware' => ['web'] ], function ()
 	Route::post('gallery', 'GalleryController@store');
 });
 
+
 /* +--------------------------------------+
    | USER AUTHORIZATION ROUTES            |
    +--------------------------------------+
 */
 
-// These routes are located in the following file and map to 'Auth\AuthController'
-// vendor/laravel/framework/src/Illuminate/Routing/Router.php ~MD
-Route::auth();
+// ============ START USER AUTH =================
+   //modified from vendor/laravel/framework/src/Illuminate/Routing/Router.php ~MD
+   //Route::auth();
+
+   // Login Routes
+   Route::get('login', 'Auth\AuthController@showLoginForm');
+   Route::post('login', 'Auth\AuthController@login');
+   Route::get('logout', 'Auth\AuthController@logout');
+
+   // Registration Routes...
+   Route::get('register','Auth\AuthController@showTokenError');// added to support token
+   Route::get('register/{registration_token}', 'Auth\AuthController@showRegistrationForm');
+   Route::post('register', 'Auth\AuthController@register');
+
+   // Password Reset Routes...
+   Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+   Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+   Route::post('password/reset', 'Auth\PasswordController@reset');
+
+// ============ END USER AUTH =================
 
 
 Route::get('/linkedin',

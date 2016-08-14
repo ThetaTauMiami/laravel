@@ -7,12 +7,6 @@ Homestead.json
 .env
 composer.phar
 *.DS_Store
-.idea/blade.xml
-.idea/copyright/profiles_settings.xml
-.idea/vcs.xml
-.idea/workspace.xml
-.idea/laravel.iml
-.idea/modules.xml
-.idea/workspace.xml
-.idea/workspace.xml
+/.idea
 composer.lock
+
