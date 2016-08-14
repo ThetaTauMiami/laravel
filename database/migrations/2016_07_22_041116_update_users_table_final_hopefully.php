@@ -21,7 +21,7 @@ class UpdateUsersTableFinalHopefully extends Migration
           $table->string('linkedin_token')->nullable()->change();
           $table->string('image_id')->nullable();
           $table->string('resume_filepath')->nullable();
-          $table->string('phone_number', 10);
+          $table->string('phone_number', 10)->change();
       });
     }
 

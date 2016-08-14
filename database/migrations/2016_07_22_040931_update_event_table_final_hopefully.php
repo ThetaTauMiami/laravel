@@ -13,14 +13,15 @@ class UpdateEventTableFinalHopefully extends Migration
     public function up()
     {
       Schema::table('events', function (Blueprint $table) {
-          $table->date('date');
+          $table->date('date')->default('');
           $table->string('location')->nullable();
           $table->integer('album_id')->nullable();
           $table->string('description')->nullable();
           $table->integer('image_id')->nullable();
-          $table->integer('semester_id');
-          $table->boolean('is_public');
+          $table->integer('semester_id')->default(0);
+          $table->boolean('is_public')->default(false);
       });
+
     }
 
     /**

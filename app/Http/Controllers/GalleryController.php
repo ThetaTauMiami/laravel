@@ -58,12 +58,12 @@ class GalleryController extends Controller
       $file->move("uploads/{$event->eventName}", $fileName);
 
 
-      
+
       $image = new Image;
       $image->description = $request->description;
       $image->filepath = $filePath;
       $image->user_id = $request->user_id;
-      $image->event_id = $request->event_id;
+      $image->album_id = $request->album_id;
       $image->save();
 
 

@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Event;
 use DB;
+use Auth;
+use App\Image;
 
 class EventsController extends Controller
 {
@@ -32,15 +34,30 @@ class EventsController extends Controller
         $this->validate($request, [
             'eventName' => 'required|unique:events,eventName',
             'pointType' => 'required',
-            'points' => 'required|digits_between:1,2',
-            'user_id' => 'required'
+            'points' => 'required|between:0,9',
+            'date' => 'required',
+            'image' => 'image',
+
         ]);
+
+        //creating the thumbnail
+        $thumbnail = new Image;
+
+
+        //creating the album
 
         $event = new Event;
         $event->eventName = $request->eventName;
         $event->pointType = $request->pointType;
         $event->points = $request->points;
-        $event->user_id = $request->user_id;
+        $event->user_id = Auth::user()->id;
+        //$event->date = $request->date;
+        //$event->description = $request->description;
+        //$event->location = $request->location;
+
+
+        //ADDING SEMESTER_ID
+
         $event->save();
 
         return \Redirect::to('/events');
