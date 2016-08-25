@@ -93,6 +93,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $bid = Bid::find($data['registration_token']);
 
 
         return User::create([
