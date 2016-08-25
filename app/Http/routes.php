@@ -26,12 +26,15 @@
 
 Route::get('/', 			'HomeController@index');
 Route::get('gallery', 		'HomeController@gallery');
-Route::get('events', 		'EventsController@index');
+Route::get('events', 		'HomeController@events');
 Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('members', 		'HomeController@members');
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
-Route::get('gallery/{event}', 		'GalleryController@retrieveByEvent');
+Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
+Route::get('createEvent', 'EventsController@createEvent');
+
+
 
 
 
@@ -42,13 +45,9 @@ Route::get('gallery/{event}', 		'GalleryController@retrieveByEvent');
 */
 
 
-///// TODO /////
-Route::group( [ 'middleware' => ['web'] ], function ()
-{
-	Route::get('createEvent', 'HomeController@createEvent');
-	Route::post('createEvent', 'EventsController@store');
-	Route::post('gallery', 'GalleryController@store');
-});
+//Post routes
+Route::post('createEvent', 'EventsController@store');
+Route::post('gallery', 'GalleryController@store');
 
 
 /* +--------------------------------------+

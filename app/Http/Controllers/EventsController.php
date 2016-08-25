@@ -13,21 +13,28 @@ use App\Image;
 
 class EventsController extends Controller
 {
-    /*
 
-      This function retrieves Events from the database
-
-    */
-    public function index()
+  /* Require any user attempting to authenticate social media
+   * to be logged in
+   */
+    public function __construct()
     {
-      $events = DB::table('events')->get();
-      return view('pages.events', compact('events'));
+        $this->middleware('auth');
     }
 
     /*
 
-      This function creates a new Event in the database after validating them
+      This function routes to the create Event page
 
+    */
+    public function createEvent() {
+
+      return view('pages.createEvent');
+
+    }
+
+    /*
+      This function creates a new Event in the database after validating them
     */
     protected function store(Request $request)
     {
@@ -37,26 +44,30 @@ class EventsController extends Controller
             'points' => 'required|between:0,9',
             'date' => 'required',
             'image' => 'image',
-
         ]);
 
         //creating the thumbnail
+        //TODO
         $thumbnail = new Image;
 
 
         //creating the album
+        //TODO
+        $album = new Album;
+
 
         $event = new Event;
         $event->eventName = $request->eventName;
         $event->pointType = $request->pointType;
         $event->points = $request->points;
         $event->user_id = Auth::user()->id;
-        //$event->date = $request->date;
-        //$event->description = $request->description;
-        //$event->location = $request->location;
+        $event->date = $request->date;
+        $event->description = $request->description;
+        $event->location = $request->location;
 
 
         //ADDING SEMESTER_ID
+        //TODO
 
         $event->save();
 
