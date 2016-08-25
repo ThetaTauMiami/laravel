@@ -34,8 +34,32 @@
                 <li>
                     <a href="/contact">CONTACT</a>
                 </li>
-                    <a href="/login"><button class="btn btn-warning" type=
-                        "button">LOG IN</button></a>
+
+                <!--This php script is to dynamically change the login to a logout button with other options-->
+                <?php
+
+
+                if(isset($user)){
+
+                    echo '<h1>Welcome '.$user->name.'!</h1>';
+                    echo '<li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Welcome, '.$user->name.'!
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">MY PROFILE</a></li>
+                        <li><a href="#">ADMIN PANEL</a></li>
+                        <li><a href="#">LOGOUT</a></li>
+                    </ul>
+                </li>';
+
+                }
+                else {
+
+                    echo ' <a href="/login"><button class="btn btn-warning" type=
+                        "button">LOG IN</button></a>';
+                }
+
+                ?>
             </ul>
 
         </div>

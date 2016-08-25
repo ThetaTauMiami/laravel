@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+
 	<div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
         <h1>CONTACT US</h1>
     </div>
@@ -9,6 +10,7 @@
 			<div class="col-md-6 col-md-offset-3">
 				CONTACT INFO HERE
 				<div class="well well-sm" style="margin-top: 30px">
+
 					<form class="form-horizontal" action="" method="post">
 						<fieldset>
 
@@ -46,6 +48,7 @@
 						</fieldset>
 					</form>
 				</div>
+
 			</div>
 		</div>
 	</div>

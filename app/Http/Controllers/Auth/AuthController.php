@@ -95,10 +95,6 @@ class AuthController extends Controller
     {
         $bid = Bid::find($data['registration_token']);
 
-        if($bid->email != $data['email']){
-            return Redirect::back()->withErrors(['Error', 'Email token and email address do not match.']);
-        }
-
 
         return User::create([
             'first_name' => $data['first_name'],
