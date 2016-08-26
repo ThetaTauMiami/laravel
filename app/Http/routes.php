@@ -47,8 +47,8 @@ Route::get('createEvent', 'EventsController@createEvent');
 
 //Post routes
 Route::post('createEvent', 'EventsController@store');
-Route::post('gallery', 'GalleryController@store');
-
+Route::post('gallery', 'GalleryController@storeAlbum');
+Route::post('gallery/{album}', 'GalleryController@storeImage');
 
 /* +--------------------------------------+
    | USER AUTHORIZATION ROUTES            |

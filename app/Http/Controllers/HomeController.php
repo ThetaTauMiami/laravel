@@ -39,7 +39,7 @@ class HomeController extends Controller
 
 
     public function gallery() {
-        $events = DB::table('albums')->get();
+        $albums = DB::table('albums')->get();
         return view('pages.gallery', compact('albums'));
     }
 

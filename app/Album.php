@@ -17,10 +17,10 @@ class Album extends Model
   }
 
   public function events(){
-    return this->belongsTo('App\Event');
+    return $this->belongsTo('App\Event');
   }
 
   public function semesters(){
-    return this->belongsTo('App\Semester');
+    return $this->belongsTo('App\Semester');
   }
 }

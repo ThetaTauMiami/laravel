@@ -39,7 +39,7 @@
                 <?php
 
 
-                if(isset($user)){
+                /*if(isset($user)){
 
                     echo '<h1>Welcome '.$user->name.'!</h1>';
                     echo '<li class="dropdown">
@@ -58,7 +58,7 @@
                     echo ' <a href="/login"><button class="btn btn-warning" type=
                         "button">LOG IN</button></a>';
                 }
-
+*/
                 ?>
             </ul>
 

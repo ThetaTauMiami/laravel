@@ -10,6 +10,7 @@ use App\Event;
 use DB;
 use Auth;
 use App\Image;
+use Illuminate\Support\Facades\Redirect;
 
 class EventsController extends Controller
 {
@@ -38,18 +39,18 @@ class EventsController extends Controller
     */
     protected function store(Request $request)
     {
-        $this->validate($request, [
-            'eventName' => 'required|unique:events,eventName',
-            'pointType' => 'required',
-            'points' => 'required|between:0,9',
-            'date' => 'required',
-            'image' => 'image',
+      $this->validate($request, [
+          'eventName' => 'required|unique:events,eventName',
+          'pointType' => 'required',
+          'points' => 'required|between:0,9',
+          'date' => 'required',
+          'image' => 'image',
         ]);
 
         //creating the thumbnail
         //TODO
         $thumbnail = new Image;
-
+        $file = $request->file('image');
 
         //creating the album
         //TODO
@@ -67,7 +68,23 @@ class EventsController extends Controller
 
 
         //ADDING SEMESTER_ID
-        //TODO
+        $today = Carbon\Carbon::today()->toDateString();
+        $semester = DB::table('semesters')
+          ->whereDate('date_start', '<=', $today)
+          ->whereDate('date_end', '=', NULL)
+          ->get();
+        if($semester == NULL){
+          $semester = DB::table('semesters')
+            ->whereDate('date_start', '<=', $today)
+            ->whereDate('date_end', '>', $today)
+            ->first();
+        }
+
+        $event->semester_id = $semester->id;
+
+        $this->validate($event, [
+            'semester' => 'required'
+        ]);
 
         $event->save();
 
