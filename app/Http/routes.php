@@ -43,13 +43,21 @@ Route::get('createEvent', 'EventsController@createEvent');
 
 
 
-
-
 /* +--------------------------------------+
    | Private/User Routes                  |
    +--------------------------------------+
 */
-Route::get('/admin/new',function(){return view('admin.add_class');});
+
+
+// =============== Admin Panel ===============
+
+Route::get('/admin/new/class',      'AdminController@newClassForm');
+Route::post('/admin/new/class',     'AdminController@newClassSubmit');
+
+
+// ============= End Admin Panel =============
+
+
 
 //Post routes
 Route::post('createEvent', 'EventsController@store');
