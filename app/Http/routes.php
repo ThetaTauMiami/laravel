@@ -33,7 +33,6 @@ Route::get('members/{id}', 'MemberController@profile');
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
 
-Route::get('gallery/{event}', 		'GalleryController@retrieveByEvent');
 Route::get('profile',			'HomeController@profile');
 
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');

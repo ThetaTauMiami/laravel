@@ -57,7 +57,7 @@ class GalleryController extends Controller
       $image->save();
 
 
-      return Redirect::to('/gallery/{$request->album_id}');
+      return redirect()->action('HomeController@retrieveImagesByAlbum', [$image->album_id]);
     }
 
     //creating new albums
@@ -92,6 +92,6 @@ class GalleryController extends Controller
       $album->event_id = $request->event_id;
       $album->save();
 
-      return Redirect::to('/gallery/{{ $album->id }}');
+      return redirect()->action('HomeController@retrieveImagesByAlbum', [$album->id]);
     }
 }
