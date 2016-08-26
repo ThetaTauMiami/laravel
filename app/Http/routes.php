@@ -29,9 +29,11 @@ Route::get('gallery', 		'HomeController@gallery');
 Route::get('events', 		'EventsController@index');
 Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('members', 		'HomeController@members');
+Route::get('members/{id}', 'MemberController@profile');
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
 Route::get('gallery/{event}', 		'GalleryController@retrieveByEvent');
+Route::get('profile',			'HomeController@profile');
 
 
 
@@ -82,6 +84,7 @@ Route::get('/linkedin',
 	'Auth\SocialMediaController@LinkedInRedirectToProvider');
 Route::get('/linkedin/callback',
 	'Auth\SocialMediaController@LinkedInHandleProviderCallback');
+
 
 
 
