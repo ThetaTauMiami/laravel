@@ -40,7 +40,7 @@ Route::get('gallery/{event}', 		'GalleryController@retrieveByEvent');
    | Private/User Routes                  |
    +--------------------------------------+
 */
-
+Route::get('/admin/new',function(){return view('admin.add_class');});
 
 ///// TODO /////
 Route::group( [ 'middleware' => ['web'] ], function ()
