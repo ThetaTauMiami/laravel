@@ -13,26 +13,13 @@ use Input;
 class GalleryController extends Controller
 {
 
-    public function RetrieveAll()
-    {
-      $images = DB::table('images')->get();
-      return view('pages.gallery', compact('images'));
-    }
 
-    public function RetrieveByUploader($uploader)
+  /* Require any user attempting to authenticate social media
+	 * to be logged in
+	 */
+    public function __construct()
     {
-      $images = DB::table('images')
-        ->where('user_id', '=', $uploader)
-        ->get();
-      return view('pages.gallery', compact('images'));
-    }
-
-    public function retrieveByEvent($event)
-    {
-      $images = DB::table('images')
-        ->where('event_id', '=', $event)
-        ->get();
-      return view("gallery.eventGallery", compact('images'));
+        $this->middleware('auth');
     }
 
     //stores a new photo in the uploads folder and puts the path and metadata in database
@@ -58,12 +45,12 @@ class GalleryController extends Controller
       $file->move("uploads/{$event->eventName}", $fileName);
 
 
-      
+
       $image = new Image;
       $image->description = $request->description;
       $image->filepath = $filePath;
       $image->user_id = $request->user_id;
-      $image->event_id = $request->event_id;
+      $image->album_id = $request->album_id;
       $image->save();
 
 

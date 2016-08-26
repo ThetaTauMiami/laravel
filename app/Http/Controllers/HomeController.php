@@ -39,12 +39,13 @@ class HomeController extends Controller
 
 
     public function gallery() {
-        $events = DB::table('events')->get();
-        return view('pages.gallery', compact('events'));
+        $events = DB::table('albums')->get();
+        return view('pages.gallery', compact('albums'));
     }
 
     public function events() {
-        return view('pages.events');
+      $events = DB::table('events')->get();
+      return view('pages.events', compact('events'));
     }
 
     public function recruitment() {
@@ -75,13 +76,25 @@ class HomeController extends Controller
         return view('pages.contact');
     }
 
-    public function createEvent() {
-      if (!Auth::check()){
-        return redirect('/login');
-      }
-      else{
-        return view('pages.createEvent');
-      }
+    public function retrieveImagesByAlbum($album)
+    {
+      $images = DB::table('images')
+        ->where('album_id', '=', $album)
+        ->get();
+      return view("gallery.eventGallery", compact('images'));
+    }
+
+    public function retrieveImagesByUploader($uploader)
+    {
+      $images = DB::table('images')
+        ->where('user_id', '=', $uploader)
+        ->get();
+      return view('pages.gallery', compact('images'));
+    }
+
+    public function retrieveAllImages(){
+      $images = DB::table('images')->get();
+      return view('pages.gallery', compact('images'));
     }
 
     public function login() {

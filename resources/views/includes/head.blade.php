@@ -12,6 +12,18 @@
           rel="stylesheet">
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/footer-distributed.css') }}" rel="stylesheet">
+
+    <!-- Bootbox dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+    <!--<script>
+      $(document).ready(function(){
+        bootbox.alert("Hello world!");
+      });
+
+    </script>-->
+
     <!-- Chrome, Firefox OS, Opera and Vivaldi -->
     <meta name="theme-color" content="#5B0000">
     <!-- Windows Phone -->

@@ -5,10 +5,18 @@
 	<div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
         <h1>CONTACT US</h1>
     </div>
+<br>
+	<div class="container">
+		<div class="row" style="text-align: center">
+			<a href="#"><i id="social" class="fa fa-facebook-official fa-5x" aria-hidden="true">&nbsp;&nbsp; </i></a>
+			<a href="#"><i id="social" class="fa fa-twitter fa-5x" aria-hidden="true">&nbsp;&nbsp;</i></a>
+				<a href="#"><i id="social" class="fa fa-instagram fa-5x" aria-hidden="true">&nbsp;&nbsp;</i></a>
+					<a href="#"><i id="social" class="fa fa-linkedin fa-5x" aria-hidden="true"></i></a>
+		</div>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				CONTACT INFO HERE
 				<div class="well well-sm" style="margin-top: 30px">
 
 					<form class="form-horizontal" action="" method="post">
@@ -16,6 +24,7 @@
 
 							<legend>Email Us</legend>
 							<!-- Name input-->
+							<img id="profile-img" class="profile-img-card center-block img-responsive" src="{{ asset('/img/login-logo.png') }}" style="height: 214px; width: 125px;" />
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="name">Name</label>
 								<div class="col-md-9">
@@ -47,7 +56,9 @@
 							</div>
 						</fieldset>
 					</form>
+
 				</div>
+
 
 			</div>
 		</div>
