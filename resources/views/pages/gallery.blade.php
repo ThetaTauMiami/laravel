@@ -20,13 +20,13 @@
 			@if(Auth::check())
 			<div class="col-md-8">
 				<button id="button" class="btn btn-primary">
-						Upload New Picture
+						Create New Album
 				</button>
 			</div>
 			@elseif(!Auth::check())
 			<div class="col-md-8">
 				<a href="login"><button class="btn btn-primary">
-						Upload New Picture
+						Create New Album
 				</button></a>
 			</div>
 			@endif
@@ -39,27 +39,27 @@
 				<div class="panel panel-default">
 					<form enctype="multipart/form-data" method="post" action="/gallery">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						@if(Auth::check())
-						<input type="hidden" name="user_id" value="{{ $user = Auth::user()->id }}">
-						@endif
+
+
+						<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+							<label for="name" class="col-md-4 control-label">Name</label>
+							<input class="form-control" type="text" name="name"/>
+						</div>
+
 						<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 							<label for="description" class="col-md-4 control-label">Description</label>
 							<input class="form-control" type="text" name="description"/>
 						</div>
 
-						<div class="form-group{{ $errors->has('event_id') ? ' has-error' : '' }}">
-							<label for="event_id" class="col-md-4 control-label">Event the picture is from</label>
-							<select name="event_id" class="form-control">
-								@foreach ($events as $event)
-								<option value="{{ $event->id }}"> {{ $event->eventName }} </option>
-								@endforeach
-							</select>
+						<div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
+							<label for="location" class="col-md-4 control-label">Location</label>
+							<input class="form-control" type="text" name="location"/>
 						</div>
 
-						<div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+						<!--<div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
 							<label for="image" class="col-md-4 control-label">Image</label>
 							<input type="file" id="image" name="image" accept="image/*"/>
-						</div>
+						</div>-->
 
 						<button type="submit" class="btn">Submit</button>
 					</form>
@@ -75,13 +75,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-8 col-md-offset-2">
-			<ul>
-			@foreach ($events as $event)
-				<li><a href="gallery/{{$event->id}}">{{$event->eventName}}</a></li>
-			@endforeach
-		  </ul>
-		  </div>
+
 
 		</div>
 	</div>
@@ -93,7 +87,15 @@
 
         <div class="row">
 
+					  @foreach ($albums as $album)
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="/gallery/">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+						@endforeach
+
+						<!--<div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
                 </a>
@@ -147,12 +149,7 @@
                 <a class="thumbnail" href="#">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
                 </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
+            </div>-->
         </div>
         </div>
         </div>

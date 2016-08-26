@@ -3,6 +3,10 @@ body {
     padding-top: 50px;
 }
 
+* {
+    border-radius: 0 !important;
+}
+
 .nav.navbar-nav.navbar-right li a {
     color: #5B0000;
 }
@@ -69,6 +73,10 @@ body {
 
 #gallery {
     margin-top: 20px;
+}
+
+#social {
+    color: #5B0000;
 }
 
 

@@ -17,7 +17,8 @@ class Image extends Model
       return $this->belongsTo('App\Event');
     }
 
-    public function albums()
+
+    public function album()
     {
       return $this->belongsTo('App\Album');
     }
