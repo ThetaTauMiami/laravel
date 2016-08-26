@@ -94,7 +94,7 @@
     <div class="row">
         @foreach ($members as $member)
           <div class="col-lg-4 col-sm-6 text-center">
-              <a href="#">
+              <a href="/members/{{$member->id}}">
                   <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
               </a>
               <h3>{{$member->first_name}} {{$member->last_name}}

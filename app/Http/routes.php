@@ -29,10 +29,16 @@ Route::get('gallery', 		'HomeController@gallery');
 Route::get('events', 		'HomeController@events');
 Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('members', 		'HomeController@members');
+Route::get('members/{id}', 'MemberController@profile');
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
+
+Route::get('gallery/{event}', 		'GalleryController@retrieveByEvent');
+Route::get('profile',			'HomeController@profile');
+
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
 Route::get('createEvent', 'EventsController@createEvent');
+
 
 
 
@@ -81,6 +87,7 @@ Route::get('/linkedin',
 	'Auth\SocialMediaController@LinkedInRedirectToProvider');
 Route::get('/linkedin/callback',
 	'Auth\SocialMediaController@LinkedInHandleProviderCallback');
+
 
 
 
