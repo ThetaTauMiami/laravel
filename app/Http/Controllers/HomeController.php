@@ -76,6 +76,16 @@ class HomeController extends Controller
         return view('pages.contact');
     }
 
+    public function retrieveIndividualEvent($id)
+    {
+      $event = DB::table('event')
+        ->where('event_id', '=', $id)
+        ->get();
+
+
+      return view("event.individualEvent", compact('event'));
+    }
+
     public function retrieveImagesByAlbum(\App\Album $album)
     {
       $images = DB::table('images')

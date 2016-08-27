@@ -79,20 +79,12 @@ class EventsController extends Controller
 
           $event->image_id = $image->id;
         }
-        //making the photo album
-        if($request->album == "") {
-          $arguments = new Request;
-          $arguments['name'] = $request->eventName;
-          $arguments['description'] = $request->description;
-          $arguments['location'] = $request->location;
 
-          app('App\Http\Controllers\GalleryController')->storeAlbum($arguments);
-        }
 
 
         $event->name = $request->eventName;
         $event->type_id = $request->pointType;
-        
+
         $event->points = $request->points;
         $event->user_id = Auth::user()->id;
         $event->date_time = $request->date;
@@ -123,6 +115,17 @@ class EventsController extends Controller
         ]);
 
         $event->save();
+
+        //making the photo album
+        if($request->album == "") {
+          $arguments = new Request;
+          $arguments['name'] = $request->eventName;
+          $arguments['description'] = $request->description;
+          $arguments['location'] = $request->location;
+          $arguments['event_id'] = $event->id;
+
+          app('App\Http\Controllers\GalleryController')->storeAlbum($arguments);
+        }
 
         return \Redirect::to('/events');
     }
