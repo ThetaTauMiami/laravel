@@ -7,15 +7,35 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Bid;
+use App\User;
 use DB;
 use Mail;
 
 class AdminController extends Controller
 {
 
+	/* Require any user attempting to authenticate social media 
+	 * to be logged in
+	 */
+    public function __construct()
+    {
+        // TODO THIS NEEDS TO BE MIDDLEWARE TO BLOCK IF NOT ADMIN $this->middleware('auth'); 
+    }
+
+	function showPanel(){
+		view('admin.panel');
+	}
+
 
     function newClassForm(){
     	return view('admin.add_class');
+    }
+
+
+    function manageBrothersForm(){
+    	$members = User::orderby('roll_number')
+	        ->with('image')->get();
+	    return view('admin.manage_brothers',compact('members') );
     }
 
     function newClassSubmit(Request $request){
