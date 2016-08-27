@@ -50,8 +50,10 @@ Route::get('createEvent', 'EventsController@createEvent');
 
 // =============== Admin Panel ===============
 
-Route::get('/admin/new/class',      'AdminController@newClassForm');
-Route::post('/admin/new/class',     'AdminController@newClassSubmit');
+Route::get('admin',                'AdminController@showPanel');
+
+Route::get('admin/new/class',      'AdminController@newClassForm');
+Route::post('admin/new/class',     'AdminController@newClassSubmit');
 
 
 // ============= End Admin Panel =============

@@ -13,6 +13,18 @@ use Mail;
 class AdminController extends Controller
 {
 
+	/* Require any user attempting to authenticate social media 
+	 * to be logged in
+	 */
+    public function __construct()
+    {
+        // TODO THIS NEEDS TO BE MIDDLEWARE TO BLOCK IF NOT ADMIN $this->middleware('auth'); 
+    }
+
+	function showPanel(){
+		view('admin.panel');
+	}
+
 
     function newClassForm(){
     	return view('admin.add_class');
