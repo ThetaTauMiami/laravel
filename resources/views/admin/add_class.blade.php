@@ -11,18 +11,6 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/new/class') }}">
                     	{{ csrf_field() }}
 
-                    	<div>
-                    	<ul>
-                    	<?php 
-                    	if(isset($validator)){
-	                    	$messages = $validator->errors();
-	                    	foreach ($messages->all('<li>:message</li>') as $message) {
-							    echo $message;
-							} 
-						} ?>
-						</ul>
-                    	</div>
-
                         <div class="row">
                             <div class="col-xs-4 col-xs-offset-4">
                                 <img id="profile-img" class="img-responsive" src="{{ asset('/img/login-logo.png') }}" />
@@ -105,12 +93,20 @@
                         		
                         	}
 
-                        	$("#memFields").append('<div class="form-group row" id="memField_'+i+'"><div class="col-sm-2 col-xs-10"><input id="rollNum_'+i+'" type="number" class="form-control" name="roll_number[]" placeholder="Roll Number" value="'+next+'"></div><div class="col-xs-2 visible-xs"><button type="button" class="btn btn-default" onclick="delMem('+i+');"><i class="fa fa-trash"></i></button></div><div class="col-sm-5 col-xs-12"><input id="email_'+i+'" type="email" class="form-control" name="email[]" placeholder="Email Address"></div><div class="col-sm-3 col-xs-12"><input id="schoolClass_'+i+'" type="number" min="2000" max="2999" class="form-control" name="school_class[]" placeholder="Graduation Year" value="'+year+'"></div><div class="col-sm-2 hidden-xs"><button type="button" class="btn btn-default" onclick="delMem('+ (i++) +');"><i class="fa fa-trash"></i></button></div></div>');
+                        	var button = "";
+                        	if(i>0)
+                        		button = '<button type="button" class="btn btn-default" onclick="delMem('+i+');"><i class="fa fa-trash"></i></button>';
+
+                        	$("#memFields").append('<div class="form-group row" id="memField_'+i+'"><div class="col-sm-2 col-xs-10"><input id="rollNum_'+i+'" type="number" class="form-control" name="roll_number[]" placeholder="Roll Number" value="'+next+'"></div><div class="col-xs-2 visible-xs">'+button+'</div><div class="col-sm-5 col-xs-12"><input id="email_'+i+'" type="email" class="form-control" name="email[]" placeholder="Email Address"></div><div class="col-sm-3 col-xs-12"><input id="schoolClass_'+i+'" type="number" min="2000" max="2999" class="form-control" name="school_class[]" placeholder="Graduation Year" value="'+year+'"></div><div class="col-sm-2 hidden-xs">'+button+'</div></div>');
+
+                        	i++;
                         }
 
                         function delMem(i){
                         	$("#memField_"+i).remove();
                         }
+
+                        $(document).ready(function(){addMem()});
 
                         </script>
 
