@@ -9,6 +9,7 @@
     }
 </style>
 @section('content')
+  @if ($member)
   <div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
         <h1>{{$member->first_name}} {{$member->last_name}}</h1>
     </div>
@@ -21,7 +22,21 @@
             <h3>{{$member->first_name}} {{$member->last_name}}
                 <small>{{$member->roll_number}} | {{$member->chapter_class}}</small>
             </h3>
+            @if (Auth::check())
+            <small>{{$member->phone}} | {{$member->email}}</small>
+            @endif
+            @if ($member->resume_path!=null)
+            <small><a href="#">Resume</a></small>
+            @endif
             <p>{{$member->school_class}}</p>
+            @if (Auth::id()==$member->id)
+            <a href="/editProfile/{{$member->id}}"><button>Edit Profile</button></a>
+            @endif
         </div>
       </div>
     </div>
+    @else
+    <div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
+          <h1>Member not found</h1>
+    </div>
+    @endif

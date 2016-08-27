@@ -101,6 +101,7 @@
                   <small>{{$member->roll_number}} | {{$member->chapter_class}}</small>
               </h3>
               <p>{{$member->school_class}}</p>
+
           </div>
         @endforeach
       </div>
