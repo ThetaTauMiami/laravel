@@ -67,7 +67,7 @@ class HomeController extends Controller
     public function profile(User $user){
       $image = DB::table('images')
       ->where('id', $user->image_id)
-      ->get();
+      ->first();
 
       return view('pages.profile', compact('user', 'image'));
 
