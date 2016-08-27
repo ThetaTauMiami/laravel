@@ -90,6 +90,7 @@
 					  @foreach ($albums as $album)
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="/gallery/{{ $album->id }}">
+										
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
 										<p> {{ $album->name }} </p>
                 </a>

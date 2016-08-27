@@ -28,6 +28,8 @@ Route::get('/', 			'HomeController@index');
 Route::get('gallery', 		'HomeController@gallery');
 Route::get('events', 		'HomeController@events');
 Route::get('recruitment', 	'HomeController@recruitment');
+Route::get('recruitment/signup', 	'HomeController@recruitmentSignUp');
+Route::post('recruitment/signup', 	'RecruitmentController@store');
 Route::get('members', 		'HomeController@members');
 Route::get('members/{id}', 'HomeController@profile');
 Route::get('alumni', 		'HomeController@alumni');
@@ -58,6 +60,7 @@ Route::patch('editProfile/{user}', 'ProfileController@update');
 // =============== Admin Panel ===============
 
 Route::get('/admin/new/class',      'AdminController@newClassForm');
+Route::get('/admin/recruitment',      'HomeController@recruitmentList');
 Route::post('/admin/new/class',     'AdminController@newClassSubmit');
 
 

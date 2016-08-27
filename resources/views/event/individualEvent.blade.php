@@ -24,8 +24,13 @@
       <p>Thumbnail: <img src="{{ asset($image->file_path) }}"/></p>
       @endif
 
+      @if($album != NULL)
+        <a href="/gallery/{{ $album->id }}"><p>Photo Album</p></a>
+      @endif
 
-
+      <a href="#"><button class="btn btn-warning" type="button">Edit Event</button></a>
+      <a href="#"><button class="btn btn-warning" type="button">Take Attendence</button></a>
+      <a href="#"><button class="btn btn-warning" type="button">RSVP</button></a>
 
 		</div>
 	</div>
