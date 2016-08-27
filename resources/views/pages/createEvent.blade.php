@@ -7,7 +7,7 @@
           <div class="panel panel-default">
               <div class="panel-heading">Create New Event</div>
               <div class="panel-body">
-                  <form class="form-horizontal" role="form" method="POST" action="/createEvent">
+                  <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="/createEvent">
                     <div class="form-group{{ $errors->has('eventName') ? ' has-error' : '' }}">
                       <label for="eventName" class="col-md-4 control-label">Event Name</label>
 
@@ -43,9 +43,9 @@
 
 
                   <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
-                    <label for="date" class="col-md-4 control-label">Date of Event</label>
+                    <label for="date" class="col-md-4 control-label">Date/Time of Event</label>
                     <div class="col-md-6">
-                      <input id="date" type="date" class="form-control" name="date" value="{{ old('date') }}">
+                      <input id="date" type="datetime-local" class="form-control" name="date" value="{{ old('date') }}">
 
                     </div>
                   </div>
@@ -72,8 +72,8 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-      							<label for="image" class="col-md-4 control-label">Image</label>
-      							<input type="file" id="image" name="image" accept="image/*"/>
+      							<label for="image" class="col-md-4 control-label">Event Thumbnail</label>
+      							<input type="file" id="image" name="image"/>
       						</div>
 
                   <div class="form-group{{ $errors->has('is_public') ? ' has-error' : '' }}">

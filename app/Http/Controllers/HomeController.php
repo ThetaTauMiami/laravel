@@ -79,12 +79,16 @@ class HomeController extends Controller
         return view('pages.contact');
     }
 
-    public function retrieveImagesByAlbum($album)
+    public function retrieveImagesByAlbum(\App\Album $album)
     {
       $images = DB::table('images')
-        ->where('album_id', '=', $album)
+        ->where('album_id', '=', $album->id)
         ->get();
-      return view("gallery.eventGallery", compact('images'));
+
+      $album = DB::table('albums')
+        ->where('id', '=', $album->id)
+        ->first();
+      return view("gallery.albumGallery", compact('images'), compact('album'));
     }
 
     public function retrieveImagesByUploader($uploader)

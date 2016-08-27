@@ -33,7 +33,6 @@ Route::get('members/{id}', 'HomeController@profile');
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
 
-Route::get('gallery/{event}', 		'GalleryController@retrieveByEvent');
 Route::get('profile',			'HomeController@profile');
 
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
@@ -45,14 +44,22 @@ Route::get('editProfile', 'ProfileController@editMyProfile');
 
 
 
-
-
 /* +--------------------------------------+
    | Private/User Routes                  |
    +--------------------------------------+
 */
 //Patch Routes
 Route::patch('editProfile/{user}', 'ProfileController@update');
+
+// =============== Admin Panel ===============
+
+Route::get('/admin/new/class',      'AdminController@newClassForm');
+Route::post('/admin/new/class',     'AdminController@newClassSubmit');
+
+
+// ============= End Admin Panel =============
+
+
 
 //Post routes
 Route::post('createEvent', 'EventsController@store');

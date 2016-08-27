@@ -11,6 +11,8 @@ use DB;
 use Auth;
 use App\Image;
 use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\ImageManagerStatic as Imager;
+use Carbon\Carbon;
 
 class EventsController extends Controller
 {
@@ -47,28 +49,60 @@ class EventsController extends Controller
           'image' => 'image',
         ]);
 
-        //creating the thumbnail
-        //TODO
-        $thumbnail = new Image;
-        $file = $request->file('image');
-
-        //creating the album
-        //TODO
-        $album = new Album;
-
-
         $event = new Event;
-        $event->eventName = $request->eventName;
-        $event->pointType = $request->pointType;
+
+        //creating the thumbnail
+
+        if($request->image){
+          $thumbnail = new Image;
+          $img = $request->file('image');
+          $extension = $img->getClientOriginalExtension();
+          $fileName = $img->getClientOriginalName();
+          $publicPath = public_path();
+          $filePath = "uploads/Event_Thumbs/{$fileName}";
+          $request['filepath'] = $filePath;
+
+          $this->validate($request, [
+              'filepath' => 'unique:images,file_path'
+          ]);
+
+          $img->move("uploads/Event_Thumbs", $fileName);
+          $im = Imager::make($filePath)->resize(150, 150)->save($filePath);
+
+          $image = new Image;
+
+          $image->description = $request->description;
+          $image->file_path = $filePath;
+          $image->user_id = Auth::user()->id;
+          $image->thumb_path = $filePath;
+          $image->save();
+
+          $event->image_id = $image->id;
+        }
+        //making the photo album
+        if($request->album == "") {
+          $arguments = new Request;
+          $arguments['name'] = $request->eventName;
+          $arguments['description'] = $request->description;
+          $arguments['location'] = $request->location;
+
+          app('App\Http\Controllers\GalleryController')->storeAlbum($arguments);
+        }
+
+
+        $event->name = $request->eventName;
+        $event->type_id = $request->pointType;
+        
         $event->points = $request->points;
         $event->user_id = Auth::user()->id;
-        $event->date = $request->date;
+        $event->date_time = $request->date;
         $event->description = $request->description;
         $event->location = $request->location;
-
+        if($request->is_public){ $event->is_public = true; }
+        else{$event->is_public = false; }
 
         //ADDING SEMESTER_ID
-        $today = Carbon\Carbon::today()->toDateString();
+        $today = Carbon::today()->toDateString();
         $semester = DB::table('semesters')
           ->whereDate('date_start', '<=', $today)
           ->whereDate('date_end', '=', NULL)
@@ -82,7 +116,9 @@ class EventsController extends Controller
 
         $event->semester_id = $semester->id;
 
-        $this->validate($event, [
+        $request['semester'] = $event->semester_id;
+
+        $this->validate($request, [
             'semester' => 'required'
         ]);
 
