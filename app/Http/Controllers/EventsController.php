@@ -54,7 +54,6 @@ class EventsController extends Controller
         //creating the thumbnail
 
         if($request->image){
-          $thumbnail = new Image;
           $img = $request->file('image');
           $extension = $img->getClientOriginalExtension();
           $fileName = $img->getClientOriginalName();

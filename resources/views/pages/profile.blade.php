@@ -9,28 +9,28 @@
     }
 </style>
 @section('content')
-  @if ($member)
+  @if ($user)
   <div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
-        <h1>{{$member->first_name}} {{$member->last_name}}</h1>
+        <h1>{{$user->first_name}} {{$user->last_name}}</h1>
     </div>
     <div class="container">
     <div class="row">
         <div class="col-lg-4 col-sm-6 text-center">
             <a href="#">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+                <img class="img-circle img-responsive img-center" src="{{$image->thumb_path}}" alt="">
             </a>
-            <h3>{{$member->first_name}} {{$member->last_name}}
-                <small>{{$member->roll_number}} | {{$member->chapter_class}}</small>
+            <h3>{{$user->first_name}} {{$user->last_name}}
+                <small>{{$user->roll_number}} | {{$user->chapter_class}}</small>
             </h3>
             @if (Auth::check())
-            <small>{{$member->phone}} | {{$member->email}}</small>
+            <small>{{$user->phone}} | {{$user->email}}</small>
             @endif
-            @if ($member->resume_path!=null)
+            @if ($user->resume_path!=null)
             <small><a href="#">Resume</a></small>
             @endif
-            <p>{{$member->school_class}}</p>
-            @if (Auth::id()==$member->id)
-            <a href="/editProfile/{{$member->id}}"><button>Edit Profile</button></a>
+            <p>{{$user->school_class}}</p>
+            @if (Auth::id()==$user->id)
+            <a href="/editProfile/{{$user->id}}"><button>Edit Profile</button></a>
             @endif
         </div>
       </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\User;
 use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth;
 use Auth;
@@ -52,6 +53,7 @@ class HomeController extends Controller
         return view('pages.recruitment');
     }
 
+
     public function recruitmentSignUp() {
         return view('pages.recruitmentSignUp');
     }
@@ -61,11 +63,14 @@ class HomeController extends Controller
         return view('pages.recruitmentList', compact('pnms'));
     }
 
-    public function profile($profile_id){
-      $member = DB::table('users')
-      ->where('id', $profile_id)
-      ->first();
-      return view('pages.profile', compact('member'));
+
+    public function profile(User $user){
+      $image = DB::table('images')
+      ->where('id', $user->image_id)
+      ->get();
+
+      return view('pages.profile', compact('user', 'image'));
+
     }
 
     public function members() {

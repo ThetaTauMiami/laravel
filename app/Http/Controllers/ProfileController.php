@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use App\Image;
 use DB;
+use Intervention\Image\ImageManagerStatic as Imager;
 
 class ProfileController extends Controller
 {
@@ -16,15 +18,48 @@ class ProfileController extends Controller
       return editProfile($profile_id);
     }
 
-    function editProfile($profile_id){
-      $member = DB::table('users')
+    function editProfile(User $user){
+      /*$member = DB::table('users')
       ->where('id', $profile_id)
-      ->first();
-      return view('pages.editProfile', compact('member'));
+      ->first();*/
+
+      $image = DB::table('images')
+      ->where('id', $user->image_id)
+      ->get();
+
+      return view('pages.editProfile', compact('user', 'image'));
     }
 
-    public function update(Request $request, User $user){
-      $user->update($request->all());
+    function update(Request $request, User $user){
+      //$user->update($request->all());
+
+      //is there a value in the image section?
+      if($request->image){
+        //$thumbnail = new Image;
+        $img = $request->file('image');
+        $extension = $img->getClientOriginalExtension();
+        $fileName = $img->getClientOriginalName();
+        $publicPath = public_path();
+        $filePath = "uploads/Profile_Thumbs/{$fileName}";
+        $request['filepath'] = $filePath;
+
+        $this->validate($request, [
+            'filepath' => 'unique:images,file_path'
+        ]);
+
+        $img->move("uploads/Profile_Thumbs", $fileName);
+        $im = Imager::make($filePath)->resize(200, 200)->save($filePath);
+
+        $image = new Image;
+
+        $image->description = $request->description;
+        $image->file_path = $filePath;
+        $image->user_id = Auth::user()->id;
+        $image->thumb_path = $filePath;
+        $image->save();
+
+        $user->image_id = $image->id;
+      }
 
       return back();
     }
