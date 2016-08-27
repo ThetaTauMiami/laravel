@@ -54,7 +54,6 @@ class EventsController extends Controller
         //creating the thumbnail
 
         if($request->image){
-          $thumbnail = new Image;
           $img = $request->file('image');
           $extension = $img->getClientOriginalExtension();
           $fileName = $img->getClientOriginalName();
@@ -92,7 +91,7 @@ class EventsController extends Controller
 
         $event->name = $request->eventName;
         $event->type_id = $request->pointType;
-        
+
         $event->points = $request->points;
         $event->user_id = Auth::user()->id;
         $event->date_time = $request->date;

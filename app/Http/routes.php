@@ -29,7 +29,7 @@ Route::get('gallery', 		'HomeController@gallery');
 Route::get('events', 		'HomeController@events');
 Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('members', 		'HomeController@members');
-Route::get('members/{id}', 'HomeController@profile');
+Route::get('members/{user}', 'HomeController@profile');
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
 
@@ -37,7 +37,7 @@ Route::get('profile',			'HomeController@profile');
 
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
 Route::get('createEvent', 'EventsController@createEvent');
-Route::get('editProfile/{id}', 'ProfileController@editProfile');
+Route::get('editProfile/{user}', 'ProfileController@editProfile');
 Route::get('editProfile', 'ProfileController@editMyProfile');
 
 
