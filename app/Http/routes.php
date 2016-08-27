@@ -61,18 +61,17 @@ Route::patch('editProfile/{user}', 'ProfileController@update');
 
 // =============== Admin Panel ===============
 
-<<<<<<< HEAD
-Route::get('/admin/new/class',      'AdminController@newClassForm');
+
+
 Route::get('/admin/recruitment',      'HomeController@recruitmentList');
-Route::post('/admin/new/class',     'AdminController@newClassSubmit');
-=======
+
 Route::get('admin',                'AdminController@showPanel');
 
 Route::get('admin/new/class',      'AdminController@newClassForm');
 Route::post('admin/new/class',     'AdminController@newClassSubmit');
 
 Route::get('admin/edit/brothers',   'AdminController@manageBrothersForm');
->>>>>>> dbfcc4be671e452231dffb3bd0b96067169f6e5e
+
 
 
 // ============= End Admin Panel =============
