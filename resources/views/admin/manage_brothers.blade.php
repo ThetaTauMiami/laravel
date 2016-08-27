@@ -17,9 +17,16 @@
                         </div>
                         <p id="profile-name" class="profile-name-card">Theta Tau | Administration</p>
 
-                        <ul>
-                        	<li><a href="/admin/new/class">Create a new Class</a></li>
-                        </ul>
+                        @foreach($members as $member)
+
+                        	<div class="row active_">
+
+                        		<div class="col-xs-1"> {{ $member->roll_number }} </div>
+                        		<div class="col-xs-4 col-sm-1"><?php if(isset($member->)) ?></div>
+
+                        	</div>
+
+                        @endforeach
 
                 </div>
             </div>

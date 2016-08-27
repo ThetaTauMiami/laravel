@@ -58,6 +58,8 @@ Route::get('admin',                'AdminController@showPanel');
 Route::get('admin/new/class',      'AdminController@newClassForm');
 Route::post('admin/new/class',     'AdminController@newClassSubmit');
 
+Route::get('admin/edit/brothers',   'AdminController@manageBrothersForm');
+
 
 // ============= End Admin Panel =============
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Bid;
+use App\User;
 use DB;
 use Mail;
 
@@ -28,6 +29,13 @@ class AdminController extends Controller
 
     function newClassForm(){
     	return view('admin.add_class');
+    }
+
+
+    function manageBrothersForm(){
+    	$members = User::orderby('roll_number')
+	        ->with('image')->get();
+	    return view('admin.manage_brothers',compact('members') );
     }
 
     function newClassSubmit(Request $request){
