@@ -37,7 +37,6 @@ class ProfileController extends Controller
       if($request->image){
         //$thumbnail = new Image;
         $img = $request->file('image');
-        return var_dump($request->image);
         $extension = $img->getClientOriginalExtension();
         $fileName = $img->getClientOriginalName();
         $publicPath = public_path();
