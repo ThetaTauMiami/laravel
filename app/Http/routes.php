@@ -39,14 +39,12 @@ Route::get('profile',			'HomeController@profile');
 
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
 Route::get('createEvent', 'EventsController@createEvent');
-<<<<<<< HEAD
+
 
 Route::get('events/{event}', 'HomeController@retrieveIndividualEvent');
 
-Route::get('editProfile/{id}', 'ProfileController@editProfile');
-=======
 Route::get('editProfile/{user}', 'ProfileController@editProfile');
->>>>>>> dbfcc4be671e452231dffb3bd0b96067169f6e5e
+
 Route::get('editProfile', 'ProfileController@editMyProfile');
 
 
