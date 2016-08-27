@@ -13,7 +13,7 @@
 
       @foreach ($events as $event)
         <div>
-          {{ $event->eventName }}
+          {{ $event->name }}
         </div>
 
       @endforeach
