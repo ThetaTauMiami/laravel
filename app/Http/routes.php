@@ -29,7 +29,7 @@ Route::get('gallery', 		'HomeController@gallery');
 Route::get('events', 		'HomeController@events');
 Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('members', 		'HomeController@members');
-Route::get('members/{id}', 'MemberController@profile');
+Route::get('members/{id}', 'HomeController@profile');
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
 
@@ -37,6 +37,8 @@ Route::get('profile',			'HomeController@profile');
 
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
 Route::get('createEvent', 'EventsController@createEvent');
+Route::get('editProfile/{id}', 'ProfileController@editProfile');
+Route::get('editProfile', 'ProfileController@editMyProfile');
 
 
 
@@ -46,7 +48,8 @@ Route::get('createEvent', 'EventsController@createEvent');
    | Private/User Routes                  |
    +--------------------------------------+
 */
-
+//Patch Routes
+Route::patch('editProfile/{user}', 'ProfileController@update');
 
 // =============== Admin Panel ===============
 
@@ -62,6 +65,7 @@ Route::post('admin/new/class',     'AdminController@newClassSubmit');
 
 //Post routes
 Route::post('createEvent', 'EventsController@store');
+Route::post('editProfile', 'ProfileController@store');
 Route::post('gallery', 'GalleryController@storeAlbum');
 Route::post('gallery/{album}', 'GalleryController@storeImage');
 

@@ -2,20 +2,12 @@
 
 @section('content')
 
-<div class="jumbotron" style="background-image:url('{{ asset('img/banner.jpg') }}'); background-position: center;">
+<div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
       <h1>{{ $album->name }}</h1>
   </div>
   <div class="row">
   <div class="col-xs-12">
-    @if (count($images) > 0)
-    @foreach ($images as $image)
-      <div>
-        <p>{{ $image->description }}</p>
-        <p>{{ $image->filepath }}</p>
-        <img src="{{ asset($image->filepath) }}" height="200" width="200"/>
-      </div>
-    @endforeach
-    @endif
+
 
 
     <script>
@@ -40,32 +32,24 @@
     </div>
     @endif
 
-
+    @if(count($errors) == 0)
     <div id="uploader" style="display:none" class="col-md-8 col-md-offset-2">
-
+    @elseif(count($errors) > 0)
+    <div id="uploader" class="col-md-8 col-md-offset-2">
+    @endif
       <div class="panel panel-default">
-        <form enctype="multipart/form-data" method="post" action="/gallery">
+        <form enctype="multipart/form-data" method="post" action="/gallery/{{ $album->id }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <input type="hidden" name="album_id" value="{{ $album->id }}">
 
-          <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-            <label for="name" class="col-md-4 control-label">Name</label>
-            <input class="form-control" type="text" name="name"/>
-          </div>
-
-          <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+          <!--<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
             <label for="description" class="col-md-4 control-label">Description</label>
             <input class="form-control" type="text" name="description"/>
-          </div>
+          </div>-->
 
-          <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
-            <label for="location" class="col-md-4 control-label">Location</label>
-            <input class="form-control" type="text" name="location"/>
-          </div>
-
-          <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-            <label for="image" class="col-md-4 control-label">Image</label>
-            <input type="file" id="image" name="image" accept="image/*"/>
+          <div class="form-group{{ $errors->has('images') ? ' has-error' : '' }}">
+            <label for="images" class="col-md-4 control-label">Image</label>
+            <input type="file" id="images" name="images[]" accept="image/*" multiple/>
           </div>
 
           <button type="submit" class="btn">Submit</button>
@@ -91,6 +75,18 @@
   <a class="thumbnail" href="#">
   <img src="http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg?b65726" class="img-fluid center-block" alt="Responsive image">
   </a>
+
+  @if (count($images) > 0)
+  @foreach ($images as $image)
+
+    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+        <a class="thumbnail" href="{{ asset($image->file_path) }}">
+            <img class="img-responsive" src="{{ asset($image->thumb_path) }}" alt="">
+        </a>
+    </div>
+  @endforeach
+  @endif
+
 
   </div>
 </div>

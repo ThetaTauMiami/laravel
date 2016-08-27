@@ -8,17 +8,23 @@ use App\Http\Requests;
 use App\Image;
 use DB;
 use Storage;
-use Input;
+
 use App\Album;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\ImageManagerStatic as Imager;
+
+
 class GalleryController extends Controller
 {
 
 
-  /* Require any user attempting to authenticate social media
+  /* Require any user attempting to authenticate Gallery
 	 * to be logged in
 	 */
     public function __construct()
@@ -30,34 +36,57 @@ class GalleryController extends Controller
     public function storeImage(Request $request)
     {
 
-      $file = $request->file('image');
-      $extension = $file->getClientOriginalExtension();
-      $fileName = $file->getClientOriginalName();
-      $album = DB::table('albums')
-        ->where('id', '=', $request->album_id)
-        ->first();
-      $publicPath = public_path();
-      $filePath = "uploads/{$album->id}/{$fileName}";
-      $request['filepath'] = $filePath;
       $this->validate($request, [
-          'image' => 'required',
+          'images' => 'required',
           'album_id' => 'required',
-          'filepath' => 'unique:images,filepath'
       ]);
 
-      $file->move("uploads/{$album->id}", $fileName);
+
+      foreach ($request->images as $img){
+
+        //return var_dump($image);
+        //$file = $request->file('images');
+        //$file = $image;
 
 
+        $extension = $img->getClientOriginalExtension();
+        $fileName = $img->getClientOriginalName();
+        $album = DB::table('albums')
+          ->where('id', '=', $request->album_id)
+          ->first();
+        $publicPath = public_path();
+        $filePath = "uploads/{$album->id}/{$fileName}";
+        $request['filepath'] = $filePath;
+        $request['image'] = $img;
 
-      $image = new Image;
-      $image->description = $request->description;
-      $image->filepath = $filePath;
-      $image->user_id = Auth::user()->id;
-      $image->album_id = $request->album_id;
-      $image->save();
+        $this->validate($request, [
+            'filepath' => 'unique:images,file_path',
+            'image' => 'image'
+        ]);
 
+        $img->move("uploads/{$album->id}", $fileName);
 
-      return redirect()->action('HomeController@retrieveImagesByAlbum', [$image->album_id]);
+        $image = new Image;
+
+        $image->thumb_path = $this->createThumbnail($filePath, $fileName, $extension);
+
+        $image->description = $request->description;
+        $image->file_path = $filePath;
+        $image->user_id = Auth::user()->id;
+        $image->album_id = $request->album_id;
+        $image->save();
+      }
+
+      return redirect()->action('HomeController@retrieveImagesByAlbum', [$request->album_id]);
+    }
+
+    //method to make Thumbnail copies of
+    public function createThumbnail($image, $extension)
+    {
+      $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
+        $img = Imager::make($image)->resize(400, 300)->save($withoutExt.'_thumb'.$extension);
+        return $withoutExt.'_thumb'.$extension;
+
     }
 
     //creating new albums

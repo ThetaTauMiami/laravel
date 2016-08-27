@@ -52,8 +52,11 @@ class HomeController extends Controller
         return view('pages.recruitment');
     }
 
-    public function profile(){
-      return view('pages.profile');
+    public function profile($profile_id){
+      $member = DB::table('users')
+      ->where('id', $profile_id)
+      ->first();
+      return view('pages.profile', compact('member'));
     }
 
     public function members() {

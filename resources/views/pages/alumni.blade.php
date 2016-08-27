@@ -29,7 +29,7 @@
 	<div class="row">
 		@foreach ($alumni as $alum)
 			<div class="col-lg-4 col-sm-6 text-center">
-					<a href="#">
+					<a href="/members/{{$alum->id}}">
 							<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
 					</a>
 					<h3>{{$alum->first_name}} {{$alum->last_name}}

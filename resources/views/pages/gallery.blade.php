@@ -31,9 +31,11 @@
 			</div>
 			@endif
 
-			
+			@if(count($errors) == 0)
 			<div id="uploader" style="display:none" class="col-md-8 col-md-offset-2">
-
+			@elseif(count($errors) > 0)
+			<div id="uploader" class="col-md-8 col-md-offset-2">
+			@endif
 				<div class="panel panel-default">
 					<form enctype="multipart/form-data" method="post" action="/gallery">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
