@@ -81,12 +81,15 @@ class HomeController extends Controller
 
     public function retrieveIndividualEvent($id)
     {
-      $event = DB::table('event')
-        ->where('event_id', '=', $id)
-        ->get();
+      $event = DB::table('events')
+        ->where('id', '=', $id)
+        ->first();
 
+      $image = DB::table('images')
+        ->where('id', '=', $event->image_id)
+        ->first();
 
-      return view("event.individualEvent", compact('event'));
+      return view("event.individualEvent", compact('event'), compact('image'));
     }
 
     public function retrieveImagesByAlbum(\App\Album $album)

@@ -2,22 +2,30 @@
 
 @section('content')
     <div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
-        <h1>EVENTS</h1>
+        <h1>{{$event->name}}</h1>
     </div>
     <div class="container">
     	<div class="row">
 		<div class="col-xs-12">
-      <a href="createEvent"><button class="btn btn-warning" type=
-          "button">Create New Event</button></a>
-			<h1>All Events</h1>
 
-      @foreach ($events as $event)
+      <p>Description: {{ $event->description }}</p>
 
-        <div>
-          <a href="/events/{{ $event->id }}">{{ $event->name }}</a>
-        </div>
+      <p>Type of Points: {{ $event->type_id }}</p>
 
-      @endforeach
+      <p># of Points: {{ $event->points }}</p>
+
+      <p>Date/Time: {{ $event->date_time }}</p>
+
+      <p>Created By User With ID: {{ $event->user_id }}</p>
+
+      <p>Is Public: {{ $event->is_public }}</p>
+
+      @if($image != NULL)
+      <p>Thumbnail: <img src="{{ asset($image->file_path) }}"/></p>
+      @endif
+
+
+
 
 		</div>
 	</div>

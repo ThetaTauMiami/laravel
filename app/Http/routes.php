@@ -38,7 +38,7 @@ Route::get('profile',			'HomeController@profile');
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
 Route::get('createEvent', 'EventsController@createEvent');
 
-Route::get('gallery/{event}', 'HomeController@retrieveIndividualEvent');
+Route::get('events/{event}', 'HomeController@retrieveIndividualEvent');
 
 Route::get('editProfile/{id}', 'ProfileController@editProfile');
 Route::get('editProfile', 'ProfileController@editMyProfile');

@@ -90,7 +90,7 @@ class EventsController extends Controller
         $event->date_time = $request->date;
         $event->description = $request->description;
         $event->location = $request->location;
-        if($request->is_public){ $event->is_public = true; }
+        if($request->is_public = ""){ $event->is_public = true; }
         else{$event->is_public = false; }
 
         //ADDING SEMESTER_ID
