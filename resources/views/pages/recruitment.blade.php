@@ -1,65 +1,34 @@
 @extends('layouts.default')
 
 @section('content')
-	<div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
-			<h1>CURRENT RUSH INFO</h1>
-    </div>
-
-    <div class="container">
-   	<div class="row">
-		<div class="col-xs-12 text-center">
-			<a href="/recruitment/signup"><button class="btn btn-warning" type="button">Sign up for Our Email List!</button></a>
-		</div>
-		</div>
-    </div>
-
-
-
+    <div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
+        <h1>CURRENT RUSH INFO</h1>
     </div>
     <br>
-	<div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
-		<h1>FAQ</h1>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <div class="well well-sm">
+                    <img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/13103548_629859100498663_8067044036751974394_n.jpg?oh=09f68fd282963cd82d6fb79e1a4da862&oe=58560E71"
+                         height="288" width="288">
+                    <h1>Click the button below to sign up for our recruitment email list!</h1>
+                    <hr>
 
-    <div class="container-fluid text-center">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p><p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p><p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac mollis metus. Sed bibendum sagittis egestas. Nunc vel feugiat nibh. Vestibulum vehicula iaculis lorem, eu sodales nisl porta nec. Vivamus in orci nec ligula mattis egestas a vitae ipsum. Fusce fringilla libero eget ornare venenatis. Donec volutpat nisi nec diam feugiat, faucibus commodo urna efficitur.
-        </p>
+                    <p>Signing up for our email list will allow for you to receive updates regarding the most current
+                        recruitment information. In addition, check back on this page in the future to see more
+                        information once we make it available. </p>
+                    <br>
+                    <a href="/recruitment/signup">
+                        <button class="btn btn-warning" type="button">Sign up for Our Email List!</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     </div>
+
+
 @stop
