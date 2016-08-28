@@ -28,6 +28,8 @@ Route::get('/', 			'HomeController@index');
 Route::get('gallery', 		'HomeController@gallery');
 Route::get('events', 		'HomeController@events');
 Route::get('recruitment', 	'HomeController@recruitment');
+Route::get('recruitment/signup', 	'HomeController@recruitmentSignUp');
+Route::post('recruitment/signup', 	'RecruitmentController@store');
 Route::get('members', 		'HomeController@members');
 Route::get('members/{user}', 'HomeController@profile');
 Route::get('alumni', 		'HomeController@alumni');
@@ -37,8 +39,14 @@ Route::get('profile',			'HomeController@profile');
 
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
 Route::get('createEvent', 'EventsController@createEvent');
+
+
+Route::get('events/{event}', 'HomeController@retrieveIndividualEvent');
+
 Route::get('editProfile/{user}', 'ProfileController@editProfile');
+
 Route::get('editProfile', 'ProfileController@editMyProfile');
+
 
 
 
@@ -53,12 +61,17 @@ Route::patch('editProfile/{user}', 'ProfileController@update');
 
 // =============== Admin Panel ===============
 
+
+
+Route::get('/admin/recruitment',      'HomeController@recruitmentList');
+
 Route::get('admin',                'AdminController@showPanel');
 
 Route::get('admin/new/class',      'AdminController@newClassForm');
 Route::post('admin/new/class',     'AdminController@newClassSubmit');
 
 Route::get('admin/edit/brothers',   'AdminController@manageBrothersForm');
+
 
 
 // ============= End Admin Panel =============

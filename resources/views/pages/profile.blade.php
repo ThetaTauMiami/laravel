@@ -16,9 +16,12 @@
     <div class="container">
     <div class="row">
         <div class="col-lg-4 col-sm-6 text-center">
+          @if($image != null)
             <a href="#">
                 <img class="img-circle img-responsive img-center" src="{{$image->thumb_path}}" alt="">
             </a>
+          @endif
+          
             <h3>{{$user->first_name}} {{$user->last_name}}
                 <small>{{$user->roll_number}} | {{$user->chapter_class}}</small>
             </h3>

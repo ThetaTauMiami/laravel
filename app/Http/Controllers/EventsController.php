@@ -78,15 +78,7 @@ class EventsController extends Controller
 
           $event->image_id = $image->id;
         }
-        //making the photo album
-        if($request->album == "") {
-          $arguments = new Request;
-          $arguments['name'] = $request->eventName;
-          $arguments['description'] = $request->description;
-          $arguments['location'] = $request->location;
 
-          app('App\Http\Controllers\GalleryController')->storeAlbum($arguments);
-        }
 
 
         $event->name = $request->eventName;
@@ -97,7 +89,7 @@ class EventsController extends Controller
         $event->date_time = $request->date;
         $event->description = $request->description;
         $event->location = $request->location;
-        if($request->is_public){ $event->is_public = true; }
+        if($request->is_public = ""){ $event->is_public = true; }
         else{$event->is_public = false; }
 
         //ADDING SEMESTER_ID
@@ -122,6 +114,17 @@ class EventsController extends Controller
         ]);
 
         $event->save();
+
+        //making the photo album
+        if($request->album == "") {
+          $arguments = new Request;
+          $arguments['name'] = $request->eventName;
+          $arguments['description'] = $request->description;
+          $arguments['location'] = $request->location;
+          $arguments['event_id'] = $event->id;
+
+          app('App\Http\Controllers\GalleryController')->storeAlbum($arguments);
+        }
 
         return \Redirect::to('/events');
     }

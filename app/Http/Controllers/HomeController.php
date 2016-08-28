@@ -53,12 +53,24 @@ class HomeController extends Controller
         return view('pages.recruitment');
     }
 
+
+    public function recruitmentSignUp() {
+        return view('pages.recruitmentSignUp');
+    }
+
+    public function recruitmentList() {
+        $pnms = DB::table('pnms')->get();
+        return view('pages.recruitmentList', compact('pnms'));
+    }
+
+
     public function profile(User $user){
       $image = DB::table('images')
       ->where('id', $user->image_id)
-      ->get();
+      ->first();
 
       return view('pages.profile', compact('user', 'image'));
+
     }
 
     public function members() {
@@ -79,6 +91,24 @@ class HomeController extends Controller
 
     public function contact() {
         return view('pages.contact');
+    }
+
+    public function retrieveIndividualEvent($id)
+    {
+      $event = DB::table('events')
+        ->where('id', '=', $id)
+        ->first();
+
+      $image = DB::table('images')
+        ->where('id', '=', $event->image_id)
+        ->first();
+
+      $album = DB::table('albums')
+        ->where('event_id', '=', $id)
+        ->first();
+
+
+      return view("event.individualEvent", compact('event', 'image', 'album'));
     }
 
     public function retrieveImagesByAlbum(\App\Album $album)
