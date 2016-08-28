@@ -12,6 +12,7 @@
                 <h2 id="homeHeading">Tau Delta Chapter of Miami University</h2>
                 <h4 id="homeHeading">Professional Engineering Fraternity</h4>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+                <a href="/recruitment" class="btn btn-default btn-xl">How to Join</a>
             </div>
         </div>
     </header>
@@ -26,7 +27,6 @@
                     <h2 class="section-heading">Welcome!</h2>
                     <hr class="light">
                     <p class="text-faded">Theta Tau is the oldest, largest, and foremost Fraternity for Engineers. Since its founding at the University of Minnesota in 1904, over 35,000 have been initiated over the years. With emphasis on quality and a strong fraternal bond, the Fraternity has chapters only at ABET accredited schools and limits the number of student members in any one of its chapters across the nation. </p>
-                    <a href="/recruitment" class="btn btn-info btn-xl">HOW TO JOIN</a>
                     <a href="#pillars" class="page-scroll btn btn-default btn-xl sr-button">ABOUT US</a>
                 </div>
             </div>
