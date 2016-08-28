@@ -32,6 +32,12 @@ body {
     margin-top: 7px;
 }
 
+.navbar-inverse .navbar-toggle .icon-bar {
+
+    background-color: #999;
+
+}
+
 .btn {
     border-radius: 0 !important;
     font-weight: 700;
