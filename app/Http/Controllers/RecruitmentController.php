@@ -24,6 +24,7 @@ class RecruitmentController extends Controller
 
       $pnm->save();
 
-      return \Redirect::to('/recruitment');
+      $complete = 1;
+      return view('pages.recruitment')->with('complete', $complete);
   }
 }

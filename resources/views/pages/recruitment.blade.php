@@ -26,7 +26,14 @@
         </div>
     </div>
 
+		@if($complete == 1)
+			<script>
+				$(document).ready(function(){
+					bootbox.alert("Thanks for Signing up!");
+				});
 
+			</script>
+		@endif
 
     </div>
 

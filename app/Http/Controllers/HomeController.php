@@ -50,12 +50,14 @@ class HomeController extends Controller
     }
 
     public function recruitment() {
-        return view('pages.recruitment');
+      $complete = ['value' => 0];
+      return view('pages.recruitment')->with('complete', $complete);
     }
 
 
     public function recruitmentSignUp() {
-        return view('pages.recruitmentSignUp');
+
+      return view('pages.recruitmentSignUp');
     }
 
     public function recruitmentList() {
