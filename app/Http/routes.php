@@ -42,6 +42,8 @@ Route::get('createEvent', 'EventsController@createEvent');
 
 
 Route::get('events/{event}', 'HomeController@retrieveIndividualEvent');
+Route::get('events/{event}/attendance', 'EventsController@takeAttendance');
+Route::post('events/{event}/attendance', 'EventsController@saveAttendance');
 
 Route::get('editProfile/{user}', 'ProfileController@editProfile');
 

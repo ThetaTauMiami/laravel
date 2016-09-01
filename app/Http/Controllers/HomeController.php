@@ -110,7 +110,7 @@ class HomeController extends Controller
         ->first();
 
 
-      return view("event.individualEvent", compact('event', 'image', 'album'));
+      return view("events.individualEvent", compact('event', 'image', 'album'));
     }
 
     public function retrieveImagesByAlbum(\App\Album $album)

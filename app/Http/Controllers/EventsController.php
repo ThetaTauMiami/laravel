@@ -32,8 +32,79 @@ class EventsController extends Controller
     */
     public function createEvent() {
 
-      return view('pages.createEvent');
+      return view('events.createEvent');
 
+    }
+
+    /*
+
+      This function routes to the taking attendance page
+
+    */
+    public function takeAttendance($id) {
+
+      $event = DB::table('events')
+      ->where('id', '=', $id)
+      ->first();
+
+      $attendance = DB::table('attendance')
+      ->where('event_id', '=', $id)
+      ->get();
+
+      $ids = NULL;
+      foreach($attendance as $att){
+        $ids[] = $att->user_id;
+      }
+
+      $attended = NULL;
+      $didNotAttend = NULL;
+      if($ids != NULL){
+        $attended = DB::table('users')
+        ->whereIn('id', $ids)
+        ->get();
+
+        $didNotAttend = DB::table('users')
+        ->whereNotIn('id', $ids)
+        ->get();
+      }
+      else{
+        $didNotAttend = DB::table('users')->get();
+      }
+
+
+
+      return view('events.takeAttendance', compact('event', 'attended', 'didNotAttend'));
+
+    }
+
+    /*
+      This function saves the attendance record for an event
+    */
+    public function saveAttendance(Request $request){
+      $attended = $request->attended;
+      $didNotAttend = $request->didNotAttend;
+      $eId = $request->event;
+      $eventAtt = DB::table('attendance')->where('event_id', '=', $eId)->pluck('user_id');
+
+      if($attended != NULL){
+        foreach($attended as $a){
+          if(!in_array($a, $eventAtt)){
+            DB::table('attendance')->insert(['user_id' => $a, 'event_id' => $eId]);
+          }
+        }
+      }
+
+      if($didNotAttend != NULL){
+        foreach($didNotAttend as $b){
+          if(in_array($b, $eventAtt)){
+            DB::table('attendance')
+            ->where([['event_id', '=', $eId],['user_id', '=', $b]])
+            ->delete();
+          }
+        }
+      }
+
+      return \Redirect::to('/events/'.$eId);
     }
 
     /*

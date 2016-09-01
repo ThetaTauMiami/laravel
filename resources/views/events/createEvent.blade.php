@@ -21,10 +21,10 @@
 
                       <div class="col-md-6">
                         <select id="pointType" class="form-control" name="pointType">
-                          <option value="general">General</option>
-                          <option value="pd">PD</option>
-                          <option value="brotherhood">Brotherhood</option>
-                          <option value="service">Service</option>
+                          <option value="General">General</option>
+                          <option value="PD">PD</option>
+                          <option value="Brotherhood">Brotherhood</option>
+                          <option value="Service">Service</option>
                         </select>
 
                       </div>
@@ -39,8 +39,7 @@
                     </div>
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <!--<input type="hidden" name="user_id" value="{{ $user = Auth::user()->id }}">-->
-
+                  
 
                   <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
                     <label for="date" class="col-md-4 control-label">Date/Time of Event</label>
