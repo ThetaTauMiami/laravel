@@ -39,7 +39,7 @@
                     </div>
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  
+
 
                   <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
                     <label for="date" class="col-md-4 control-label">Date/Time of Event</label>
@@ -59,7 +59,7 @@
                   <div class="form-group{{ $errors->has('album') ? ' has-error' : '' }}">
                     <label for="album" class="col-md-4 control-label">Create Photo Album for this Event?</label>
                     <div class="col-md-6">
-                      <input id="album" type="checkbox"  name="album" value="{{ old('album') }}">
+                      <input id="album" type="checkbox"  name="album" value="Album">
                     </div>
                   </div>
 
@@ -78,7 +78,7 @@
                   <div class="form-group{{ $errors->has('is_public') ? ' has-error' : '' }}">
                     <label for="is_public" class="col-md-4 control-label">Is This Event Public?</label>
                     <div class="col-md-6">
-                      <input id="is_public" type="checkbox"  name="is_public" value="{{ old('is_public') }}">
+                      <input id="is_public" type="checkbox"  name="is_public" value="Public">
                     </div>
                   </div>
 

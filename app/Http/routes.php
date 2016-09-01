@@ -60,6 +60,7 @@ Route::get('editProfile', 'ProfileController@editMyProfile');
 */
 //Patch Routes
 Route::patch('editProfile/{user}', 'ProfileController@update');
+Route::patch('events/{event}', 'EventsController@update');
 
 // =============== Admin Panel ===============
 

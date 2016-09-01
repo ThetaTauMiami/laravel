@@ -112,6 +112,7 @@ class EventsController extends Controller
     */
     protected function store(Request $request)
     {
+      
       $this->validate($request, [
           'eventName' => 'required|unique:events,eventName',
           'pointType' => 'required',
@@ -160,8 +161,12 @@ class EventsController extends Controller
         $event->date_time = $request->date;
         $event->description = $request->description;
         $event->location = $request->location;
-        if($request->is_public = ""){ $event->is_public = true; }
-        else{$event->is_public = false; }
+        if($request->is_public = "Public"){
+           $event->is_public = true;
+        }
+        else{
+          $event->is_public = false;
+        }
 
         //ADDING SEMESTER_ID
         $today = Carbon::today()->toDateString();
@@ -187,7 +192,7 @@ class EventsController extends Controller
         $event->save();
 
         //making the photo album
-        if($request->album == "") {
+        if($request->album == "Album") {
           $arguments = new Request;
           $arguments['name'] = $request->eventName;
           $arguments['description'] = $request->description;
