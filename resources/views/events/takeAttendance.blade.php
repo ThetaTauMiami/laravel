@@ -6,6 +6,11 @@
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
               <div class="panel-heading">Attendance for {{$event->name}}</div>
+              <br/>
+              <div class="row text-center">
+                <div class="col-sm-6"><h4> Did Not Attend </h4></div>
+                <div class="col-sm-6"><h4> Attended </h4></div>
+              </div>
               <div class="panel-body">
                   <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action='/events/{{$event->id}}/attendance'>
 
