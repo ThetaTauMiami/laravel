@@ -62,9 +62,9 @@ Route::get('editProfile', 'ProfileController@editMyProfile');
 Route::patch('editProfile/{user}', 'ProfileController@update');
 Route::patch('events/{event}', 'EventsController@update');
 
+
+
 // =============== Admin Panel ===============
-
-
 
 Route::get('/admin/recruitment',      'HomeController@recruitmentList');
 
@@ -72,6 +72,9 @@ Route::get('admin',                'AdminController@showPanel');
 
 Route::get('admin/new/class',      'AdminController@newClassForm');
 Route::post('admin/new/class',     'AdminController@newClassSubmit');
+
+Route::get('admin/new/semester',      'AdminController@newSemesterForm');
+Route::post('admin/new/semester',     'AdminController@newSemesterSubmit');
 
 Route::get('admin/edit/brothers',   'AdminController@manageBrothersForm');
 

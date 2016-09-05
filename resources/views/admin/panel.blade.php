@@ -19,6 +19,9 @@
 
                         <ul>
                         	<li><a href="/admin/new/class">Create a new Class</a></li>
+                            <li><a href="/admin/new/semester">Start a New Semester</a></li>
+                            <li><a href="/admin/edit/brothers">Manage Brothers</a></li>
+                            <li><a href="/admin/new/registration">Create a new Registration Form (TO DO)</a></li>
                         </ul>
 
                 </div>
@@ -26,3 +29,5 @@
         </div>
     </div>
 </div>
+
+@endsection

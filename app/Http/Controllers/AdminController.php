@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 use App\Bid;
 use App\User;
+use App\Semester;
 use DB;
 use Mail;
 
@@ -19,7 +20,7 @@ class AdminController extends Controller
 	 */
     public function __construct()
     {
-        // TODO THIS NEEDS TO BE MIDDLEWARE TO BLOCK IF NOT ADMIN $this->middleware('auth');
+        // TODO THIS NEEDS TO BE MIDDLEWARE TO BLOCK IF NOT ADMIN OR EXEC $this->middleware('auth');
     }
 
 	function showPanel(){
@@ -33,9 +34,13 @@ class AdminController extends Controller
 
 
     function manageBrothersForm(){
-    	$members = User::orderby('roll_number')
+    	$members = User::orderby('roll_number','asc')
 	        ->with('image')->get();
 	    return view('admin.manage_brothers',compact('members') );
+    }
+
+    function newSemesterForm(){
+        return view('admin.new_semester');
     }
 
     function newClassSubmit(Request $request){
@@ -45,7 +50,7 @@ class AdminController extends Controller
         ]);
 
     	foreach( $request->roll_number as $key => $val){
-    		$token = $this->generateRandomString(128);
+    		$token = $this->generateRandomString(80);
 
     		$bid = new Bid;
     		$bid->email = $request->email[$key];
@@ -67,6 +72,29 @@ class AdminController extends Controller
 
 
     	return \Redirect::to('/admin');
+
+    }
+
+    function newSemesterSubmit(Request $request){
+
+        $this->validate($request,[
+            'name' => 'required',
+            'date_start' => 'required'
+        ]);
+
+        $lastSemester = Semester::whereNull('date_end')->get()->first();
+
+        if($lastSemester){
+            $lastSemester->date_end = $request->date_start;
+            $lastSemester->save();
+        }
+
+        $newSemester = new Semester;
+        $newSemester->name = $request->name;
+        $newSemester->date_start = $request->date_start;
+        $newSemester->save();
+
+        return redirect("/admin");
 
     }
 
