@@ -30,10 +30,17 @@ class EventsController extends Controller
       This function routes to the create Event page
 
     */
-    public function createEvent() {
+    function createEvent() {
 
       return view('events.createEvent');
 
+    }
+
+    function deleteEvent(Event $event){
+      DB::table('events')
+      ->where('id', '=', $event->id)
+      ->delete();
+      return \Redirect::to('/events');
     }
 
     public function editEvent($id) {
