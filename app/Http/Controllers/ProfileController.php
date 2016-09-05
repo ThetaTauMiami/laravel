@@ -32,12 +32,14 @@ class ProfileController extends Controller
     }
 
     function update(Request $request, User $user){
-      //$user->update($request->all());
+      $user->update($request->all());
 
       //is there a value in the image section?
       if($request->image){
         //$thumbnail = new Image;
+        //return var_dump($request->image);
         $img = $request->file('image');
+
         $extension = $img->getClientOriginalExtension();
         $fileName = $img->getClientOriginalName();
         $publicPath = public_path();

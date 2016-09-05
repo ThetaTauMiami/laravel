@@ -7,29 +7,29 @@
           <div class="panel panel-default">
               <div class="panel-heading">Edit Profile - {{$user->first_name}} {{$user->last_name}}</div>
               <div class="panel-body">
-                  <form class="form-horizontal" role="form" method="POST" action="/editProfile/{{ $user->id }}">
+                  <form class="form-horizontal" role="form" method="POST" action="/editProfile/{{ $user->id }}" enctype="multipart/form-data">
                     {{method_field('PATCH')}}
 
                     <div class="form-group">
                       <label for="email" class="col-md-4 control-label">Email Address</label>
                       <div class="col-md-6">
-                        <input id="email" type="text" class="form-control" name="email" value="{{$user->email}}">
+                        <input id="email" type="email" class="form-control" name="email" value="{{$user->email}}">
                       </div>
                     </div>
 
                     <div class="form-group">
                       <label for="phone" class="col-md-4 control-label">Phone Number</label>
                       <div class="col-md-6">
-                        <input id="phone" type="text" class="form-control" name="phone" value="{{$user->phone}}">
+                        <input id="phone" type="tel" class="form-control" name="phone" value="{{$user->phone}}">
                       </div>
                     </div>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                       <label for="school_class" class="col-md-4 control-label">School Class</label>
                       <div class="col-md-6">
-                        <input id="school_class" type="text" class="form-control" name="school_class" value="{{$user->school_class}}">
+                        <input id="school_class" type="number" min="2016" max="2020" class="form-control" name="school_class" value="{{$user->school_class}}">
                       </div>
-                    </div>
+                    </div>-->
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -52,7 +52,7 @@
                     </div>
                   </div>-->
 
-                  <<div class="form-group">
+                  <div class="form-group">
       							<label for="image" class="col-md-4 control-label">Profile Picture</label>
       							<input type="file" id="image" name="image" accept="image/*"/>
       						</div>
