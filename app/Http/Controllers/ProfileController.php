@@ -60,20 +60,30 @@ class ProfileController extends Controller
             'filepath' => 'unique:images,file_path'
         ]);
 
-        $img->move("uploads/Profile_Thumbs", $fileName);
-        $im = Imager::make($filePath)->resize(200, 200)->save($filePath);
+        $img->move("uploads/Profile_Full", $fileName);
+        //$img = Imager::make($filePath)->resize(200, 200)->save($filePath);
 
+        //Stick that there image into this here database
         $image = new Image;
-
-        $image->description = $request->description;
         $image->file_path = $filePath;
         $image->user_id = $user->id;
-        $image->thumb_path = $filePath;
+        //$image->thumb_path = $filePath;
+
+        //Now make a neat thumbnail for the image
+
+        createThumbnail()
         $image->save();
 
+        //and now make the user point to the new image
         $user->image_id = $image->id;
       }
 
       return back();
+    }
+    public function createThumbnail($image, $extension)
+    {
+      $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
+        $img = Imager::make($image)->resize(400, 300)->save($withoutExt.'_thumb'.$extension);
+        return $withoutExt.'_thumb'.$extension;
     }
 }
