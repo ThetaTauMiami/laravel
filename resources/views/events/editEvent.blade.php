@@ -7,12 +7,14 @@
           <div class="panel panel-default">
               <div class="panel-heading">Create New Event</div>
               <div class="panel-body">
-                  <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="/events/edit/{event}">
+                  <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="/events/edit/{{ $event->id }}">
+                    {{method_field('PATCH')}}
+
                     <div class="form-group{{ $errors->has('eventName') ? ' has-error' : '' }}">
                       <label for="eventName" class="col-md-4 control-label">Event Name</label>
 
                       <div class="col-md-6">
-                        <input id="eventName" type="text" class="form-control" name="eventName">
+                        <input id="eventName" type="text" class="form-control" name="eventName" value="{{$event->name}}">
                       </div>
                     </div>
 
@@ -20,7 +22,7 @@
                       <label for="pointType" class="col-md-4 control-label">Type of Points</label>
 
                       <div class="col-md-6">
-                        <select id="pointType" class="form-control" name="pointType">
+                        <select id="pointType" class="form-control" name="pointType" value="{{$event->type_id}}">
                           <option value="General">General</option>
                           <option value="PD">PD</option>
                           <option value="Brotherhood">Brotherhood</option>
@@ -33,7 +35,7 @@
                     <div class="form-group{{ $errors->has('points') ? ' has-error' : '' }}">
                       <label for="points" class="col-md-4 control-label">Number of Points</label>
                       <div class="col-md-6">
-                        <input id="points" type="text" class="form-control" name="points" value="{{ old('points') }}">
+                        <input id="points" type="text" class="form-control" name="points" value="{{ $event->points }}">
 
                       </div>
                     </div>
@@ -44,7 +46,7 @@
                   <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
                     <label for="date" class="col-md-4 control-label">Date/Time of Event</label>
                     <div class="col-md-6">
-                      <input id="date" type="datetime-local" class="form-control" name="date" value="{{ old('date') }}">
+                      <input id="date" type="datetime-local" class="form-control" name="date" value="{{ $event->date_time }}">
 
                     </div>
                   </div>
@@ -52,21 +54,21 @@
                   <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
                     <label for="location" class="col-md-4 control-label">Location of Event</label>
                     <div class="col-md-6">
-                      <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}">
+                      <input id="location" type="text" class="form-control" name="location" value="{{ $event->location }}">
                     </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('album') ? ' has-error' : '' }}">
                     <label for="album" class="col-md-4 control-label">Create Photo Album for this Event?</label>
                     <div class="col-md-6">
-                      <input id="album" type="checkbox"  name="album" value="Album">
+                      <input id="album" type="checkbox"  name="album" value="Album" @if($album!=null) checked @endif>
                     </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                     <label for="description" class="col-md-4 control-label">Description</label>
                     <div class="col-md-6">
-                      <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}">
+                      <input id="description" type="text" class="form-control" name="description" value="{{ $event->description }}">
                     </div>
                   </div>
 
@@ -78,7 +80,7 @@
                   <div class="form-group{{ $errors->has('is_public') ? ' has-error' : '' }}">
                     <label for="is_public" class="col-md-4 control-label">Is This Event Public?</label>
                     <div class="col-md-6">
-                      <input id="is_public" type="checkbox"  name="is_public" value="Public">
+                      <input id="is_public" type="checkbox"  name="is_public" value="Public" @if($event->is_public) checked @endif>
                     </div>
                   </div>
 

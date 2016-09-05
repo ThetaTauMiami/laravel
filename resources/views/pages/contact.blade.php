@@ -8,10 +8,10 @@
 <br>
 	<div class="container">
 		<div class="row" style="text-align: center">
-			<a href="#"><i id="social" class="fa fa-facebook-official fa-5x" aria-hidden="true">&nbsp;&nbsp; </i></a>
-			<a href="#"><i id="social" class="fa fa-twitter fa-5x" aria-hidden="true">&nbsp;&nbsp;</i></a>
-				<a href="#"><i id="social" class="fa fa-instagram fa-5x" aria-hidden="true">&nbsp;&nbsp;</i></a>
-					<a href="#"><i id="social" class="fa fa-linkedin fa-5x" aria-hidden="true"></i></a>
+			<a href="https://www.facebook.com/ThetaTauMU/" target="_blank"><i id="social" class="fa fa-facebook-official fa-5x" aria-hidden="true">&nbsp;&nbsp; </i></a>
+			<a href="https://twitter.com/theta_tau" target="_blank"><i id="social" class="fa fa-twitter fa-5x" aria-hidden="true">&nbsp;&nbsp;</i></a>
+			<a href="https://www.instagram.com/thetataumu/?hl=en" target="_blank"><i id="social" class="fa fa-instagram fa-5x" aria-hidden="true">&nbsp;&nbsp;</i></a>
+			<a href="https://www.linkedin.com/groups/41242/profile" target="_blank"><i id="social" class="fa fa-linkedin fa-5x" aria-hidden="true"></i></a>
 		</div>
 	</div>
 	<div class="container">
@@ -51,7 +51,7 @@
 							<!-- Form actions -->
 							<div class="form-group">
 								<div class="col-md-12 text-right">
-									<button type="submit" class="btn btn-danger btn-lg">Submit</button>
+									<button type="submit" class="btn btn-warning btn-lg">Submit</button>
 								</div>
 							</div>
 						</fieldset>

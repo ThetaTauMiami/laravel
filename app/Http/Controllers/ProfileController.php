@@ -15,7 +15,7 @@ use Intervention\Image\ImageManagerStatic as Imager;
 class ProfileController extends Controller
 {
 
-  /* Require any user attempting to event
+  /* Require any user attempting to use profile functions
    * to be logged in
    */
     public function __construct()

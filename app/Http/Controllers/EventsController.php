@@ -17,7 +17,7 @@ use Carbon\Carbon;
 class EventsController extends Controller
 {
 
-  /* Require any user attempting to event
+  /* Require any user attempting to use event functions
    * to be logged in
    */
     public function __construct()
@@ -42,10 +42,14 @@ class EventsController extends Controller
       ->first();
 
       $image = DB::table('images')
-      ->where('id', $event->image_id)
-      ->get();
+      ->where('id', '=', $event->image_id)
+      ->first();
 
-      return view('events.editEvent', compact('event', 'image'));
+      $album = DB::table('albums')
+      ->where('event_id', '=', $id)
+      ->first();
+
+      return view('events.editEvent', compact('event', 'image', 'album'));
 
     }
 
@@ -185,9 +189,9 @@ class EventsController extends Controller
         $today = Carbon::today()->toDateString();
         $semester = DB::table('semesters')
           ->whereDate('date_start', '<=', $today)
-          ->whereDate('date_end', '=', NULL)
-          ->get();
-        if($semester == NULL){
+          ->whereNull('date_end')
+          ->first();
+        if(!$semester){
           $semester = DB::table('semesters')
             ->whereDate('date_start', '<=', $today)
             ->whereDate('date_end', '>', $today)
@@ -218,8 +222,95 @@ class EventsController extends Controller
         return \Redirect::to('/events');
     }
 
-    public function update(Request $request){
+    public function update(Request $request, Event $event){
+      $this->validate($request, [
+          'eventName' => 'required|unique:events,eventName',
+          'pointType' => 'required',
+          'points' => 'required|between:0,9',
+          'date' => 'required',
+          'image' => 'image',
+        ]);
 
+      $event->name = $request->eventName;
+      $event->type_id = $request->pointType;
+
+      $event->points = $request->points;
+      $event->user_id = Auth::user()->id;
+      $event->date_time = $request->date;
+      $event->description = $request->description;
+      $event->location = $request->location;
+      if($request->is_public = "Public"){
+         $event->is_public = true;
+      }
+      else{
+        $event->is_public = false;
+      }
+
+      $image = DB::table('images')
+      ->where('id', '=', $event->image_id)
+      ->first();
+
+      //saving an image thumbnail
+      if($request->image){
+        if($image){
+          //delete the old image
+          unlink($image->file_path);
+          DB::table('images')
+          ->where('id', '=', $event->image_id)
+          ->delete();
+        }
+        $img = $request->file('image');
+        $extension = $img->getClientOriginalExtension();
+        $fileName = $img->getClientOriginalName();
+        $publicPath = public_path();
+        $filePath = "uploads/Event_Thumbs/{$fileName}";
+        $request['filepath'] = $filePath;
+
+        $this->validate($request, [
+            'filepath' => 'unique:images,file_path'
+        ]);
+
+        $img->move("uploads/Event_Thumbs", $fileName);
+        $im = Imager::make($filePath)->resize(150, 150)->save($filePath);
+
+        $image = new Image;
+
+        $image->description = $request->description;
+        $image->file_path = $filePath;
+        $image->user_id = Auth::user()->id;
+        $image->thumb_path = $filePath;
+        $image->save();
+
+        $event->image_id = $image->id;
+      }
+
+      $event->save();
+
+      $album = DB::table('albums')
+      ->where('event_id', '=', $event->id)
+      ->first();
+
+      if($request->album == "Album"){
+        if(!$album){
+          $arguments = new Request;
+          $arguments['name'] = $request->eventName;
+          $arguments['description'] = $request->description;
+          $arguments['location'] = $request->location;
+          $arguments['event_id'] = $event->id;
+
+          app('App\Http\Controllers\GalleryController')->storeAlbum($arguments);
+        }
+
+      }
+      else{
+        if($album){
+          DB::table('albums')
+          ->where('event_id', '=', $id)
+          ->delete();
+        }
+      }
+
+      return \Redirect::to("/events/".$event->id);
     }
 
 }

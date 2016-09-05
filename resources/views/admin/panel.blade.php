@@ -18,9 +18,12 @@
                         <p id="profile-name" class="profile-name-card">Theta Tau | Administration</p>
 
                         <ul>
-                        	<li><a href="/admin/new/class">Create a new Class</a></li>
-                          <li><a href="/admin/recruitment">Recruitment Email List</a></li>
-                          <li><a href="/admin/attendance">Attendance Sheet</a></li>
+                            <li><a href="/admin/new/class">Create a new Class</a></li>
+                            <li><a href="/admin/new/semester">Start a New Semester</a></li>
+                            <li><a href="/admin/edit/brothers">Manage Brothers</a></li>
+                            <li><a href="/admin/new/registration">Create a new Registration Form (TO DO)</a></li>
+                            <li><a href="/admin/recruitment">Recruitment Email List</a></li>
+                            <li><a href="/admin/attendance">Attendance Sheet</a></li>
                         </ul>
 
                 </div>
@@ -28,3 +31,5 @@
         </div>
     </div>
 </div>
+
+@endsection

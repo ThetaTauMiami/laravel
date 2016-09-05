@@ -12,7 +12,7 @@
                       <label for="eventName" class="col-md-4 control-label">Event Name</label>
 
                       <div class="col-md-6">
-                        <input id="eventName" type="text" class="form-control" name="eventName">
+                        <input id="eventName" type="text" class="form-control" name="eventName" value="{{ old('name') }}">
                       </div>
                     </div>
 
