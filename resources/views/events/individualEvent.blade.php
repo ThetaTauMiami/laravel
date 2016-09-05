@@ -28,7 +28,7 @@
         <a href="/gallery/{{ $album->id }}"><p>Photo Album</p></a>
       @endif
 
-      <a href="#"><button class="btn btn-warning" type="button">Edit Event</button></a>
+      <a href="/events/edit/{{$event->id}}"><button class="btn btn-warning" type="button">Edit Event</button></a>
       <a href='/events/{{$event->id}}/attendance'><button class="btn btn-warning" type="button">Take Attendance</button></a>
       <a href="#"><button class="btn btn-warning" type="button">RSVP</button></a>
 

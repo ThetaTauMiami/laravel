@@ -60,11 +60,6 @@ class HomeController extends Controller
       return view('pages.recruitmentSignUp');
     }
 
-    public function recruitmentList() {
-        $pnms = DB::table('pnms')->get();
-        return view('pages.recruitmentList', compact('pnms'));
-    }
-
 
     public function profile(User $user){
       $image = DB::table('images')

@@ -39,9 +39,21 @@ class AdminController extends Controller
 	    return view('admin.manage_brothers',compact('members') );
     }
 
+
     function newSemesterForm(){
         return view('admin.new_semester');
     }
+
+
+	function recruitmentList() {
+        $pnms = DB::table('pnms')->get();
+        return view('admin.recruitmentList', compact('pnms'));
+    }
+
+	function getAttendanceSheet() {
+		return view('admin.attendanceSheet');
+	}
+
 
     function newClassSubmit(Request $request){
 
