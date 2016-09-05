@@ -189,7 +189,7 @@ class EventsController extends Controller
         $today = Carbon::today()->toDateString();
         $semester = DB::table('semesters')
           ->whereDate('date_start', '<=', $today)
-          ->whereDate('date_end', '=', NULL)
+          ->whereNull('date_end')
           ->first();
         if(!$semester){
           $semester = DB::table('semesters')
