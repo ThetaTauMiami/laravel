@@ -191,7 +191,7 @@ class EventsController extends Controller
           ->whereDate('date_start', '<=', $today)
           ->whereDate('date_end', '=', NULL)
           ->first();
-        if($semester == NULL){
+        if(!$semester){
           $semester = DB::table('semesters')
             ->whereDate('date_start', '<=', $today)
             ->whereDate('date_end', '>', $today)
