@@ -17,7 +17,7 @@ use Carbon\Carbon;
 class EventsController extends Controller
 {
 
-  /* Require any user attempting to event
+  /* Require any user attempting to use event functions
    * to be logged in
    */
     public function __construct()
@@ -43,9 +43,13 @@ class EventsController extends Controller
 
       $image = DB::table('images')
       ->where('id', $event->image_id)
-      ->get();
+      ->first();
 
-      return view('events.editEvent', compact('event', 'image'));
+      $album = DB::table('albums')
+      ->where('event_id', '=', $id)
+      ->first();
+
+      return view('events.editEvent', compact('event', 'image', 'album'));
 
     }
 
@@ -218,8 +222,8 @@ class EventsController extends Controller
         return \Redirect::to('/events');
     }
 
-    public function update(Request $request){
-
+    public function update(Request $request, Event $event){
+      return var_dump($event);
     }
 
 }
