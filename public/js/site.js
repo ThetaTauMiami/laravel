@@ -25,9 +25,20 @@ $(function() {
 
 
 
+
+
+
 // mask inputs with custom patterns
 $(document).ready(function(){
 
   $('.phone-mask').inputmask("(999)999-9999");
+
+  $(".roster-nav li").click(function(){
+    $('.roster-nav li').removeClass('active');
+    $(this).addClass('active');
+    $('.roster').hide();
+    $('#'+$(this).attr('x-toggles')).show();
+  })
+
 
 });
