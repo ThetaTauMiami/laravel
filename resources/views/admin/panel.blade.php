@@ -19,6 +19,8 @@
 
                         <ul>
                         	<li><a href="/admin/new/class">Create a new Class</a></li>
+                          <li><a href="/admin/recruitment">Recruitment Email List</a></li>
+                          <li><a href="/admin/attendance">Attendance Sheet</a></li>
                         </ul>
 
                 </div>

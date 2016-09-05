@@ -38,6 +38,15 @@ class AdminController extends Controller
 	    return view('admin.manage_brothers',compact('members') );
     }
 
+		public function recruitmentList() {
+        $pnms = DB::table('pnms')->get();
+        return view('admin.recruitmentList', compact('pnms'));
+    }
+
+		public function getAttendanceSheet() {
+			return view('admin.attendanceSheet');
+		}
+
     function newClassSubmit(Request $request){
 
     	$this->validate($request, [
