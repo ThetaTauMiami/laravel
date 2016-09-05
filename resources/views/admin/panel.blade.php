@@ -26,5 +26,3 @@
         </div>
     </div>
 </div>
-
-@end
