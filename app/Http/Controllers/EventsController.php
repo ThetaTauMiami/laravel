@@ -17,7 +17,7 @@ use Carbon\Carbon;
 class EventsController extends Controller
 {
 
-  /* Require any user attempting to authenticate social media
+  /* Require any user attempting to event
    * to be logged in
    */
     public function __construct()
@@ -33,6 +33,19 @@ class EventsController extends Controller
     public function createEvent() {
 
       return view('events.createEvent');
+
+    }
+
+    public function editEvent($id) {
+      $event = DB::table('events')
+      ->where('id', '=', $id)
+      ->first();
+
+      $image = DB::table('images')
+      ->where('id', $event->image_id)
+      ->get();
+
+      return view('events.editEvent', compact('event', 'image'));
 
     }
 
@@ -112,7 +125,7 @@ class EventsController extends Controller
     */
     protected function store(Request $request)
     {
-      
+
       $this->validate($request, [
           'eventName' => 'required|unique:events,eventName',
           'pointType' => 'required',
@@ -204,4 +217,9 @@ class EventsController extends Controller
 
         return \Redirect::to('/events');
     }
+
+    public function update(Request $request){
+
+    }
+
 }

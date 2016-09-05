@@ -44,6 +44,7 @@ Route::get('createEvent', 'EventsController@createEvent');
 Route::get('events/{event}', 'HomeController@retrieveIndividualEvent');
 Route::get('events/{event}/attendance', 'EventsController@takeAttendance');
 Route::post('events/{event}/attendance', 'EventsController@saveAttendance');
+Route::get('events/edit/{event}', 'EventsController@editEvent');
 
 Route::get('editProfile/{user}', 'ProfileController@editProfile');
 
@@ -60,7 +61,7 @@ Route::get('editProfile', 'ProfileController@editMyProfile');
 */
 //Patch Routes
 Route::patch('editProfile/{user}', 'ProfileController@update');
-Route::patch('events/{event}', 'EventsController@update');
+Route::patch('events/edit/{event}', 'EventsController@update');
 
 // =============== Admin Panel ===============
 

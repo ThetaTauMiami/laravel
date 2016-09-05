@@ -13,6 +13,15 @@ use Intervention\Image\ImageManagerStatic as Imager;
 
 class ProfileController extends Controller
 {
+
+  /* Require any user attempting to event
+   * to be logged in
+   */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //
     function editMyProfile(){
       $profile_id = Auth::id();
