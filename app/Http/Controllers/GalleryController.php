@@ -68,7 +68,7 @@ class GalleryController extends Controller
 
         $image = new Image;
 
-        $image->thumb_path = $this->createThumbnail($filePath, $fileName, $extension);
+        $image->thumb_path = $this->createThumbnail($filePath, $extension);
 
         $image->description = $request->description;
         $image->file_path = $filePath;
