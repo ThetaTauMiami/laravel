@@ -190,7 +190,7 @@ class EventsController extends Controller
         $semester = DB::table('semesters')
           ->whereDate('date_start', '<=', $today)
           ->whereDate('date_end', '=', NULL)
-          ->get();
+          ->first();
         if($semester == NULL){
           $semester = DB::table('semesters')
             ->whereDate('date_start', '<=', $today)
@@ -224,6 +224,49 @@ class EventsController extends Controller
 
     public function update(Request $request, Event $event){
       return var_dump($event);
+
+      $this->validate($request, [
+          'eventName' => 'required|unique:events,eventName',
+          'pointType' => 'required',
+          'points' => 'required|between:0,9',
+          'date' => 'required',
+          'image' => 'image',
+        ]);
+
+      $event->name = $request->eventName;
+      $event->type_id = $request->pointType;
+
+      $event->points = $request->points;
+      $event->user_id = Auth::user()->id;
+      $event->date_time = $request->date;
+      $event->description = $request->description;
+      $event->location = $request->location;
+      if($request->is_public = "Public"){
+         $event->is_public = true;
+      }
+      else{
+        $event->is_public = false;
+      }
+
+      $album = DB::table('albums')
+      ->where('event_id', '=', $id)
+      ->first();
+
+      $image = DB::table('images')
+      ->where('id', $event->image_id)
+      ->first();
+
+      if($request->image){
+        if($event->image_id != null){
+          //delete the old image
+
+        }
+
+      }
+
+      if($request->album == "Album"){
+
+      }
     }
 
 }

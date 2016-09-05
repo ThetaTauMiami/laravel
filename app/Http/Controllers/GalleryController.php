@@ -109,7 +109,7 @@ class GalleryController extends Controller
       $semester = DB::table('semesters')
         ->whereDate('date_start', '<=', $today)
         ->whereDate('date_end', '=', NULL)
-        ->get();
+        ->first();
       if($semester == NULL){
         $semester = DB::table('semesters')
           ->whereDate('date_start', '<=', $today)
