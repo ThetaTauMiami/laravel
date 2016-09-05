@@ -24,12 +24,12 @@
                       </div>
                     </div>
 
-                    <!--<div class="form-group">
+                    <div class="form-group">
                       <label for="school_class" class="col-md-4 control-label">School Class</label>
                       <div class="col-md-6">
-                        <input id="school_class" type="number" min="2016" max="2020" class="form-control" name="school_class" value="{{$user->school_class}}">
+                        <input id="school_class" type="number"  class="form-control" name="school_class" value="{{$user->school_class}}">
                       </div>
-                    </div>-->
+                    </div>
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

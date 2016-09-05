@@ -53,7 +53,7 @@ class ProfileController extends Controller
         $extension = $img->getClientOriginalExtension();
         $fileName = $img->getClientOriginalName();
         $publicPath = public_path();
-        $filePath = "uploads/Profile_Thumbs/{$fileName}";
+        $filePath = "uploads/Profile_Full/{$fileName}";
         $request['filepath'] = $filePath;
 
         $this->validate($request, [
@@ -67,7 +67,7 @@ class ProfileController extends Controller
 
         $image->description = $request->description;
         $image->file_path = $filePath;
-        $image->user_id = Auth::user()->id;
+        $image->user_id = $user->id;
         $image->thumb_path = $filePath;
         $image->save();
 
