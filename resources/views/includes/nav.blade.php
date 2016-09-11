@@ -43,7 +43,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, '.$user->name.'!
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">MY PROFILE</a></li>
+                        <li><a href="/members/{{$user->id}}">MY PROFILE</a></li>
                         <li><a href="/admin">ADMIN PANEL</a></li>
                         <li><a href="/logout">LOGOUT</a></li>
                     </ul>

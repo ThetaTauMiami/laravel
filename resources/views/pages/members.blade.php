@@ -94,14 +94,14 @@
     <div class="row">
         @foreach ($members as $member)
           <div class="col-lg-4 col-sm-6 text-center">
-              <a href="/members/{{$member->id}}">
+              <a href="/members/{{$member->id}}" style="color: #000000; text-decoration: none;">
                   <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
-              </a>
-              <h3>{{$member->first_name}} {{$member->last_name}}
-                  <small>{{$member->roll_number}} | {{$member->chapter_class}}</small>
-              </h3>
-              <p>{{$member->school_class}}</p>
 
+              <h3>{{$member->first_name}} {{$member->last_name}}
+                  <small>Roll #{{$member->roll_number}} | {{$member->chapter_class}} Class</small>
+              </h3>
+              <p>Class of {{$member->school_class}}</p>
+              </a>
           </div>
         @endforeach
       </div>
