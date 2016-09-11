@@ -22,11 +22,11 @@
                       <label for="pointType" class="col-md-4 control-label">Type of Points</label>
 
                       <div class="col-md-6">
-                        <select id="pointType" class="form-control" name="pointType" value="{{$event->type_id}}">
-                          <option value="General">General</option>
-                          <option value="PD">PD</option>
-                          <option value="Brotherhood">Brotherhood</option>
-                          <option value="Service">Service</option>
+                        <select id="pointType" class="form-control" name="pointType">
+                          <option value="General" @if($event->type_id == "General") selected @endif>General</option>
+                          <option value="PD" @if($event->type_id == "PD") selected @endif>PD</option>
+                          <option value="Brotherhood" @if($event->type_id == "Brotherhood") selected @endif>Brotherhood</option>
+                          <option value="Service" @if($event->type_id == "Service") selected @endif>Service</option>
                         </select>
 
                       </div>
@@ -89,9 +89,23 @@
                           <button type="submit" class="btn btn-primary">
                               Submit
                           </button>
+                          <button type="button" class="btn btn-primary" onClick="confirmation();">
+                              Delete Event
+                          </button>
                       </div>
                   </div>
+                  <script>
+                  function confirmation(){
+                    bootbox.confirm("Are you sure you want to delete this event?", function(result){
+                      if(result){
+                        window.location= "/events/{{$event->id}}/delete";
+                      }
+                    })
+                  }
+                  </script>
                 </form>
+
+
 
 
                   @if (count($errors) > 0)
