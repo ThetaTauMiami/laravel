@@ -49,6 +49,7 @@ class HomeController extends Controller
       $semester = HomeController::getCurrentSemester();
       $events = DB::table('events')
       ->where('semester_id', '=', $semester->id)
+      ->orderBy('date_time', 'asc')
       ->get();
       return view('pages.events', compact('events'));
     }

@@ -31,7 +31,7 @@ class EventsController extends Controller
 
     */
     function createEvent() {
-      
+
       return view('events.createEvent');
 
     }
@@ -162,7 +162,7 @@ class EventsController extends Controller
           ]);
 
           $img->move("uploads/Event_Thumbs", $fileName);
-          $im = Imager::make($filePath)->resize(150, 150)->save($filePath);
+          $im = Imager::make($filePath)->resizeCanvas(300, 300)->save($filePath);
 
           $image = new Image;
 

@@ -29,7 +29,15 @@
 
                 @foreach ($events as $event)
                 <tr class='clickable-row' data-href='/events/{{ $event->id }}'>
-                    <th scope="row" style="text-align:center; vertical-align:middle;">{{ $event->date_time }}</th>
+                    <th scope="row" style="text-align:center; vertical-align:middle;">
+                      <?php
+                        $dt = $event->date_time;
+                        $token = strtok($dt, "T");
+                        echo $token."<br/>";
+                        $token = strtok("T");
+                        echo $token;
+                      ?>
+                    </th>
                     <td><h4>{{ $event->name }}</h4>
                         <hr>
                         <p>{{ $event->description }} </p></td>
