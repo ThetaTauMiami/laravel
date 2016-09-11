@@ -84,7 +84,7 @@ class GalleryController extends Controller
     public function createThumbnail($image, $extension)
     {
       $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
-        $img = Imager::make($image)->resize(400, 300)->save($withoutExt.'_thumb'.$extension);
+        $img = Imager::make($image)->resizeCanvas(400, 300)->save($withoutExt.'_thumb'.$extension);
         return $withoutExt.'_thumb'.$extension;
 
     }
