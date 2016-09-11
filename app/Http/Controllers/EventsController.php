@@ -31,7 +31,7 @@ class EventsController extends Controller
 
     */
     function createEvent() {
-
+      
       return view('events.createEvent');
 
     }
