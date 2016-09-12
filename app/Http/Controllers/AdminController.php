@@ -172,11 +172,6 @@ class AdminController extends Controller
 
     	foreach( $request->roll_number as $key => $val){
 
-
-            $this->validate($request, [
-                'roll_number.'.$key => 'required'
-            ]);
-
     		$token = $this->generateRandomString(80);
 
     		$bid = new Bid;
