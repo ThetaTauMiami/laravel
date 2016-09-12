@@ -5,9 +5,9 @@
                     data-toggle="collapse" type="button"><span class=
                                                                "icon-bar"></span> <span class="icon-bar"></span> <span class=
                                                                                                                        "icon-bar"></span></button> <a class="navbar-brand" href=
-            "/"><span id="nav">THETA TAU | MIAMI<span class="hidden-xs"> UNIVERSITY</span></span></a>
-            <a href="/"><img src=
-                             "{{asset('/img/navbar-logo.png')}}" class="navbar-brand"></a>
+            "/"><span id="nav">THETA TAU | <span class="hidden-xs">MIAMI UNIVERSITY</span><span class="hidden-sm hidden-md hidden-lg hidden-xl">ΤΔ</span></span></a>
+            <span class="hidden-xs"><a href="/"><img src=
+                             "{{asset('/img/navbar-logo.png')}}" class="navbar-brand"></a></span>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -44,13 +44,16 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, ', $user->first_name ,'!
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+
+                        <li><a href="/members/'.$user->id.'">MY PROFILE</a></li>
+
                         <li><a href="/admin">ADMIN PANEL</a></li>
                         <li><a href="/logout">LOGOUT</a></li>
                     </ul>
                 </li>';
                 } else {
                     echo ' <a href="/login"><button class="btn btn-warning" type=
-                        "button">LOG IN</button></a>';
+                        "button" id="log-in-button">LOG IN</button></a>';
                 }
                 ?>
             </ul>

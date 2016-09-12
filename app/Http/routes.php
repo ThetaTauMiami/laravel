@@ -38,6 +38,11 @@ Route::get('contact', 		'HomeController@contact');
 Route::get('profile',			'HomeController@profile');
 
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
+Route::get('gallery/{album}/edit', 'GalleryController@editAlbum');
+Route::patch('gallery/{album}/edit', 'GalleryController@update');
+Route::get('gallery/{album}/delete', 'GalleryController@deleteAlbum');
+Route::get('gallery/{album}/{image}/delete', 'GalleryController@deleteImage');
+
 Route::get('createEvent', 'EventsController@createEvent');
 
 
@@ -53,7 +58,10 @@ Route::get('editProfile', 'ProfileController@editMyProfile');
 
 
 
-
+// redirect /home route to the root directory
+Route::get('home', function () {
+    return redirect('/');
+});
 
 
 /* +--------------------------------------+
@@ -68,7 +76,7 @@ Route::patch('events/edit/{event}', 'EventsController@update');
 
 // =============== Admin Panel ===============
 
-Route::get('/admin/recruitment',      'AdminController@recruitmentList');
+Route::get('admin/recruitment',      'AdminController@recruitmentList');
 
 Route::get('admin',                'AdminController@showPanel');
 
@@ -79,7 +87,12 @@ Route::get('admin/new/semester',      'AdminController@newSemesterForm');
 Route::post('admin/new/semester',     'AdminController@newSemesterSubmit');
 
 Route::get('admin/edit/brothers',   'AdminController@manageBrothersForm');
-Route::get('admin/attendance', 'AdminController@getAttendanceSheet');
+Route::post('admin/edit/brothers',   'AdminController@manageBrothersSubmit');
+
+Route::get('admin/attendance',      'AdminController@getAttendanceSheet');
+
+Route::get('admin/edit/roles',      'AdminController@manageRolesForm');
+Route::post('admin/edit/roles',      'AdminController@manageRolesSubmit');
 
 
 

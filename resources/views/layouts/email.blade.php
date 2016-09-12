@@ -1,45 +1,27 @@
 <!doctype html>
 <html>
 <head>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-
-<style>
-
-body{
-	background-color: #5B0000;
-}
-.container{
-	background-color: #FFFFFF;
-}
-
-</style>
 
 </head>
-<body>
+<body style="background-color: #5B0000; padding-left:10px;padding-right:10px;text-align:center;">
 
-<div class="container">
+	<div style="width:420px;max-width:100%;padding:8px;display:inline-block;background-color:#FFFFFF">
 
-	<div class="row">
-
-		<div class="col-xs-12 col-sm-8 col-md-4 col-lg-3">
-			<img src="{{ $message->embed('img/login-logo.png') }}">
-		</div>
-		<div class="col-md-8">
+		<div style="text-align:center;">
+			<img src="{{ $message->embed('img/login-logo.png') }}" style="width: 150px;max-width:100%;">
 			<h1>Theta Tau</h1>
 			<h3>Miami University</h3>
 		</div>
+		<br/>
+		<div style="text-align:left;">
+
+		@yield("content")
+
+		</div>
 
 	</div>
 
-	<div class="row">
-
-	@yield("content");
-
-	</div>
-
-
-</div>
 
 </body>
 </html>

@@ -2,6 +2,8 @@
 
 <script src="{{asset('/js/jquery.inputmask.bundle.min.js')}}"></script>
 
+<script src="{{asset('/js/jquery-ui.min.js')}}"></script>
+
 
 
 
