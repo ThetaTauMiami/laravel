@@ -6,8 +6,8 @@
                                                                "icon-bar"></span> <span class="icon-bar"></span> <span class=
                                                                                                                        "icon-bar"></span></button> <a class="navbar-brand" href=
             "/"><span id="nav">THETA TAU | MIAMI<span class="hidden-xs"> UNIVERSITY</span></span></a>
-            <a href="/"><img src=
-                             "{{asset('/img/navbar-logo.png')}}" class="navbar-brand"></a>
+            <span class="hidden-xs"><a href="/"><img src=
+                             "{{asset('/img/navbar-logo.png')}}" class="navbar-brand"></a></span>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
