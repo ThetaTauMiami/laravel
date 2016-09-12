@@ -166,14 +166,15 @@ class AdminController extends Controller
     function newClassSubmit(Request $request){
 
     	$this->validate($request, [
-          'chapter_class' => 'required'
+          'chapter_class' => 'required',
+          'roll_number.0' => 'required'
         ]);
 
     	foreach( $request->roll_number as $key => $val){
 
 
             $this->validate($request, [
-                'roll_number['.$key.']' => 'required','unique:bids,roll_number'
+                'roll_number.'.$key => 'required'
             ]);
 
     		$token = $this->generateRandomString(80);
