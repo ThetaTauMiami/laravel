@@ -23,7 +23,7 @@ body{
 
 	<div class="row">
 
-		<div class="col-xs-12 col-sm-8 col-md-4 col-lg-3">
+		<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
 			<img src="{{ $message->embed('img/login-logo.png') }}">
 		</div>
 		<div class="col-md-8">
