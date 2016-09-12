@@ -11,25 +11,26 @@
 
 
     <script>
+
         $(function() {
             $( "#button" ).click(function() {
                 $( "#uploader" ).toggle();
             });
         });
+
     </script>
 
     @if(Auth::check())
+
     <div class="col-md-8">
       <button id="button" class="btn btn-primary">
           Upload New Image
       </button>
+      <button onclick="location.href='/gallery/{{$album->id}}/edit';" class="btn btn-primary">
+          Edit Album
+      </button>
     </div>
-    @elseif(!Auth::check())
-    <div class="col-md-8">
-      <a href="login"><button class="btn btn-primary">
-          Upload New Image
-      </button></a>
-    </div>
+
     @endif
 
     @if(count($errors) == 0)
@@ -76,14 +77,32 @@
   <img src="http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg?b65726" class="img-fluid center-block" alt="Responsive image">
   </a>
 
+  <h2 style="text-align:center">{{ $album->description }}</h2>
+
   @if (count($images) > 0)
   @foreach ($images as $image)
 
     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-        <a class="thumbnail" href="{{ asset($image->file_path) }}">
-            <img class="img-responsive" src="{{ asset($image->thumb_path) }}" alt="">
-        </a>
+      @if(Auth::check())
+
+      <a onclick="confirmation()" href="#" style="color:grey" id="delete"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+
+      @endif
+      <a class="thumbnail" href="{{ asset($image->file_path) }}"><img class="img-responsive" src="{{ asset($image->thumb_path) }}" alt=""></a>
     </div>
+
+    <script>
+
+      function confirmation(){
+        bootbox.confirm("Are you sure you want to delete this image?", function(result){
+          if(result){
+            window.location= "/gallery/{{$album->id}}/{{$image->id}}/delete";
+          }
+        })
+      }
+    
+
+    </script>
   @endforeach
   @endif
 
