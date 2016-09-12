@@ -189,7 +189,8 @@ class AdminController extends Controller
     		$bid->save();
 
     		Mail::send('emails.registration', ["token"=>$token,"class"=>$request->chapter_class], function ($message) use ($request,$key) {
-			    $message->from('exec@thetataumiami.com', 'Theta Tau Miami');
+			    $message->from('noreply@thetataumiami.com', 'Theta Tau Miami');
+                $message->subject('Welcome to Theta Tau!')
 
 			    $message->to($request->email[$key]);
 			});
