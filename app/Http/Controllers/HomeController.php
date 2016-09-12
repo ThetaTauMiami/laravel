@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth;
 use Auth;
 use DB;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -45,7 +46,11 @@ class HomeController extends Controller
     }
 
     public function events() {
-      $events = DB::table('events')->get();
+      $semester = HomeController::getCurrentSemester();
+      $events = DB::table('events')
+      ->where('semester_id', '=', $semester->id)
+      ->orderBy('date_time', 'asc')
+      ->get();
       return view('pages.events', compact('events'));
     }
 
@@ -136,6 +141,21 @@ class HomeController extends Controller
 
     public function login() {
         return view('auth.login');
+    }
+
+    public function getCurrentSemester(){
+      $today = Carbon::today()->toDateString();
+      $semester = DB::table('semesters')
+        ->whereDate('date_start', '<=', $today)
+        ->whereNull('date_end')
+        ->first();
+      if(!$semester){
+        $semester = DB::table('semesters')
+          ->whereDate('date_start', '<=', $today)
+          ->whereDate('date_end', '>', $today)
+          ->first();
+      }
+      return $semester;
     }
 
 

@@ -30,14 +30,14 @@
                   <img class="img-circle img-responsive img-center" src="/{{$member->image->thumb_path}}" alt="">
                 </a>
                 @else
-                <a href="/members/{{$member->id}}">
-                  <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
+                <a href="/members/{{$member->id}}" style="color: #000000; text-decoration: none;">
+                    <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="">
                 </a>
                 @endif
               <h3>{{$member->first_name}} {{$member->last_name}}
-                  <small>{{$member->roll_number}} | {{$member->chapter_class}}</small>
+                  <small>Roll #{{$member->roll_number}} | {{$member->chapter_class}} Class</small>
               </h3>
-              <p>{{$member->school_class}}</p>
+              <p>Class of {{$member->school_class}}</p>
           </div>
         @endforeach
       </div>

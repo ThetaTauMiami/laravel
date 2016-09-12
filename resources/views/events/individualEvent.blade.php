@@ -5,34 +5,36 @@
         <h1>{{$event->name}}</h1>
     </div>
     <div class="container">
-    	<div class="row">
-		<div class="col-xs-12">
+        <div class="row">
+            <br>
+            <div class="col-sm-offset-2 col-sm-4">
+            @if($image != NULL)
+                <img src="{{ asset($image->file_path) }}" style="padding: 10px;"/>
+            @else
+                <img src="http://placehold.it/200x200" style="padding: 10px;">
+            @endif
+            </div>
+            <div class="col-sm-4">
+            <p><b>Description:</b> {{ $event->description }}</p>
 
-      <p>Description: {{ $event->description }}</p>
+            <p><b>Type of Points:</b> {{ $event->type_id }}</p>
 
-      <p>Type of Points: {{ $event->type_id }}</p>
+            <p><b># of Points:</b> {{ $event->points }}</p>
 
-      <p># of Points: {{ $event->points }}</p>
+            <p><b>Date/Time:</b> {{ $event->date_time }}</p>
 
-      <p>Date/Time: {{ $event->date_time }}</p>
+            @if($album != NULL)
+                <a href="/gallery/{{ $album->id }}"><p>Photo Album</p></a>
+            @endif
 
-      <p>Created By User With ID: {{ $event->user_id }}</p>
+            <a href="/events/edit/{{$event->id}}">
+                <button class="btn btn-warning" type="button">Edit Event</button>
+            </a>
+            <a href='/events/{{$event->id}}/attendance'>
+                <button class="btn btn-warning" type="button">Take Attendance</button>
+            </a>
+            </div>
 
-      <p>Is Public: {{ $event->is_public }}</p>
-
-      @if($image != NULL)
-      <p>Thumbnail: <img src="{{ asset($image->file_path) }}"/></p>
-      @endif
-
-      @if($album != NULL)
-        <a href="/gallery/{{ $album->id }}"><p>Photo Album</p></a>
-      @endif
-
-      <a href="/events/edit/{{$event->id}}"><button class="btn btn-warning" type="button">Edit Event</button></a>
-      <a href='/events/{{$event->id}}/attendance'><button class="btn btn-warning" type="button">Take Attendance</button></a>
-      <a href="#"><button class="btn btn-warning" type="button">RSVP</button></a>
-
-		</div>
-	</div>
+        </div>
     </div>
 @stop
