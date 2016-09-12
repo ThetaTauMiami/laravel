@@ -4,23 +4,23 @@
 
 
 </head>
-<body style="background-color: #5B0000; padding-left:10px;padding-right:10px;">
+<body style="background-color: #5B0000; padding-left:10px;padding-right:10px;text-align:center;">
 
-	<span style="background-color:#FFFFFF">
+	<div style="width:400px;display:inline-block;background-color:#FFFFFF">
 
-	<div style="text-align:center;display:inline-block;">
-		<img src="{{ $message->embed('img/login-logo.png') }}" style="width: 300px;max-width:100%;">
-		<h1>Theta Tau</h1>
-		<h3>Miami University</h3>
+		<div style="text-align:center;">
+			<img src="{{ $message->embed('img/login-logo.png') }}" style="width: 150px;max-width:100%;">
+			<h1>Theta Tau</h1>
+			<h3>Miami University</h3>
+		</div>
+		<br/>
+		<p style="text-align:left;">
+
+		@yield("content")
+
+		</p>
+
 	</div>
-	<br/>
-	<p style="display:inline-block;">
-
-	@yield("content")
-
-	</p>
-
-	</span>
 
 
 </body>
