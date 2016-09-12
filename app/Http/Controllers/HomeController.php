@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth;
 use Auth;
 use DB;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -45,7 +46,11 @@ class HomeController extends Controller
     }
 
     public function events() {
-      $events = DB::table('events')->get();
+      $semester = HomeController::getCurrentSemester();
+      $events = DB::table('events')
+      ->where('semester_id', '=', $semester->id)
+      ->orderBy('date_time', 'asc')
+      ->get();
       return view('pages.events', compact('events'));
     }
 
@@ -63,26 +68,27 @@ class HomeController extends Controller
 
     public function profile(User $user){
       $image = DB::table('images')
-      ->where('id', $user->image_id)
-      ->first();
+        ->where('id', $user->image_id)
+        ->first();
 
       return view('pages.profile', compact('user', 'image'));
-
     }
 
     public function members() {
-      $members = DB::table('users')
+      $members= User::with('image')
         ->where('active_status', 1)
         ->orderby('roll_number')
         ->get();
+
         return view('pages.members', compact('members'));
     }
 
     public function alumni() {
-      $alumni = DB::table('users')
-        ->where('active_status', 0)
+      $alumni = User::where('active_status', 0)
+        ->with ('image')
         ->orderby('roll_number')
         ->get();
+        
         return view('pages.alumni', compact('alumni'));
     }
 
@@ -135,6 +141,21 @@ class HomeController extends Controller
 
     public function login() {
         return view('auth.login');
+    }
+
+    public function getCurrentSemester(){
+      $today = Carbon::today()->toDateString();
+      $semester = DB::table('semesters')
+        ->whereDate('date_start', '<=', $today)
+        ->whereNull('date_end')
+        ->first();
+      if(!$semester){
+        $semester = DB::table('semesters')
+          ->whereDate('date_start', '<=', $today)
+          ->whereDate('date_end', '>', $today)
+          ->first();
+      }
+      return $semester;
     }
 
 

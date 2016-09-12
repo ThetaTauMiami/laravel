@@ -68,7 +68,7 @@ class GalleryController extends Controller
 
         $image = new Image;
 
-        $image->thumb_path = $this->createThumbnail($filePath, $fileName, $extension);
+        $image->thumb_path = $this->createThumbnail($filePath, $extension);
 
         $image->description = $request->description;
         $image->file_path = $filePath;
@@ -84,7 +84,7 @@ class GalleryController extends Controller
     public function createThumbnail($image, $extension)
     {
       $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
-        $img = Imager::make($image)->resize(400, 300)->save($withoutExt.'_thumb'.$extension);
+        $img = Imager::make($image)->resizeCanvas(400, 300)->save($withoutExt.'_thumb'.$extension);
         return $withoutExt.'_thumb'.$extension;
 
     }

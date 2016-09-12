@@ -38,12 +38,13 @@
                 <!--This php script is to dynamically change the login to a logout button with other options-->
                 <?php
                 $user = Auth::user();
+
                 if (Auth::check()) {
                         echo '<li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, '.$user->name.'!
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, ', $user->first_name ,'!
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">MY PROFILE</a></li>
+                        <li><a href="/members/{{$user->id}}">MY PROFILE</a></li>
                         <li><a href="/admin">ADMIN PANEL</a></li>
                         <li><a href="/logout">LOGOUT</a></li>
                     </ul>

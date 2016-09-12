@@ -30,10 +30,17 @@ class EventsController extends Controller
       This function routes to the create Event page
 
     */
-    public function createEvent() {
+    function createEvent() {
 
       return view('events.createEvent');
 
+    }
+
+    function deleteEvent(Event $event){
+      DB::table('events')
+      ->where('id', '=', $event->id)
+      ->delete();
+      return \Redirect::to('/events');
     }
 
     public function editEvent($id) {
@@ -42,7 +49,7 @@ class EventsController extends Controller
       ->first();
 
       $image = DB::table('images')
-      ->where('id', $event->image_id)
+      ->where('id', '=', $event->image_id)
       ->first();
 
       $album = DB::table('albums')
@@ -155,7 +162,7 @@ class EventsController extends Controller
           ]);
 
           $img->move("uploads/Event_Thumbs", $fileName);
-          $im = Imager::make($filePath)->resize(150, 150)->save($filePath);
+          $im = Imager::make($filePath)->resizeCanvas(300, 300)->save($filePath);
 
           $image = new Image;
 
@@ -223,8 +230,6 @@ class EventsController extends Controller
     }
 
     public function update(Request $request, Event $event){
-      return var_dump($event);
-
       $this->validate($request, [
           'eventName' => 'required|unique:events,eventName',
           'pointType' => 'required',
@@ -248,25 +253,71 @@ class EventsController extends Controller
         $event->is_public = false;
       }
 
-      $album = DB::table('albums')
-      ->where('event_id', '=', $id)
-      ->first();
-
       $image = DB::table('images')
-      ->where('id', $event->image_id)
+      ->where('id', '=', $event->image_id)
       ->first();
 
+      //saving an image thumbnail
       if($request->image){
-        if($event->image_id != null){
+        if($image){
           //delete the old image
+          unlink($image->file_path);
+          DB::table('images')
+          ->where('id', '=', $event->image_id)
+          ->delete();
+        }
+        $img = $request->file('image');
+        $extension = $img->getClientOriginalExtension();
+        $fileName = $img->getClientOriginalName();
+        $publicPath = public_path();
+        $filePath = "uploads/Event_Thumbs/{$fileName}";
+        $request['filepath'] = $filePath;
 
+        $this->validate($request, [
+            'filepath' => 'unique:images,file_path'
+        ]);
+
+        $img->move("uploads/Event_Thumbs", $fileName);
+        $im = Imager::make($filePath)->resize(150, 150)->save($filePath);
+
+        $image = new Image;
+
+        $image->description = $request->description;
+        $image->file_path = $filePath;
+        $image->user_id = Auth::user()->id;
+        $image->thumb_path = $filePath;
+        $image->save();
+
+        $event->image_id = $image->id;
+      }
+
+      $event->save();
+
+      $album = DB::table('albums')
+      ->where('event_id', '=', $event->id)
+      ->first();
+
+      if($request->album == "Album"){
+        if(!$album){
+          $arguments = new Request;
+          $arguments['name'] = $request->eventName;
+          $arguments['description'] = $request->description;
+          $arguments['location'] = $request->location;
+          $arguments['event_id'] = $event->id;
+
+          app('App\Http\Controllers\GalleryController')->storeAlbum($arguments);
         }
 
       }
-
-      if($request->album == "Album"){
-
+      else{
+        if($album){
+          DB::table('albums')
+          ->where('event_id', '=', $id)
+          ->delete();
+        }
       }
+
+      return \Redirect::to("/events/".$event->id);
     }
 
 }
