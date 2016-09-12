@@ -41,7 +41,7 @@ Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
 Route::get('gallery/{album}/edit', 'GalleryController@editAlbum');
 Route::patch('gallery/{album}/edit', 'GalleryController@update');
 Route::get('gallery/{album}/delete', 'GalleryController@deleteAlbum');
-Route::get('gallery/{album}/{iamge}/delete', 'GalleryController@deleteImage');
+Route::get('gallery/{album}/{image}/delete', 'GalleryController@deleteImage');
 
 Route::get('createEvent', 'EventsController@createEvent');
 

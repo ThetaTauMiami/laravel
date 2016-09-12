@@ -85,10 +85,12 @@ class EventsController extends Controller
       if($ids != NULL){
         $attended = DB::table('users')
         ->whereIn('id', $ids)
+        ->orderBy('first_name')
         ->get();
 
         $didNotAttend = DB::table('users')
         ->whereNotIn('id', $ids)
+        ->orderBy('first_name')
         ->get();
       }
       else{

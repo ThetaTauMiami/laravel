@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Image;
 use DB;
 use Storage;
+use File;
 
 use App\Album;
 use Illuminate\Support\Facades\Auth;
@@ -48,8 +49,16 @@ class GalleryController extends Controller
       return \Redirect::to('/gallery');
     }
 
-    function deleteImage(Image $image){
-      return \Redirect::to('/gallery');
+    function deleteImage(Album $album, Image $image){
+      File::delete($image->file_path);
+      File::delete($image->thumb_path);
+
+
+      DB::table('images')
+      ->where('id', '=', $image->id)
+      ->delete();
+
+      return \Redirect::to('/gallery/'.$album->id);
     }
 
     //stores a new photo in the uploads folder and puts the path and metadata in database

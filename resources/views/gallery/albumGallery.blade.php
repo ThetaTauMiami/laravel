@@ -85,7 +85,7 @@
     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
       @if(Auth::check())
 
-      <a onclick="confirmation()" href="#" style="color:grey" id="delete"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+      <a onclick="confirmation({{$image->id}})" href="#" style="color:grey" id="delete"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
 
       @endif
       <a class="thumbnail" href="{{ asset($image->file_path) }}"><img class="img-responsive" src="{{ asset($image->thumb_path) }}" alt=""></a>
@@ -93,14 +93,14 @@
 
     <script>
 
-      function confirmation(){
+      function confirmation(id){
         bootbox.confirm("Are you sure you want to delete this image?", function(result){
           if(result){
-            window.location= "/gallery/{{$album->id}}/{{$image->id}}/delete";
+            window.location= "/gallery/{{$album->id}}/"+id+"/delete";
           }
         })
       }
-    
+
 
     </script>
   @endforeach
