@@ -58,7 +58,8 @@ Route::get('editProfile', 'ProfileController@editMyProfile');
 
 
 
-
+// redirect /home route to the root directory
+Route::get('/home',function(){return redirect('/');})
 
 
 /* +--------------------------------------+
