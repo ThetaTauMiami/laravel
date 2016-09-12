@@ -85,10 +85,12 @@ class EventsController extends Controller
       if($ids != NULL){
         $attended = DB::table('users')
         ->whereIn('id', $ids)
+        ->orderBy('first_name')
         ->get();
 
         $didNotAttend = DB::table('users')
         ->whereNotIn('id', $ids)
+        ->orderBy('first_name')
         ->get();
       }
       else{
@@ -162,7 +164,7 @@ class EventsController extends Controller
           ]);
 
           $img->move("uploads/Event_Thumbs", $fileName);
-          $im = Imager::make($filePath)->resizeCanvas(300, 300)->save($filePath);
+          $im = Imager::make($filePath)->fit(300, 300)->save($filePath);
 
           $image = new Image;
 

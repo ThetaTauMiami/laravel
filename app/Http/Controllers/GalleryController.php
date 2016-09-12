@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Image;
 use DB;
 use Storage;
+use File;
 
 use App\Album;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,34 @@ class GalleryController extends Controller
         $this->middleware('auth');
     }
 
+    public function editAlbum($album)
+    {
+      $album = DB::table('albums')
+        ->where('id', '=', $album->id)
+        ->first();
+
+      return view('gallery.editAlbum', compact('album'));
+    }
+
+    function deleteAlbum(Album $album){
+      DB::table('albums')
+      ->where('id', '=', $album->id)
+      ->delete();
+      return \Redirect::to('/gallery');
+    }
+
+    function deleteImage(Album $album, Image $image){
+      File::delete($image->file_path);
+      File::delete($image->thumb_path);
+
+
+      DB::table('images')
+      ->where('id', '=', $image->id)
+      ->delete();
+
+      return \Redirect::to('/gallery/'.$album->id);
+    }
+
     //stores a new photo in the uploads folder and puts the path and metadata in database
     public function storeImage(Request $request)
     {
@@ -43,11 +72,6 @@ class GalleryController extends Controller
 
 
       foreach ($request->images as $img){
-
-        //return var_dump($image);
-        //$file = $request->file('images');
-        //$file = $image;
-
 
         $extension = $img->getClientOriginalExtension();
         $fileName = $img->getClientOriginalName();
@@ -84,8 +108,8 @@ class GalleryController extends Controller
     public function createThumbnail($image, $extension)
     {
       $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
-        $img = Imager::make($image)->resizeCanvas(400, 300)->save($withoutExt.'_thumb'.$extension);
-        return $withoutExt.'_thumb'.$extension;
+        $img = Imager::make($image)->fit(400, 300)->save($withoutExt.'_thumb.'.$extension);
+        return $withoutExt.'_thumb.'.$extension;
 
     }
 
@@ -119,6 +143,21 @@ class GalleryController extends Controller
       $album->semester_id = $semester->id;
 
       $album->event_id = $request->event_id;
+      $album->save();
+
+      return redirect()->action('HomeController@retrieveImagesByAlbum', [$album->id]);
+    }
+
+    public function update(Request $request, Album $album){
+      $this->validate($request, [
+          'name' => 'required',
+          'description' => 'required',
+          'location' => 'required'
+      ]);
+
+      $album->name = $request->name;
+      $album->description = $request->description;
+      $album->location = $request->location;
       $album->save();
 
       return redirect()->action('HomeController@retrieveImagesByAlbum', [$album->id]);
