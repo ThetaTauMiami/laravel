@@ -10,6 +10,7 @@ use App\Bid;
 use App\User;
 use App\Semester;
 use App\Role;
+use App\Event;
 use DB;
 use Carbon\Carbon;
 use Mail;
@@ -75,15 +76,19 @@ class AdminController extends Controller
     }
 
 
-	function recruitmentList() {
+		function recruitmentList() {
         $pnms = DB::table('pnms')->get();
         return view('admin.recruitmentList', compact('pnms'));
     }
 
-	function getAttendanceSheet() {
-		return view('admin.attendanceSheet');
-	}
-
+		function getAttendanceSheet() {
+			$members = User::orderby('roll_number', 'asc')->where('active_status', 1)->get();
+			$semester = app('App\Http\Controllers\HomeController')->getCurrentSemester();
+			$attendance = DB::table('attendance')
+			->get();
+			$events = Event::where('semester_id', '=', $semester->id)->get();
+			return view('admin.attendanceSheet', compact('members', 'attendance', 'events'));
+		}
 
     function manageBrothersSubmit(Request $request){
 

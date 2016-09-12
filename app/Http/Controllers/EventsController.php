@@ -31,15 +31,18 @@ class EventsController extends Controller
 
     */
     function createEvent() {
-
       return view('events.createEvent');
-
     }
 
     function deleteEvent(Event $event){
+      File::delete($event->image_id);
+      DB::table('attendance')
+      ->where('event_id', '=', $event->id)
+      ->delete();
       DB::table('events')
       ->where('id', '=', $event->id)
       ->delete();
+
       return \Redirect::to('/events');
     }
 
@@ -85,12 +88,14 @@ class EventsController extends Controller
       if($ids != NULL){
         $attended = DB::table('users')
         ->whereIn('id', $ids)
-        ->orderBy('first_name')
+        ->where('active_status', '=', 1)
+        ->orderBy('roll_number')
         ->get();
 
         $didNotAttend = DB::table('users')
         ->whereNotIn('id', $ids)
-        ->orderBy('first_name')
+        ->where('active_status', '=', 1)
+        ->orderBy('roll_number')
         ->get();
       }
       else{

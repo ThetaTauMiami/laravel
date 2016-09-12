@@ -45,6 +45,9 @@
                         <a href="/editProfile/{{$user->id}}">
                             <button>Edit Profile</button>
                         </a>
+                        <a href="/members/{{$user->id}}/attendance">
+                            <button>View Attendance</button>
+                        </a>
                     @endif
                 </div>
             </div>
