@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
 <head>
-<link  href="{{ $message->embed('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css') }}" rel="stylesheet">
+
+@include('emails.bootstrap')
 
 
 <style>
