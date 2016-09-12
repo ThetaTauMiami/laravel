@@ -73,13 +73,13 @@ class AuthController extends Controller
             'last_name' => 'required|max:255',
             'phone' => 'required|min:13|max:13|regex:/\([0-9][0-9][0-9]\)[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]/',
             'email' => 'required|email|max:255|unique:users|exists:bids,email|unique:users,email',
-            'password' => 'required|min:8|confirmed|regex:/(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&.,])[A-Za-z\d$@$!%*#?&.,]{8,}/',//8 characters, at least 1 alpha, at least 1 number, at least 1 special character
+            'password' => 'required|min:8|confirmed|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}/',//8 characters, at least 1 alpha, at least 1 number, at least 1 special character
             'registration_token' => 'exists:bids,token'
         ], [
             // Custom Error Messages
             'email.exists' => 'Your email address had not been officially given a bid to Theta Tau. If you find this in error please contact exec.',
             'email.unique' => 'An account already exists with your email address.',
-            'password.regex' => 'Your password must contain at least one letter, one number, and one special character',
+            'password.regex' => 'Your password must contain at least one uppercase letter, one lowercase letter, and one number',
             'registration_token.exists' => 'Your validation token does not match a bid from Theta Tau. Ensure you open the entire link from your email, and contact exec if the problem persists.'
 
         ]);
