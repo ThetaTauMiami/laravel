@@ -11,6 +11,7 @@
           "{{ asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') }}"
           rel="stylesheet">
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/footer-distributed.css') }}" rel="stylesheet">
 
     <!-- Bootbox dependencies -->
