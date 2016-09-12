@@ -51,7 +51,7 @@
                 </li>';
                 } else {
                     echo ' <a href="/login"><button class="btn btn-warning" type=
-                        "button">LOG IN</button></a>';
+                        "button" id="log-in-button">LOG IN</button></a>';
                 }
                 ?>
             </ul>
