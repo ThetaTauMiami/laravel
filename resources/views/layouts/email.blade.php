@@ -2,45 +2,26 @@
 <html>
 <head>
 
-@include('emails.bootstrap')
-
-
-<style>
-
-body{
-	background-color: #5B0000;
-}
-.container{
-	background-color: #FFFFFF;
-}
-
-</style>
 
 </head>
-<body>
+<body style="background-color: #5B0000; padding-left:10px;padding-right:10px;">
 
-<div class="container">
+	<span style="background-color:#FFFFFF">
 
-	<div class="row">
-
-		<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-			<img src="{{ $message->embed('img/login-logo.png') }}">
-		</div>
-		<div class="col-md-8">
-			<h1>Theta Tau</h1>
-			<h3>Miami University</h3>
-		</div>
-
+	<div style="text-align:center;display:inline-block;">
+		<img src="{{ $message->embed('img/login-logo.png') }}" style="width: 300px;max-width:100%;">
+		<h1>Theta Tau</h1>
+		<h3>Miami University</h3>
 	</div>
-
-	<div class="row">
+	<br/>
+	<p style="display:inline-block;">
 
 	@yield("content")
 
-	</div>
+	</p>
 
+	</span>
 
-</div>
 
 </body>
 </html>
