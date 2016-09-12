@@ -5,6 +5,7 @@
 <div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
       <h1>{{ $album->name }}</h1>
   </div>
+  <div class="container">
   <div class="row">
   <div class="col-xs-12">
 
@@ -77,7 +78,7 @@
   <img src="http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg?b65726" class="img-fluid center-block" alt="Responsive image">
   </a>
 
-  <h2 style="text-align:center">{{ $album->description }}</h2>
+  <div class="panel panel-default"><h4 style="text-align:center">{{ $album->description }}</h4></div>
 
   @if (count($images) > 0)
   @foreach ($images as $image)
@@ -108,6 +109,7 @@
 
 
   </div>
+</div>
 </div>
 
 

@@ -26,23 +26,19 @@
                         <div class="panel-body">
                             <br>
                             <div class="col-sm-offset-2 col-sm-4">
-                                @if($image != null)
-                                    <a href="/members/{{$user->id}}">
-                                        <img class="img-circle img-responsive img-center" src="{{$image->thumb_path}}"
-                                             alt="{{$user->first_name}} {{$user->last_name}}">
+                                @if(isset($image))
+                                    <a href="/{{$image->file_path}}">
+                                        <img class="img-circle img-responsive img-center" src="/{{$image->thumb_path}}" alt="{{$image->thumb_path}}">
                                     </a>
                                 @else
                                     <a href="/members/{{$user->id}}">
-                                        <img class="img-circle img-responsive img-center"
-                                             src="http://placehold.it/200x200"
-                                             alt="{{$user->first_name}} {{$user->last_name}}">
+                                        <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="{{$user->first_name}} {{$user->last_name}}">
                                     </a>
                                 @endif
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-4">
                                 <h3>{{$user->first_name}} {{$user->last_name}}
-                                    <br>
-                                    <small>Roll #{{$user->roll_number}} | {{$user->chapter_class}} Class</small>
+                                    <br><small>Roll #{{$user->roll_number}} | {{$user->chapter_class}} Class</small>
                                 </h3>
                                 <p>Class of {{$user->school_class}}</p>
                                 @if (Auth::check())
@@ -56,6 +52,9 @@
                                 @if (Auth::id()==$user->id)
                                     <a href="/editProfile/{{$user->id}}">
                                         <button>Edit Profile</button>
+                                    </a>
+                                    <a href="/members/{{$user->id}}/attendance">
+                                        <button>View Attendance</button>
                                     </a>
                                 @endif
                             </div>

@@ -29,7 +29,8 @@
 
                 @foreach ($events as $event)
 
-                <tr class='clickable-row' data-href='/events/{{ $event->id }}'>
+                <tr class='clickable-row' data-href='/events/{{ $event->id }}' @if(!$event->is_public && !Auth::check()) hidden @endif >
+
                     <th scope="row" style="text-align:center; vertical-align:middle;">
                       <?php
                         $dt = $event->date_time;

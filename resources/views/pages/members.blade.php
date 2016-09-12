@@ -27,7 +27,7 @@
           <div class="col-lg-4 col-sm-6 text-center">
                 @if (isset($member->image->thumb_path))
                 <a href="/members/{{$member->id}}">
-                  <img class="img-circle img-responsive img-center" src="/{{$member->image->thumb_path}}" alt="">
+                  <img class="img-circle img-responsive img-center" src="/{{$member->image->thumb_path}}" alt="" style="width:200; height:200">
                 </a>
                 @else
                 <a href="/members/{{$member->id}}" style="color: #000000; text-decoration: none;">

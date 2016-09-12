@@ -32,6 +32,8 @@ Route::get('recruitment/signup', 	'HomeController@recruitmentSignUp');
 Route::post('recruitment/signup', 	'RecruitmentController@store');
 Route::get('members', 		'HomeController@members');
 Route::get('members/{user}', 'HomeController@profile');
+Route::get('members/{user}/attendance',      'ProfileController@getUserAttendanceSheet'); //should be only accessible to admin or that user
+
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
 
