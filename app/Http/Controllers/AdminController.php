@@ -158,10 +158,12 @@ class AdminController extends Controller
             $role->save();
         }
 
-        foreach( $request->retire as $key => $id ){
-            $role = Role::find($id);
-            $role->active = 0;
-            $role->save();
+        if( isset($request->retire) ){
+            foreach( $request->retire as $key => $id ){
+                $role = Role::find($id);
+                $role->active = 0;
+                $role->save();
+            }
         }
 
         return redirect("/admin/edit/roles");
