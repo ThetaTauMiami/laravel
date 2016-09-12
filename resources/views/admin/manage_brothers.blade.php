@@ -35,6 +35,8 @@
                                     <th>Email</th>
                                     <th>Class</th>
                                     <?php if($type == 'actives'){ ?>
+                                    <th>Role</th>
+                                    <?php } if($type == 'actives'){ ?>
                                     <!--<th>Make Active</th>-->
                                     <?php } if($type == 'alum'){ ?>
                                     <!--<th>Make Alum</th>-->
@@ -43,14 +45,33 @@
 
                         <?php } 
 
-                            function displayMember($member,$type){ ?>
+                            function displayMember($member,$roles,$type){ ?>
 
                                 <tr>
+                                    <input type="hidden" name="id" value="{{$member->id}}">
                                     <td>{{ $member->roll_number }} </td>
                                     <td><a href="/members/{{$member->id}}">{{ $member->first_name." ".$member->last_name }}</a></td>
                                     <td><a href="mailto:{{$member->email}}">{{$member->email}}</a></td>
                                     <td>{{$member->chapter_class}}</td>
+
                                     <?php if($type == 'actives'){ ?>
+                                    <td><select name="role[] " class="form-control">
+                                        <option value=""></option>
+                                        @foreach($roles as $role)
+                                            <option value="{{$role->id}}" <?php
+                                            
+                                            if(isset($member->roles->first()->id) && $member->roles->first()->id == $role->id)
+                                                echo "selected";
+
+                                            ?>>
+                                            {{$role->name}}
+                                        </option>
+
+                                        @endforeach
+
+                                    </select></td>
+
+                                    <?php } if($type == 'actives'){ ?>
                                     <!--<td><button class="btn btn-primary make-alum" id="toggle_alum_{{$member->id}}" brother-id="{{$member->id}}" type="button"><i class="fa fa-paper-plane"></i></button></td>-->
                                     <?php } if($type == 'alum'){ ?>
                                     <!--<td><button class="btn btn-primary make-active" id="toggle_active_{{$member->id}}" brother-id="{{$member->id}}" type="button"><i class="fa fa-reply"></i></button></td>-->
@@ -59,7 +80,7 @@
 
                         <?php } 
 
-                            function displayRoster($members,$type,$name){ ?>
+                            function displayRoster($members,$roles,$type,$name){ ?>
 
                                 <div id="{{$type}}" class="roster" style="{{ ($type == 'actives')?'':'display:none' }}">
 
@@ -77,21 +98,26 @@
 
                                     ?>"><i class="fa fa-envelope"></i></a></h2>
 
+                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/edit/brothers') }}">
+                                        {{ csrf_field() }}
+                                        <table class="table table-responsive table-striped table-hover">
 
-                                    <table class="table table-responsive table-striped table-hover">
+                                            
+                                            <?php displayHeader($type); ?>
 
-                                        
-                                        <?php displayHeader($type); ?>
+                                            @foreach($members as $member)
 
-                                        @foreach($members as $member)
+                                            <?php if(($member->active_status && $type == "actives") || (!$member->active_status && $type == "alum") || ($type == "all")){ 
+                                                displayMember($member,$roles,$type); 
+                                            } ?>
 
-                                        <?php if(($member->active_status && $type == "actives") || (!$member->active_status && $type == "alum") || ($type == "all")){ 
-                                            displayMember($member,$type); 
-                                        } ?>
+                                            @endforeach
 
-                                        @endforeach
+                                        </table>
 
-                                    </table>
+                                        <input type="submit" class="btn btn-primary" value="Submit">
+
+                                    </form>
 
                                 </div>
 
@@ -100,9 +126,9 @@
 
 
 
-                        {{ displayRoster($members,"actives","Active Brothers") }}
-                        {{ displayRoster($members,"alum","Alumni") }}
-                        {{ displayRoster($members,"all","All Members") }}
+                        {{ displayRoster($members,$roles,"actives","Active Brothers") }}
+                        {{ displayRoster($members,$roles,"alum","Alumni") }}
+                        {{ displayRoster($members,$roles,"all","All Members") }}
 
 
                 </div>

@@ -78,7 +78,12 @@ Route::get('admin/new/semester',      'AdminController@newSemesterForm');
 Route::post('admin/new/semester',     'AdminController@newSemesterSubmit');
 
 Route::get('admin/edit/brothers',   'AdminController@manageBrothersForm');
-Route::get('admin/attendance', 'AdminController@getAttendanceSheet');
+Route::post('admin/edit/brothers',   'AdminController@manageBrothersSubmit');
+
+Route::get('admin/attendance',      'AdminController@getAttendanceSheet');
+
+Route::get('admin/edit/roles',      'AdminController@manageRolesForm');
+Route::post('admin/edit/roles',      'AdminController@manageRolesSubmit');
 
 
 

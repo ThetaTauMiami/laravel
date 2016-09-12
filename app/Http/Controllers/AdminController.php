@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Bid;
 use App\User;
 use App\Semester;
+use App\Role;
+use App\Semester;
 use DB;
 use Mail;
 
@@ -32,16 +34,22 @@ class AdminController extends Controller
     	return view('admin.add_class');
     }
 
+    function newSemesterForm(){
+        return view('admin.new_semester');
+    }
+
 
     function manageBrothersForm(){
     	$members = User::orderby('roll_number','asc')
 	        ->with('image')->get();
-	    return view('admin.manage_brothers',compact('members') );
+        $roles = Role::orderby('rank_order')->where('active',1)->get();
+	    return view('admin.manage_brothers', compact('members','roles'));
     }
 
 
-    function newSemesterForm(){
-        return view('admin.new_semester');
+    function manageRolesForm(){
+        $roles = Role::orderby('rank_order')->where('active',1)->get();
+        return view('admin.manage_roles',compact('roles'));
     }
 
 
@@ -55,6 +63,42 @@ class AdminController extends Controller
 	}
 
 
+    function manageBrothersSubmit(Request $request){
+
+        $semesterId = Semester::whereNull('date_end');
+
+    }
+
+
+    function manageRolesSubmit(Request $request){
+
+        foreach( $request->role_id as $key => $id ){
+            $role = "";
+            if($id == "NEW"){
+                // add a new role
+                $role = new Role;
+
+            }else{
+                // edit existing role
+                $role = Role::find($id);
+            }
+
+            $role->name = $request->name[$key];
+            $role->type = $request->type[$key];
+            $role->rank_order = $request->role_rank[$key];
+            $role->save();
+        }
+
+        foreach( $request->retire as $key => $id ){
+            $role = Role::find($id);
+            $role->active = 0;
+            $role->save();
+        }
+
+        return redirect("/admin/edit/roles");
+    }
+
+
     function newClassSubmit(Request $request){
 
     	$this->validate($request, [
@@ -62,6 +106,12 @@ class AdminController extends Controller
         ]);
 
     	foreach( $request->roll_number as $key => $val){
+
+
+            $this->validate($request, [
+                'roll_number['.$key.']' => 'required','unique:bids,roll_number'
+            ]);
+
     		$token = $this->generateRandomString(80);
 
     		$bid = new Bid;
@@ -83,7 +133,7 @@ class AdminController extends Controller
 
 
 
-    	return \Redirect::to('/admin');
+    	return redirect('/admin');
 
     }
 
