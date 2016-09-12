@@ -48,7 +48,7 @@
                             function displayMember($member,$roles,$type){ ?>
 
                                 <tr>
-                                    <input type="hidden" name="id" value="{{$member->id}}">
+                                    <input type="hidden" name="id[]" value="{{$member->id}}">
                                     <td>{{ $member->roll_number }} </td>
                                     <td><a href="/members/{{$member->id}}">{{ $member->first_name." ".$member->last_name }}</a></td>
                                     <td><a href="mailto:{{$member->email}}">{{$member->email}}</a></td>
@@ -59,7 +59,7 @@
                                         <option value=""></option>
                                         @foreach($roles as $role)
                                             <option value="{{$role->id}}" <?php
-                                            
+
                                             if(isset($member->roles->first()->id) && $member->roles->first()->id == $role->id)
                                                 echo "selected";
 

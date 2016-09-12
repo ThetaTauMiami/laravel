@@ -10,8 +10,8 @@ use App\Bid;
 use App\User;
 use App\Semester;
 use App\Role;
-use App\Semester;
 use DB;
+use Carbon\Carbon;
 use Mail;
 
 class AdminController extends Controller
@@ -24,6 +24,28 @@ class AdminController extends Controller
     {
         // TODO THIS NEEDS TO BE MIDDLEWARE TO BLOCK IF NOT ADMIN OR EXEC $this->middleware('auth');
     }
+
+
+
+
+    public function getCurrentSemester(){
+      $today = Carbon::today()->toDateString();
+      $semester = DB::table('semesters')
+        ->whereDate('date_start', '<=', $today)
+        ->whereNull('date_end')
+        ->first();
+      if(!$semester){
+        $semester = DB::table('semesters')
+          ->whereDate('date_start', '<=', $today)
+          ->whereDate('date_end', '>', $today)
+          ->first();
+      }
+      return $semester;
+    }
+
+
+
+
 
 	function showPanel(){
 		return view('admin.panel');
@@ -41,7 +63,7 @@ class AdminController extends Controller
 
     function manageBrothersForm(){
     	$members = User::orderby('roll_number','asc')
-	        ->with('image')->get();
+	        ->with('image')->with('roles')->get();
         $roles = Role::orderby('rank_order')->where('active',1)->get();
 	    return view('admin.manage_brothers', compact('members','roles'));
     }
@@ -65,7 +87,49 @@ class AdminController extends Controller
 
     function manageBrothersSubmit(Request $request){
 
-        $semesterId = Semester::whereNull('date_end');
+        $semester_id = $this->getCurrentSemester()->id;
+
+        foreach($request->id as $key => $id){
+
+            if($request->role[$key] != ''){
+
+
+                $current = DB::table('role_user')
+                ->where([
+                    ['user_id','=',$id],
+                    ['semester_id','=',$semester_id]
+                ])
+                ->count();
+
+                if($current > 0){
+
+                    $current = DB::table('role_user')
+                    ->where([
+                        ['user_id','=',$id],
+                        ['semester_id','=',$semester_id]
+                    ])
+                    ->update(['role_id'=>$request->role[$key]]);
+
+                }else{
+                    DB::table('role_user')->insert([
+                        'user_id'=>$id,
+                        'role_id'=>$request->role[$key],
+                        'semester_id'=>$semester_id
+                    ]);
+                }
+
+            }else{
+                $current = DB::table('role_user')
+                ->where([
+                    ['user_id','=',$id],
+                    ['semester_id','=',$semester_id]
+                ])
+                ->delete();
+            }
+
+        }
+
+        return redirect('/admin/edit/brothers');
 
     }
 
