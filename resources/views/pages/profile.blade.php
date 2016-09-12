@@ -16,9 +16,9 @@
     <div class="container">
     <div class="row">
         <div class="col-lg-4 col-sm-6 text-center">
-          @if($image != null)
-            <a href="/members/{{$user->id}}">
-                <img class="img-circle img-responsive img-center" src="{{$image->thumb_path}}" alt="{{$user->first_name}} {{$user->last_name}}">
+          @if(isset($image))
+            <a href="/{{$image->file_path}}">
+                <img class="img-circle img-responsive img-center" src="/{{$image->thumb_path}}" alt="{{$image->thumb_path}}">
             </a>
             @else
             <a href="/members/{{$user->id}}">

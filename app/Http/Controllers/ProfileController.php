@@ -24,22 +24,15 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
-    //
+    //if someone tries to go to '/editprofile, redirects to /editprofile/$id'
     function editMyProfile(){
       $profile_id = Auth::id();
       return editProfile($profile_id);
     }
 
+    //editProfile page
     function editProfile(User $user){
-      /*$member = DB::table('users')
-      ->where('id', $profile_id)
-      ->first();*/
-
-      $image = DB::table('images')
-      ->where('id', $user->image_id)
-      ->get();
-
-      return view('pages.editProfile', compact('user', 'image'));
+      return view('pages.editProfile', compact('user'));
     }
 
     //updates user values, and if an image has been uploaded, stores it and creates a thumbnail
@@ -54,7 +47,7 @@ class ProfileController extends Controller
         $extension = $img->getClientOriginalExtension();
         $fileName = $img->getClientOriginalName();
         $publicPath = public_path();
-        $filePath = "uploads/Profile_Full/{$fileName}";
+        $filePath = "upld/prof/".$fileName;
         $request['filepath'] = $filePath;
         $request['image'] = $img;
 
@@ -65,7 +58,7 @@ class ProfileController extends Controller
         ]);
 
         //sticks the new image into the folder
-        $img->move("uploads/Profile_Full", $fileName);
+        $img->move("upld/prof/", $fileName);
 
         //Stick that there image into this here database
         $image = new Image;
@@ -78,7 +71,12 @@ class ProfileController extends Controller
         $image->save();
 
         //and now make the user point to the new image
+
         $user->image_id = $image->id;
+        $user->save();
+        //$user->image()->save($image);
+        //return var_dump($user->image_id);
+
       }//end image saving/replacing
 
       return redirect('members/'.$user->id);
@@ -87,7 +85,7 @@ class ProfileController extends Controller
     public function createThumbnail($image, $extension)
     {
       $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
-        $img = Imager::make($image)->resize(400, 300)->save($withoutExt.'_thumb'.$extension);
-        return $withoutExt.'_thumb'.$extension;
+        $img = Imager::make($image)->resizeCanvas(200, 200)->save($withoutExt.'_thumb.'.$extension);
+        return $withoutExt.'_thumb.'.$extension;
     }
 }

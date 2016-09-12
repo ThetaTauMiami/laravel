@@ -63,26 +63,27 @@ class HomeController extends Controller
 
     public function profile(User $user){
       $image = DB::table('images')
-      ->where('id', $user->image_id)
-      ->first();
+        ->where('id', $user->image_id)
+        ->first();
 
       return view('pages.profile', compact('user', 'image'));
-
     }
 
     public function members() {
-      $members = DB::table('users')
+      $members= User::with('image')
         ->where('active_status', 1)
         ->orderby('roll_number')
         ->get();
+
         return view('pages.members', compact('members'));
     }
 
     public function alumni() {
-      $alumni = DB::table('users')
-        ->where('active_status', 0)
+      $alumni = User::where('active_status', 0)
+        ->with ('image')
         ->orderby('roll_number')
         ->get();
+        
         return view('pages.alumni', compact('alumni'));
     }
 
