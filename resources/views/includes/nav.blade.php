@@ -5,7 +5,7 @@
                     data-toggle="collapse" type="button"><span class=
                                                                "icon-bar"></span> <span class="icon-bar"></span> <span class=
                                                                                                                        "icon-bar"></span></button> <a class="navbar-brand" href=
-            "/"><span id="nav">THETA TAU | MIAMI<span class="hidden-xs"> UNIVERSITY</span></span></a>
+            "/"><span id="nav">THETA TAU | <span class="hidden-xs">MIAMI UNIVERSITY</span><span class="hidden-sm hidden-md hidden-lg hidden-xl">ΤΔ</span></span></a>
             <span class="hidden-xs"><a href="/"><img src=
                              "{{asset('/img/navbar-logo.png')}}" class="navbar-brand"></a></span>
         </div>
