@@ -85,7 +85,7 @@ class ProfileController extends Controller
     public function createThumbnail($image, $extension)
     {
       $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
-        $img = Imager::make($image)->resizeCanvas(200, 200)->save($withoutExt.'_thumb.'.$extension);
+        $img = Imager::make($image)->fit(300, 300)->save($withoutExt.'_thumb.'.$extension);
         return $withoutExt.'_thumb.'.$extension;
     }
 }
