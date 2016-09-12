@@ -59,7 +59,9 @@ Route::get('editProfile', 'ProfileController@editMyProfile');
 
 
 // redirect /home route to the root directory
-Route::get('/home',function(){return redirect('/');})
+Route::get('home', function () {
+    return redirect('/');
+});
 
 
 /* +--------------------------------------+
@@ -74,7 +76,7 @@ Route::patch('events/edit/{event}', 'EventsController@update');
 
 // =============== Admin Panel ===============
 
-Route::get('/admin/recruitment',      'AdminController@recruitmentList');
+Route::get('admin/recruitment',      'AdminController@recruitmentList');
 
 Route::get('admin',                'AdminController@showPanel');
 
