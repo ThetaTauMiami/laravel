@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Event;
 use Auth;
 use App\Image;
 use DB;
@@ -30,6 +31,15 @@ class ProfileController extends Controller
       return editProfile($profile_id);
     }
 
+    function getUserAttendanceSheet(User $user) {
+			$semester = app('App\Http\Controllers\HomeController')->getCurrentSemester();
+			$attendance = DB::table('attendance')
+      ->where('user_id', '=', $user->id)
+			->get();
+			$events = Event::where('semester_id', '=', $semester->id)->get();
+			return view('admin.userAttendanceSheet', compact('attendance', 'events', 'user'));
+		}
+
     //editProfile page
     function editProfile(User $user){
       return view('pages.editProfile', compact('user'));
@@ -47,7 +57,7 @@ class ProfileController extends Controller
         $extension = $img->getClientOriginalExtension();
         $fileName = $img->getClientOriginalName();
         $publicPath = public_path();
-        $filePath = "upld/prof/".$fileName;
+        $filePath = "uploads/prof/".$fileName;
         $request['filepath'] = $filePath;
         $request['image'] = $img;
 
@@ -58,7 +68,7 @@ class ProfileController extends Controller
         ]);
 
         //sticks the new image into the folder
-        $img->move("upld/prof/", $fileName);
+        $img->move("uploads/prof/", $fileName);
 
         //Stick that there image into this here database
         $image = new Image;

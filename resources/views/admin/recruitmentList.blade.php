@@ -8,18 +8,22 @@
     <div class="container">
      	<div class="row">
     		<div class="col-xs-12 text-center">
+					<br/>
+					{{$list = ""}}
+					@foreach ($pnms as $pnm)
+						<div hidden>{{$list = $list.$pnm->email.", "}}</div>
+					@endforeach
+					<label for="website">Emails:</label>
+					<input type="text" id="website" value = "{{ $list }}" />
+					<button data-copytarget="#website">Copy</button>
+
+					<div class="panel panel-default">
     			@foreach ($pnms as $pnm)
             <h1> {{ $pnm->first_name }} {{ $pnm->last_name }} </h1>
             <p>    {{ $pnm->email }} </p>
           @endforeach
+					</div>
 
-          {{$list = ""}}
-          @foreach ($pnms as $pnm)
-            <div hidden>{{$list = $list.$pnm->email.", "}}</div>
-          @endforeach
-          <label for="website">Emails:</label>
-          <input type="text" id="website" value = "{{ $list }}" />
-          <button data-copytarget="#website">Copy</button>
 
           <script>
           /*

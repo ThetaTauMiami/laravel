@@ -1,24 +1,33 @@
 @extends('layouts.default')
 <link href="{{ asset('/css/login.css') }}" rel="stylesheet">
 @section('content')
+<?php
+function isMobile() {
+  return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+} ?>
 <div class="container">
   <div class="row">
       <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
               <div class="panel-heading">Attendance for {{$event->name}}</div>
               <br/>
+
+
               <div class="row text-center">
                 <div class="col-sm-6"><h4> Did Not Attend </h4></div>
                 <div class="col-sm-6"><h4> Attended </h4></div>
               </div>
+
+
               <div class="panel-body">
                   <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action='/events/{{$event->id}}/attendance'>
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                     <input type="hidden" name="event" value="{{ $event->id }}"/>
 
+
                     <div class="subject-info-box-1">
-                      <select multiple="multiple" id='lstBox1' class="form-control" name="didNotAttend[]">
+                      <select multiple="multiple" id='lstBox1' class="form-control" name="didNotAttend[]" >
                         @if($didNotAttend != NULL)
                         @foreach($didNotAttend as $user)
 
@@ -35,9 +44,9 @@
                       <input type='button' id='btnLeft' value='<' class="btn btn-default" /><br />
                       <input type='button' id='btnAllLeft' value='<<' class="btn btn-default" />
                     </div>
-
+                    
                     <div class="subject-info-box-2">
-                      <select multiple="multiple" id='lstBox2' class="form-control" name="attended[]">
+                      <select multiple="multiple" id='lstBox2' class="form-control" name="attended[]" @if(isMobile()) style="height:30px" @endif>
                         @if($attended != NULL)
                         @foreach($attended as $u)
 

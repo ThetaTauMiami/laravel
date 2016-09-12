@@ -98,7 +98,8 @@
 
                                     ?>"><i class="fa fa-envelope"></i></a></h2>
 
-                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/edit/brothers') }}">
+                                    
+                                    <?php if($type=='actives'){ ?><form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/edit/brothers') }}"> <?php } ?>
                                         {{ csrf_field() }}
                                         <table class="table table-responsive table-striped table-hover">
 
@@ -115,9 +116,9 @@
 
                                         </table>
 
-                                        <input type="submit" class="btn btn-primary" value="Submit">
+                                        <?php if($type=='actives'){ ?><input type="submit" class="btn btn-primary" value="Submit">
 
-                                    </form>
+                                    </form><?php } ?>
 
                                 </div>
 

@@ -10,6 +10,7 @@ use App\Bid;
 use App\User;
 use App\Semester;
 use App\Role;
+use App\Event;
 use DB;
 use Carbon\Carbon;
 use Mail;
@@ -75,15 +76,19 @@ class AdminController extends Controller
     }
 
 
-	function recruitmentList() {
+		function recruitmentList() {
         $pnms = DB::table('pnms')->get();
         return view('admin.recruitmentList', compact('pnms'));
     }
 
-	function getAttendanceSheet() {
-		return view('admin.attendanceSheet');
-	}
-
+		function getAttendanceSheet() {
+			$members = User::orderby('roll_number', 'asc')->where('active_status', 1)->get();
+			$semester = app('App\Http\Controllers\HomeController')->getCurrentSemester();
+			$attendance = DB::table('attendance')
+			->get();
+			$events = Event::where('semester_id', '=', $semester->id)->get();
+			return view('admin.attendanceSheet', compact('members', 'attendance', 'events'));
+		}
 
     function manageBrothersSubmit(Request $request){
 
@@ -153,10 +158,12 @@ class AdminController extends Controller
             $role->save();
         }
 
-        foreach( $request->retire as $key => $id ){
-            $role = Role::find($id);
-            $role->active = 0;
-            $role->save();
+        if( isset($request->retire) ){
+            foreach( $request->retire as $key => $id ){
+                $role = Role::find($id);
+                $role->active = 0;
+                $role->save();
+            }
         }
 
         return redirect("/admin/edit/roles");
@@ -166,15 +173,11 @@ class AdminController extends Controller
     function newClassSubmit(Request $request){
 
     	$this->validate($request, [
-          'chapter_class' => 'required'
+          'chapter_class' => 'required',
+          'roll_number.0' => 'required'
         ]);
 
     	foreach( $request->roll_number as $key => $val){
-
-
-            $this->validate($request, [
-                'roll_number['.$key.']' => 'required','unique:bids,roll_number'
-            ]);
 
     		$token = $this->generateRandomString(80);
 
@@ -189,7 +192,8 @@ class AdminController extends Controller
     		$bid->save();
 
     		Mail::send('emails.registration', ["token"=>$token,"class"=>$request->chapter_class], function ($message) use ($request,$key) {
-			    $message->from('exec@thetataumiami.com', 'Theta Tau Miami');
+			    $message->from('noreply@thetataumiami.com', 'Theta Tau Miami');
+                $message->subject('Welcome to Theta Tau!');
 
 			    $message->to($request->email[$key]);
 			});

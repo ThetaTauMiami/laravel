@@ -32,12 +32,19 @@ Route::get('recruitment/signup', 	'HomeController@recruitmentSignUp');
 Route::post('recruitment/signup', 	'RecruitmentController@store');
 Route::get('members', 		'HomeController@members');
 Route::get('members/{user}', 'HomeController@profile');
+Route::get('members/{user}/attendance',      'ProfileController@getUserAttendanceSheet'); //should be only accessible to admin or that user
+
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
 
 Route::get('profile',			'HomeController@profile');
 
 Route::get('gallery/{album}', 		'HomeController@retrieveImagesByAlbum');
+Route::get('gallery/{album}/edit', 'GalleryController@editAlbum');
+Route::patch('gallery/{album}/edit', 'GalleryController@update');
+Route::get('gallery/{album}/delete', 'GalleryController@deleteAlbum');
+Route::get('gallery/{album}/{image}/delete', 'GalleryController@deleteImage');
+
 Route::get('createEvent', 'EventsController@createEvent');
 
 
@@ -53,7 +60,10 @@ Route::get('editProfile', 'ProfileController@editMyProfile');
 
 
 
-
+// redirect /home route to the root directory
+Route::get('home', function () {
+    return redirect('/');
+});
 
 
 /* +--------------------------------------+
@@ -68,7 +78,7 @@ Route::patch('events/edit/{event}', 'EventsController@update');
 
 // =============== Admin Panel ===============
 
-Route::get('/admin/recruitment',      'AdminController@recruitmentList');
+Route::get('admin/recruitment',      'AdminController@recruitmentList');
 
 Route::get('admin',                'AdminController@showPanel');
 

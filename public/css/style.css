@@ -38,6 +38,10 @@ body {
 
 }
 
+#log-in-button{
+  margin-right: 7px;
+}
+
 .btn {
     border-radius: 0 !important;
     font-weight: 700;
