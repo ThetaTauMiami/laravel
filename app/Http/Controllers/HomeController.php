@@ -124,6 +124,7 @@ class HomeController extends Controller
       $album = DB::table('albums')
         ->where('id', '=', $album->id)
         ->first();
+        
       return view("gallery.albumGallery", compact('images'), compact('album'));
     }
 

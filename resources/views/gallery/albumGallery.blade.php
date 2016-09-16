@@ -5,7 +5,7 @@
 <div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
       <h1>{{ $album->name }}</h1>
   </div>
-  <div class="container">
+  <div class="container-fluid">
   <div class="row">
   <div class="col-xs-12">
 
@@ -74,9 +74,64 @@
   </div>
 </div>
 
-  <a class="thumbnail" href="#">
-  <img src="http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg?b65726" class="img-fluid center-block" alt="Responsive image">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width:60%;
+
+    margin: auto;
+}
+</style>
+<?php
+$carouselimg = DB::table('images')
+  ->where('album_id', '=', $album->id)
+  ->take(5)
+  ->get();
+
+  $i = 1;
+  $j=0;
+?>
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+
+  <ol class="carousel-indicators">
+    @foreach($carouselimg as $f)
+      @if($j==0)
+        <li data-target="#myCarousel" data-slide-to="{{$j}}" class="active"></li>
+      @else
+        <li data-target="#myCarousel" data-slide-to="{{$j}}"></li>
+      @endif
+      <?php $j+=1; ?>
+    @endforeach
+
+  </ol>
+
+<div class="carousel-inner" role="listbox">
+@foreach($carouselimg as $img)
+  @if($i == 1)
+    <div class="item active">
+      <img src="{{ asset($img->file_path) }}" alt="">
+    </div>
+    <?php $i=2; ?>
+  @else
+  <div class="item">
+    <img src="{{ asset($img->file_path) }}" alt="">
+  </div>
+  @endif
+@endforeach
+</div>
+
+
+  <a href="#myCarousel" role="button" data-slide="prev" onclick="$('#myCarousel').carousel('prev')">
+
+    <span class="sr-only">Previous</span>
   </a>
+  <a href="#myCarousel" role="button" data-slide="next" onclick="$('#myCarousel').carousel('next')">
+
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
   <div class="panel panel-default"><h4 style="text-align:center">{{ $album->description }}</h4></div>
 
