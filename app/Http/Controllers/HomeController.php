@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\User;
+use App\Album;
 use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth;
 use Auth;
@@ -41,7 +42,7 @@ class HomeController extends Controller
 
 
     public function gallery() {
-        $albums = DB::table('albums')->get();
+        $albums = Album::with('images')->get();
         return view('pages.gallery', compact('albums'));
     }
 
@@ -88,7 +89,7 @@ class HomeController extends Controller
         ->with ('image')
         ->orderby('roll_number')
         ->get();
-        
+
         return view('pages.alumni', compact('alumni'));
     }
 

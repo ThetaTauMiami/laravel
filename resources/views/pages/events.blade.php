@@ -28,7 +28,9 @@
                 <tbody>
 
                 @foreach ($events as $event)
+
                 <tr class='clickable-row' data-href='/events/{{ $event->id }}' @if(!$event->is_public && !Auth::check()) hidden @endif >
+
                     <th scope="row" style="text-align:center; vertical-align:middle;">
                       <?php
                         $dt = $event->date_time;
@@ -38,11 +40,12 @@
                         echo $token;
                       ?>
                     </th>
-                    <td><h4>{{ $event->name }}</h4>
+                    <td><a href="/events/{{ $event->id }}" style="color: #5B0000"><h4>{{ $event->name }}</h4></a>
                         <hr>
                         <p>{{ $event->description }} </p></td>
                     <td style="vertical-align:middle">{{ $event->location }}</td>
                 </tr>
+
                 @endforeach
 
                 <script>

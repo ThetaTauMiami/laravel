@@ -20,6 +20,7 @@
 				<div class="well well-sm" style="margin-top: 30px">
 
 					<form class="form-horizontal" action="" method="post">
+					{{ csrf_field() }}
 						<fieldset>
 
 							<legend>Email Us</legend>

@@ -29,7 +29,7 @@ Route::get('gallery', 		'HomeController@gallery');
 Route::get('events', 		'HomeController@events');
 Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('recruitment/signup', 	'HomeController@recruitmentSignUp');
-Route::post('recruitment/signup', 	'RecruitmentController@store');
+Route::post('recruitment/signup', 	'FormController@store');
 Route::get('members', 		'HomeController@members');
 Route::get('members/{user}', 'HomeController@profile');
 Route::get('members/{user}/attendance',      'ProfileController@getUserAttendanceSheet'); //should be only accessible to admin or that user
@@ -57,6 +57,10 @@ Route::get('events/{event}/delete', 'EventsController@deleteEvent');
 Route::get('editProfile/{user}', 'ProfileController@editProfile');
 
 Route::get('editProfile', 'ProfileController@editMyProfile');
+
+
+Route::get('specialevents/{id}',    'FormController@specialeventsSignup');
+Route::post('specialevents/{id}',    'FormController@specialeventsStore');
 
 
 
@@ -87,6 +91,9 @@ Route::post('admin/new/class',     'AdminController@newClassSubmit');
 
 Route::get('admin/new/semester',      'AdminController@newSemesterForm');
 Route::post('admin/new/semester',     'AdminController@newSemesterSubmit');
+
+Route::get('admin/new/specialevent',         'AdminController@newSpecialeventForm');
+Route::get('admin/edit/specialevent/{id]',   'AdminController@editSpecialeventForm');
 
 Route::get('admin/edit/brothers',   'AdminController@manageBrothersForm');
 Route::post('admin/edit/brothers',   'AdminController@manageBrothersSubmit');

@@ -3,9 +3,10 @@
 
 @section('content')
 
-	<div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
+    <div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
         <h1>GALLERY</h1>
     </div>
+
     <div class="container-fluid">
     <div class="row">
 		<div class="col-xs-12">
@@ -62,24 +63,27 @@
 							<input type="file" id="image" name="image" accept="image/*"/>
 						</div>-->
 
-						<button type="submit" class="btn">Submit</button>
-					</form>
-					@if (count($errors) > 0)
-							<div class="alert alert-danger">
-									<ul>
-											@foreach ($errors->all() as $error)
-													<li>{{ $error }}</li>
-											@endforeach
-									</ul>
-							</div>
-					@endif
-				</div>
-			</div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+						
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+    </div>
+
+
+        </div>
+</div>
 
 
 
-		</div>
-	</div>
 
     <!--<a class="thumbnail" href="#">
     <img src="http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg?b65726" class="img-fluid center-block" alt="Responsive image">
@@ -151,23 +155,33 @@
 
     <div class="container" style="margin-top: 20px">
 
-        <div class="row">
+
+                <div class="row">
 
 					  @foreach ($albums as $album)
+						<?php
+							$thumbimage = $album->images->first();
+						 ?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="/gallery/{{ $album->id }}">
 
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+										@if($thumbimage)
+                    <img class="img-responsive" src="{{$thumbimage->thumb_path}}" alt="">
+										@else
+										<img class="img-responsive" src="{{ asset('img/placeholder-thumb.png') }}" alt="">
+										@endif
 										<p> {{ $album->name }} </p>
                 </a>
             </div>
 						@endforeach
 
 
+                </div>
+            </div>
         </div>
-        </div>
-        </div>
-        </div>
+    </div>
+
+
 
     <!-- /.container -->
 @stop

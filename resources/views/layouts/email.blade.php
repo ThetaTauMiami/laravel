@@ -2,6 +2,7 @@
 <html>
 <head>
 
+<!-- ============= NOTE: Inline Styles Only For Emails ============= -->
 
 </head>
 <body style="background-color: #5B0000; padding-left:10px;padding-right:10px;text-align:center;">
