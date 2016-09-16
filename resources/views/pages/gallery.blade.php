@@ -1,3 +1,4 @@
+
 @extends('layouts.default')
 
 @section('content')
@@ -5,10 +6,10 @@
 	<div class="jumbotron" style="background-image:url('{{ asset('img/banner.png') }}'); background-position: center;">
         <h1>GALLERY</h1>
     </div>
-    <div class="container">
+    <div class="container-fluid">
     <div class="row">
 		<div class="col-xs-12">
-			<!--<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>-->
+
 			<script>
 					$(function() {
 					    $( "#button" ).click(function() {
@@ -80,9 +81,74 @@
 		</div>
 	</div>
 
-    <a class="thumbnail" href="#">
+    <!--<a class="thumbnail" href="#">
     <img src="http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg?b65726" class="img-fluid center-block" alt="Responsive image">
-    </a>
+	</a>-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+	.carousel-inner > .item > img,
+	.carousel-inner > .item > a > img {
+			width: 60%;
+
+			margin: auto;
+	}
+	</style>
+
+	<!--<script>
+	$('left.carousel-control').click(function() {
+	  $('#myCarousel').carousel('prev');
+	});
+
+	$('right.carousel-control').click(function() {
+	  $('#myCarousel').carousel('next');
+	});
+
+</script>-->
+
+
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+
+	  <ol class="carousel-indicators">
+	    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	    <li data-target="#myCarousel" data-slide-to="1"></li>
+	    <li data-target="#myCarousel" data-slide-to="2"></li>
+	    <li data-target="#myCarousel" data-slide-to="3"></li>
+	  </ol>
+
+
+	  <div class="carousel-inner" role="listbox">
+	    <div class="item active">
+	      <img src="{{ asset('img/carousel_1.jpg') }}" alt="">
+	    </div>
+
+	    <div class="item">
+	      <img src="{{ asset('img/carousel_2.jpg') }}" alt="">
+	    </div>
+
+	    <div class="item">
+	      <img src="{{ asset('img/carousel_3.jpg') }}" alt="">
+	    </div>
+
+	    <div class="item">
+	      <img src="{{ asset('img/carousel_4.jpg') }}" alt="">
+	    </div>
+	  </div>
+
+
+	  <a href="#myCarousel" role="button" data-slide="prev" onclick="$('#myCarousel').carousel('prev')">
+
+	    <span class="sr-only">Previous</span>
+	  </a>
+	  <a href="#myCarousel" role="button" data-slide="next" onclick="$('#myCarousel').carousel('next')">
+
+	    <span class="sr-only">Next</span>
+	  </a>
+	</div>
+
+
+
     <div class="container" style="margin-top: 20px">
 
         <div class="row">
@@ -90,7 +156,7 @@
 					  @foreach ($albums as $album)
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="/gallery/{{ $album->id }}">
-										
+
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
 										<p> {{ $album->name }} </p>
                 </a>
