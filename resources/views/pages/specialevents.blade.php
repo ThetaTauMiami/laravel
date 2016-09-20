@@ -56,7 +56,7 @@
 								</div>
 
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="shirt">Shirt Size</label>
+									<label class="col-md-3 control-label" for="shirt">Shirt Size (S,M,L): </label>
 									<div class="col-md-9">
 										<input id="shirt" name="shirt" type="text" placeholder="Your t-shirt size" class="form-control" value="{{ old('shirt') }}">
 									</div>
@@ -70,8 +70,9 @@
 								</div>
 								
 								<div>
+									<h2> Payment: </h2>
 									<p>
-										Before submitting, please <b>pay $42</b> for admission <a href="http://www.venmo.com/Evan-Fix" target="_blank">here</a>.  Soft due date by Oct 1st, hard due date Oct. 12th.
+										<a href="http://www.venmo.com/Evan-Fix" target="_blank">Before submitting, please pay <b>$42</b> for admission!</a>  Soft due date by Oct 1st, hard due date Oct. 12th.
 									</p>
 								</div>
 
