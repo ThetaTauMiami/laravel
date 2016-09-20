@@ -34,11 +34,10 @@
 								<!-- Name input-->
 								<img id="profile-img" class="profile-img-card center-block img-responsive" src="{{ asset('/img/login-logo.png') }}" style="height: 214px; width: 125px;" />
 
-								<h1>Welcome/Random Header</h1>
+								<h1>October 22, 2016</h1>
 
 								<p>
-								Hello blah blah blah this will be your content that you'll have to decide what goes, it can be images, videos, links, whatever blah blah blah more text stuff cool awesome blah blah blah more text stuff cool awesome blah blah blah more text stuff cool awesome blah blah blah more text stuff cool awesome blah blah blah more text stuff cool awesome blah blah blah more text stuff cool awesome blah blah blah more text stuff cool awesome
-
+								Miami is hosting the Regionals this semester!  Make sure you RSVP online through Facebook as well as this site.  Future updates will be sent through Facebook.  After submitting this form, you will be directed to a page where you can pay for the event.  Your admission includes the price of the t-shirt, so make sure you put the correct t-shirt size.  If you have any questions, please contact rygelsbt@miamioh.edu.
 								</p>
 
 								<div class="form-group">
@@ -69,12 +68,17 @@
 										<input id="chapter" name="chapter" type="text" placeholder="Ex. Tau Delta" class="form-control" value="{{ old('chapter') }}">
 									</div>
 								</div>
-
+								
+								<div>
+									<p>
+										Before submitting, please <b>pay $42</b> for admission <a href="http://www.venmo.com/Evan-Fix" target="_blank">here</a>.  Soft due date by Oct 1st, hard due date Oct. 12th.
+									</p>
+								</div>
 
 								<!-- Form actions -->
 								<div class="form-group">
 									<div class="col-md-12 text-right">
-										<button type="submit" class="btn btn-warning btn-lg">Submit</button>
+										<button type="submit" class="btn btn-warning btn-lg">Complete</button>
 									</div>
 								</div>
 							</fieldset>
@@ -82,18 +86,19 @@
 
 					<?php } else { ?>
 
-						<legend>Great Lakes Regional Conference Registration</legend>
+						<legend>Great Lakes Regional Conference</legend>
 								<!-- Name input-->
 								<img id="profile-img" class="profile-img-card center-block img-responsive" src="{{ asset('/img/login-logo.png') }}" style="height: 214px; width: 125px;" />
 
-						<h1>Congrats you finished the form or something</h1>
+						<h1>Important Info: </h1>
 
 						<p>
 
-						Again up to you to say what you want here, you can add your links to the facebook group, tell them abotu hotels, blah blah blah your text goes here.
+						If you are traveling from out of town, please contact Baymont Inn & Suites at 513-523-2722.  Oxford hotels are very limited, so schedule early.  If you are calling before Sept. 22, ask for rooms under Regional Conference.  After Sept. 22, rooms become available to the public.  If you are driving, make sure you call Miami for a parking pass.  Phone: 513-529-2224, email: parking@miamioh.edu.  
 						</p>
-
-
+						
+						<h2> Can't wait to see you here! </h2>
+	
 					<?php } ?>
 
 				</div>
