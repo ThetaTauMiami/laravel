@@ -56,7 +56,7 @@
 								</div>
 
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="shirt">Shirt Size</label>
+									<label class="col-md-3 control-label" for="shirt">Shirt Size (S,M,L): </label>
 									<div class="col-md-9">
 										<input id="shirt" name="shirt" type="text" placeholder="Your t-shirt size" class="form-control" value="{{ old('shirt') }}">
 									</div>
