@@ -71,7 +71,7 @@
 								
 								<div>
 									<p>
-										Before submitting, please pay <a href="http://www.venmo.com/Evan-Fix" target="_blank">here</a>.
+										Before submitting, please <b>pay $42</b> for admission <a href="http://www.venmo.com/Evan-Fix" target="_blank">here</a>.  Soft due date by Oct 1st, hard due date Oct. 12th.
 									</p>
 								</div>
 
