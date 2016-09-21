@@ -133,18 +133,16 @@
             <div class="col-sm-5">
                 <h2>Informal Nights</h2>
                 <hr>
-                <p style="font-size: medium">The week following information sessions we host 3 “Informal Nights” in
+                <p style="font-size: medium">The week following information sessions we host 2 “Informal Nights” in
                     which students and brothers are given the opportunity to meet in small groups through “speed dating”
                     sessions. This allows students the opportunity to have personal conversations with active brothers
-                    and learn more about what makes our members great. Attendance is strongly recommended at all three
+                    and learn more about what makes our members great. Attendance is strongly recommended at both
                     nights in order to get to know the maximum number of active brothers. These sessions should last two
                     hours and are casual dress.</p>
                 <div class="well well-sm">
-                    <p><b style="color: #5B0000">Informal Night 1:</b> 9/27 7:30-9:30pm GAR 153</p>
+                    <p><b style="color: #5B0000">Informal Night 1:</b> 9/28 7:30-9:30pm GAR 155</p>
                     <br>
-                    <p><b style="color: #5B0000">Informal Night 2:</b> 9/28 7:30-9:30pm GAR 153</p>
-                    <br>
-                    <p><b style="color: #5B0000">Informal Night 3:</b> 9/29 7:30-9:30pm GAR 153</p>
+                    <p><b style="color: #5B0000">Informal Night 2:</b> 9/29 7:30-9:30pm GAR 155</p>
                 </div>
             </div>
         </div>
