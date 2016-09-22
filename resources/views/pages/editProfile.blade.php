@@ -31,6 +31,20 @@
                       </div>
                     </div>
 
+                    <div class="form-group">
+                      <label for="major" class="col-md-4 control-label">Major(s)</label>
+                      <div class="col-md-6">
+                        <input id="major"  class="form-control" name="major" value="{{$user->major}}">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="minor" class="col-md-4 control-label">Minor(s)</label>
+                      <div class="col-md-6">
+                        <input id="minor"  class="form-control" name="minor" value="{{$user->minor}}">
+                      </div>
+                    </div>
+
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                   <!--<div class="form-group">

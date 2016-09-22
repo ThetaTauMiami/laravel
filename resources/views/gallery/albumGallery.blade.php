@@ -111,12 +111,12 @@ $carouselimg = DB::table('images')
 @foreach($carouselimg as $img)
   @if($i == 1)
     <div class="item active">
-      <img src="{{ asset($img->file_path) }}" alt="">
+      <img src="{{ asset($img->thumb_path) }}" alt="">
     </div>
     <?php $i=2; ?>
   @else
   <div class="item">
-    <img src="{{ asset($img->file_path) }}" alt="">
+    <img src="{{ asset($img->thumb_path) }}" alt="">
   </div>
   @endif
 @endforeach

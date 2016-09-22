@@ -48,6 +48,9 @@ class ProfileController extends Controller
     //updates user values, and if an image has been uploaded, stores it and creates a thumbnail
     function update(Request $request, User $user){
       $user->update($request->all());
+      $user->major = $request->major;
+      $user->minor = $request->minor;
+
 
       //is there a value in the image section?
       if($request->image){
@@ -83,12 +86,12 @@ class ProfileController extends Controller
         //and now make the user point to the new image
 
         $user->image_id = $image->id;
-        $user->save();
+        
         //$user->image()->save($image);
         //return var_dump($user->image_id);
 
       }//end image saving/replacing
-
+      $user->save();
       return redirect('members/'.$user->id);
     }
 
