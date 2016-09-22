@@ -145,6 +145,9 @@ class EventsController extends Controller
             if(!$event->variable_points){
               $attend->points = $event->points;
             }
+            else{
+              $attend->points = 1;
+            }
             $attend->save();
           }
         }
@@ -175,7 +178,7 @@ class EventsController extends Controller
         $attendance = Attendance::where('event_id', '=', $event->id)->get();
 
         foreach($attendance as $a){
-          $uid = $att->user_id;
+          $uid = $a->user_id;
 
           DB::table('attendance')
           ->where([['event_id', '=', $a->event_id],['user_id', '=', $a->user_id]])
