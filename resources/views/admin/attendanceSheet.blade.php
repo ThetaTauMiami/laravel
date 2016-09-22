@@ -29,13 +29,13 @@
                 $event = DB::table('events')->where('id', '=', $ua->event_id)->where('semester_id', '=', app('App\Http\Controllers\HomeController')->getCurrentSemester()->id)->first();
 
                 if($event->type_id == "General"){
-                  $general += $event->points;
+                  $general += $ua->points;
                 }elseif($event->type_id == "Service"){
-                  $service += $event->points;
+                  $service += $ua->points;
                 }elseif($event->type_id == "PD"){
-                  $pd += $event->points;
+                  $pd += $ua->points;
                 }elseif($event->type_id == "Brotherhood"){
-                  $brotherhood += $event->points;
+                  $brotherhood += $ua->points;
                 }
 
               }
