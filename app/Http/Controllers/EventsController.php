@@ -14,6 +14,7 @@ use App\Attendance;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManagerStatic as Imager;
 use Carbon\Carbon;
+use File;
 
 class EventsController extends Controller
 {

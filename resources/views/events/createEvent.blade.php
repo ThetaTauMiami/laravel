@@ -9,7 +9,7 @@
               <div class="panel-body">
                   <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="/createEvent">
                     <div class="form-group{{ $errors->has('eventName') ? ' has-error' : '' }}">
-                      
+
                       <label for="eventName" class="col-md-4 control-label">Event Name</label>
 
                       <div class="col-md-6">
@@ -37,7 +37,7 @@
                       </div>
                       <label for="points" class="col-md-4 control-label">Number of Points</label>
                       <div class="col-md-6">
-                        <input id="points" type="text" class="form-control" name="points" value="{{ old('points') }}">
+                        <input id="points" type="number" max="4" min="0" class="form-control" name="points" value="{{ old('points') }}">
 
                       </div>
                     </div>

@@ -20,7 +20,7 @@
                     <?php $u = App\User::where('id', '=', $a->user_id)->first() ?>
                     <label for="{{$a->user_id}}" class="col-md-4 control-label">{{$u->first_name." ".$u->last_name}}</label>
                     <div class="col-md-6">
-                      <input id="{{$a->user_id}}" type="text" class="form-control" name="{{$a->user_id}}" value="{{ $a->points }}">
+                      <input id="{{$a->user_id}}" type="number" max="{{$event->points}}" min="0" class="form-control" name="{{$a->user_id}}" value="{{ $a->points }}">
                     </div>
                   </div>
                   @endforeach

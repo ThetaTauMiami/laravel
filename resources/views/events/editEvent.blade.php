@@ -35,7 +35,7 @@
                     <div class="form-group{{ $errors->has('points') ? ' has-error' : '' }}">
                       <label for="points" class="col-md-4 control-label">Number of Points</label>
                       <div class="col-md-6">
-                        <input id="points" type="text" class="form-control" name="points" value="{{ $event->points }}">
+                        <input id="points" type="number" max="4" min="0" class="form-control" name="points" value="{{ $event->points }}">
 
                       </div>
                     </div>
