@@ -9,6 +9,7 @@
               <div class="panel-body">
                   <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action="/createEvent">
                     <div class="form-group{{ $errors->has('eventName') ? ' has-error' : '' }}">
+                      
                       <label for="eventName" class="col-md-4 control-label">Event Name</label>
 
                       <div class="col-md-6">
@@ -31,6 +32,9 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('points') ? ' has-error' : '' }}">
+                      <div class="help-tip">
+                        <p>If the Event can be worth different points, set this to the maximum </p>
+                      </div>
                       <label for="points" class="col-md-4 control-label">Number of Points</label>
                       <div class="col-md-6">
                         <input id="points" type="text" class="form-control" name="points" value="{{ old('points') }}">
@@ -75,14 +79,26 @@
       							<input type="file" id="image" name="image"/>
       						</div>
 
+
                   <div class="form-group{{ $errors->has('is_public') ? ' has-error' : '' }}">
+
+                    <div class="help-tip">
+                      <p>Public Events will be able to be viewed by anyone, even if they aren't logged in </p>
+                    </div>
+
                     <label for="is_public" class="col-md-4 control-label">Is This Event Public?</label>
+
+
                     <div class="col-md-6">
                       <input id="is_public" type="checkbox"  name="is_public" value="Public">
                     </div>
                   </div>
 
+
                   <div class="form-group{{ $errors->has('album') ? ' has-error' : '' }}">
+                    <div class="help-tip">
+                      <p>Check this if an event can be worth different amounts of points (ex. 1-3 general points depending on how many hours you were at the event)</p>
+                    </div>
                     <label for="variable_points" class="col-md-4 control-label">Variable # of Points?</label>
                     <div class="col-md-6">
                       <input id="variable_points" type="checkbox"  name="variable_points" value="Var">
