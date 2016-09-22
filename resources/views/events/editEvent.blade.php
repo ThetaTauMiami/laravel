@@ -84,6 +84,13 @@
                     </div>
                   </div>
 
+                  <div class="form-group{{ $errors->has('variable_points') ? ' has-error' : '' }}">
+                    <label for="variable_points" class="col-md-4 control-label">Variable # of Points?</label>
+                    <div class="col-md-6">
+                      <input id="variable_points" type="checkbox"  name="variable_points" value="Var" @if($event->variable_points) checked @endif>
+                    </div>
+                  </div>
+
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">
                           <button type="submit" class="btn btn-warning">

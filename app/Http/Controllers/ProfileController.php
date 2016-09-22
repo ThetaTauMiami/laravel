@@ -86,7 +86,7 @@ class ProfileController extends Controller
         //and now make the user point to the new image
 
         $user->image_id = $image->id;
-        
+
         //$user->image()->save($image);
         //return var_dump($user->image_id);
 

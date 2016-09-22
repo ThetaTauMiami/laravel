@@ -23,7 +23,7 @@ function isMobile() {
                   <form class="form-horizontal" enctype="multipart/form-data" role="form" method="post" action='/events/{{$event->id}}/attendance'>
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                    <input type="hidden" name="event" value="{{ $event->id }}"/>
+                    
 
 
                     <div class="subject-info-box-1">
@@ -44,7 +44,7 @@ function isMobile() {
                       <input type='button' id='btnLeft' value='<' class="btn btn-default" /><br />
                       <input type='button' id='btnAllLeft' value='<<' class="btn btn-default" />
                     </div>
-                    
+
                     <div class="subject-info-box-2">
                       <select multiple="multiple" id='lstBox2' class="form-control" name="attended[]" @if(isMobile()) style="height:30px" @endif>
                         @if($attended != NULL)

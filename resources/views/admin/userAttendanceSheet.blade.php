@@ -23,10 +23,10 @@
               <tr>
                 <td>{{$event->name}}</td>
                 <?php
-                $attended = DB::table('attendance')->where('event_id', '=', $event->id)->where('user_id', '=', $user->id)->first();
+                $attended = App\Attendance::where('event_id', '=', $event->id)->where('user_id', '=', $user->id)->first();
                  ?>
                  @if($attended)
-                 <td style="color: #eb3812">{{$event->type_id}}: {{$event->points}}</td>
+                 <td style="color: #eb3812">{{$event->type_id}}: {{$attended->points}}</td>
                  @else
                  <td>Didn't Attend</td>
                  @endif

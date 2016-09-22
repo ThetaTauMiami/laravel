@@ -10,6 +10,7 @@ use App\Event;
 use DB;
 use Auth;
 use App\Image;
+use App\Attendance;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManagerStatic as Imager;
 use Carbon\Carbon;
@@ -63,6 +64,24 @@ class EventsController extends Controller
 
     }
 
+    public function takeAttendanceVariable(Event $event) {
+      $attendance = DB::table('attendance')
+      ->where('event_id', '=', $event->id)
+      ->get();
+
+      $ids = NULL;
+      foreach($attendance as $att){
+        $ids[] = $att->user_id;
+      }
+      if($ids != NULL){
+        $attended = DB::table('users')
+        ->whereIn('id', $ids)
+        ->where('active_status', '=', 1)
+        ->orderBy('roll_number')
+        ->get();
+      }
+      return view('events.takeAttendanceVariable', compact('event', 'attended', 'attendance'));
+    }
     /*
 
       This function routes to the taking attendance page
@@ -111,16 +130,22 @@ class EventsController extends Controller
     /*
       This function saves the attendance record for an event
     */
-    public function saveAttendance(Request $request){
+    public function saveAttendance(Request $request, Event $event){
       $attended = $request->attended;
       $didNotAttend = $request->didNotAttend;
-      $eId = $request->event;
-      $eventAtt = DB::table('attendance')->where('event_id', '=', $eId)->pluck('user_id');
+      $eventAtt = DB::table('attendance')->where('event_id', '=', $event->id)->pluck('user_id');
 
       if($attended != NULL){
         foreach($attended as $a){
           if(!in_array($a, $eventAtt)){
-            DB::table('attendance')->insert(['user_id' => $a, 'event_id' => $eId]);
+            //DB::table('attendance')->insert(['user_id' => $a, 'event_id' => $event->id, 'points' => $event->points]);
+            $attend = new Attendance;
+            $attend->user_id = $a;
+            $attend->event_id = $event->id;
+            if(!$event->variable_points){
+              $attend->points = $event->points;
+            }
+            $attend->save();
           }
         }
       }
@@ -129,14 +154,38 @@ class EventsController extends Controller
         foreach($didNotAttend as $b){
           if(in_array($b, $eventAtt)){
             DB::table('attendance')
-            ->where([['event_id', '=', $eId],['user_id', '=', $b]])
+            ->where([['event_id', '=', $event->id],['user_id', '=', $b]])
             ->delete();
           }
         }
       }
 
-      return \Redirect::to('/events/'.$eId);
+      if($event->variable_points && $attended != NULL){
+        return \Redirect::to('/events/'.$event->id.'/attendance/variable');
+      }
+      else{
+        return \Redirect::to('/events/'.$event->id);
+      }
     }
+
+    /*
+      This function saves variable attendance points for events
+    */
+    public function saveVariableAttendance(Request $request, Event $event){
+        $attendance = Attendance::where('event_id', '=', $event->id)->get();
+
+        foreach($attendance as $a){
+          $uid = $att->user_id;
+
+          DB::table('attendance')
+          ->where([['event_id', '=', $a->event_id],['user_id', '=', $a->user_id]])
+          ->update(array('points' => $request->$uid));
+        }
+
+        return \Redirect::to('/events/'.$event->id);
+
+    }
+
 
     /*
       This function creates a new Event in the database after validating them
@@ -147,12 +196,13 @@ class EventsController extends Controller
       $this->validate($request, [
           'eventName' => 'required|unique:events,eventName',
           'pointType' => 'required',
-          'points' => 'required|between:0,9',
+          'points' => 'required|between:0,4',
           'date' => 'required',
           'image' => 'image',
         ]);
 
         $event = new Event;
+
 
         //creating the thumbnail
 
@@ -192,11 +242,17 @@ class EventsController extends Controller
         $event->date_time = $request->date;
         $event->description = $request->description;
         $event->location = $request->location;
-        if($request->is_public = "Public"){
+        if($request->is_public == "Public"){
            $event->is_public = true;
         }
         else{
           $event->is_public = false;
+        }
+        if($request->variable_points == "Var"){
+           $event->variable_points = true;
+        }
+        else{
+          $event->variable_points = false;
         }
 
         //ADDING SEMESTER_ID
@@ -240,10 +296,12 @@ class EventsController extends Controller
       $this->validate($request, [
           'eventName' => 'required|unique:events,eventName',
           'pointType' => 'required',
-          'points' => 'required|between:0,9',
+          'points' => 'required|between:0,4',
           'date' => 'required',
           'image' => 'image',
         ]);
+
+
 
       $event->name = $request->eventName;
       $event->type_id = $request->pointType;
@@ -253,11 +311,20 @@ class EventsController extends Controller
       $event->date_time = $request->date;
       $event->description = $request->description;
       $event->location = $request->location;
-      if($request->is_public = "Public"){
-         $event->is_public = true;
+
+      if($request->is_public == "Public"){
+        $event->is_public = true;
       }
       else{
         $event->is_public = false;
+      }
+
+      if($request->variable_points == "Var"){
+
+         $event->variable_points = true;
+      }
+      else{
+        $event->variable_points = false;
       }
 
       $image = DB::table('images')

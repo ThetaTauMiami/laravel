@@ -22,5 +22,9 @@ class Event extends Model
       return $this->hasOne('App\Album');
     }
 
+    public function attendance(){
+      return $this->hasOne('App\Attendance');
+    }
+
     public $timestamps = false;
 }
