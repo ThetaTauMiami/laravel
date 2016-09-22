@@ -39,7 +39,10 @@
                             <div class="col-sm-4">
                                 <h3>{{$user->first_name}} {{$user->last_name}}
                                     <br><small>Roll #{{$user->roll_number}} | {{$user->chapter_class}} Class</small>
+                                    
                                 </h3>
+                                <p>Major: {{$user->major}}</p>
+                                @if($user->minor != NULL)<p>Minor: {{$user->minor}}</p>@endif
                                 <p>Class of {{$user->school_class}}</p>
                                 @if (Auth::check())
                                     <b>Phone Number: </b>{{$user->phone}} <br> <b>Email: </b>{{$user->email}}
