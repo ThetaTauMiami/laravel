@@ -45,6 +45,20 @@
                       </div>
                     </div>
 
+                    <div class="form-group">
+                      <label for="resume" class="col-md-4 control-label">Resume</label>
+                      <div class="col-md-6">
+                        <input type="file" id="resume" name="resume" accept="application/pdf"/>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+        							<label for="image" class="col-md-4 control-label">Profile Picture</label>
+                      <div class="col-md-6">
+        							  <input type="file" id="image" name="image" accept="image/*"/>
+                      </div>
+        						</div>
+
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                   <!--<div class="form-group">
@@ -66,15 +80,9 @@
                     </div>
                   </div>-->
 
-                  <div class="form-group">
-      							<label for="image" class="col-md-4 control-label">Profile Picture</label>
-      							<input type="file" id="image" name="image" accept="image/*"/>
-      						</div>
 
-                  <!--<div class="form-group">
-      							<label for="resume_path" class="col-md-4 control-label">Resume</label>
-      							<input type="file" id="resume_path" name="resume_path" accept="image/*"/>
-      						</div>-->
+
+
 
                   <div class="form-group">
                       <div class="col-md-6 col-md-offset-4">
