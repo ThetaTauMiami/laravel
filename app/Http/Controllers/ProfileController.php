@@ -51,6 +51,30 @@ class ProfileController extends Controller
       $user->major = $request->major;
       $user->minor = $request->minor;
 
+      //UPDATE RESUME SCHTUFF
+      if($request->resume){
+        $res = $request->file('resume');
+        $extension = $res->getClientOriginalExtension();
+        $fileName = $res->getClientOriginalName();
+        $publicPath = public_path();
+        $filePath = "uploads/prof/resumes/".$fileName;
+        $request['filepath'] = $filePath;
+        $request['resume'] = $res;
+
+        //Do some validation stuff. I'm gonna be honest here,
+        //I don't really know why we have to do this or what's actually
+        //happening, but eveyone else on the tech committee says that it's
+        //important. --Sam Mallamaci
+        /*$this->validate($request, [
+          'resume' => 'resume'
+        ]);*/
+
+        //AND NOW WE KERPLUNK THE RESUME INTO THE FOLDER
+        //THIS IS SOMETHING THAT I UNDERSTAND
+        $res->move("uploads/prof/resumes/", $fileName);
+
+        $user->resume_path = $filePath;
+      }
 
       //is there a value in the image section?
       if($request->image){
