@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         // check if someone is logged in, if so send user to view
         if($request->user()){
-            return view('pages.home',['user'=>$request->user()]);
+            return view('pages.home',['user'=>$request->user('')]);
         }else{
             return view('pages.home');
         }
@@ -42,7 +42,7 @@ class HomeController extends Controller
 
 
     public function gallery() {
-        $albums = Album::with('images')->get();
+        $albums = Album::with('images')->orderBy('created_at', 'desc')->get();
         return view('pages.gallery', compact('albums'));
     }
 
