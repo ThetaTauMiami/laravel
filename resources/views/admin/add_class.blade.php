@@ -24,16 +24,8 @@
                             </span>
                         </div>
                         @endif
-
-                        @if (count($errors) > 0)
-                        <script>
-
-                          $(document).ready(function(){
-                            bootbox.alert("{{ $errors->first() }}");
-                          });
-
-                        </script>
-                        @endif
+                        
+                        @include('includes.errors')
                         
 
                         <div class="form-group{{ $errors->has('chapter_class') ? ' has-error' : '' }}">
