@@ -54,8 +54,6 @@
                                 <button type="submit" class="btn btn-warning">
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>
-                                <a href="register"><button class="btn btn-danger" type=
-                                    "button">Register Here</button></a>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
 

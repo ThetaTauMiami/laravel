@@ -102,6 +102,8 @@ class AuthController extends Controller
             'phone' => preg_replace('/[^0-9]/','',$data['phone']), // replace all non-numbers
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'major' => $data['major'],
+            'minor' => $data['minor'],
             'chapter_class' => $bid->chapter_class,
             'roll_number' => $bid->roll_number,
             'school_class' => $bid->school_class

@@ -78,6 +78,36 @@
                         </div>
 
 
+                        <div class="form-group{{ $errors->has('major') ? ' has-error' : '' }}">
+                            <label for="major" class="col-md-4 control-label">Major(s)</label>
+
+                            <div class="col-md-6">
+                                <input id="major" type="text" class="form-control" name="major" value="{{ old('major') }}" placeholder="Major(s)">
+
+                                @if ($errors->has('major'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('major') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group{{ $errors->has('minor') ? ' has-error' : '' }}">
+                            <label for="minor" class="col-md-4 control-label">Minor(s)</label>
+
+                            <div class="col-md-6">
+                                <input id="minor" type="text" class="form-control" name="minor" value="{{ old('minor') }}" placeholder="Major(s)">
+
+                                @if ($errors->has('minor'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('minor') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
 
 
 
