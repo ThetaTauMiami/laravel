@@ -13,7 +13,7 @@
 	<h3>{{$subject}}</h3>
 
 	<p>
-	{{$message_body}}
+	{{nl2br($message_body)}}
 	</p>
 
 </div>
