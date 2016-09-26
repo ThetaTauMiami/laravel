@@ -95,7 +95,7 @@
 
 						<p>
 
-						If you are traveling from out of town, please contact Baymont Inn & Suites at 513-523-2722.  Oxford hotels are very limited, so schedule early.  If you are calling before Sept. 22, ask for rooms under Regional Conference.  After Sept. 22, rooms become available to the public.  If you are driving, make sure you call Miami for a parking pass.  Phone: 513-529-2224, email: parking@miamioh.edu.  
+						If you are traveling from out of town, please contact Baymont Inn & Suites at 513-523-2722.  Oxford hotels are very limited, so schedule early.  If you are driving, make sure you call Miami for a parking pass.  Phone: 513-529-2224, email: parking@miamioh.edu.  
 						</p>
 						
 						<h2> Can't wait to see you here! </h2>

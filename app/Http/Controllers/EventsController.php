@@ -134,6 +134,9 @@ class EventsController extends Controller
     public function saveAttendance(Request $request, Event $event){
       $attended = $request->attended;
       $didNotAttend = $request->didNotAttend;
+      if($request->mobile == 1){
+        $didNotAttend = DB::table('users')->whereNotIn('id', $attended)->get();
+      }
       $eventAtt = DB::table('attendance')->where('event_id', '=', $event->id)->pluck('user_id');
 
       if($attended != NULL){
@@ -237,7 +240,6 @@ class EventsController extends Controller
         }
 
 
-
         $event->name = $request->eventName;
         $event->type_id = $request->pointType;
 
@@ -282,7 +284,7 @@ class EventsController extends Controller
 
         $event->save();
 
-        //making the photo album
+        //making the photo album that is tied into the event
         if($request->album == "Album") {
           $arguments = new Request;
           $arguments['name'] = $request->eventName;
@@ -296,6 +298,7 @@ class EventsController extends Controller
         return \Redirect::to('/events');
     }
 
+    //this function updates events when you edit them
     public function update(Request $request, Event $event){
       $this->validate($request, [
           'eventName' => 'required|unique:events,eventName',
