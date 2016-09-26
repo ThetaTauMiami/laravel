@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 
-    
+
 
     <!-- Chrome, Firefox OS, Opera and Vivaldi -->
     <meta name="theme-color" content="#5B0000">
@@ -29,4 +29,17 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#5B0000">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <?php
+      function hasRole(){
+        $roles = Auth::User()->roles()->getResults();
+        $hasRole = false;
+        foreach($roles as $r){
+          if($r == "exec" || $r == "chair" || $r == "admin"){
+            $hasRole = true;
+          }
+        }
+        return $hasRole;
+      }
+    ?>
 </head>

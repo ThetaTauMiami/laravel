@@ -25,6 +25,7 @@ class EventsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('roles:exec,admin,chair');
     }
 
     /*
@@ -49,6 +50,7 @@ class EventsController extends Controller
     }
 
     public function editEvent($id) {
+
       $event = DB::table('events')
       ->where('id', '=', $id)
       ->first();

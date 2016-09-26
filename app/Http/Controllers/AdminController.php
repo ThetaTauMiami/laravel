@@ -24,7 +24,7 @@ class AdminController extends Controller
 	 */
     public function __construct()
     {
-        // TODO THIS NEEDS TO BE MIDDLEWARE TO BLOCK IF NOT ADMIN OR EXEC $this->middleware('auth');
+        $this->middleware('roles:exec,admin');
     }
 
 
