@@ -118,7 +118,7 @@ class HomeController extends Controller
           $message->from($request->email, $request->name);
                 $message->subject('Contact Form: '.$request->subject);
 
-          $message->to('deperomm@miamioh.edu');  // HARD CODED EXEC EMAIL ADDRESS, NOT SURE WHERE ELSE WE'D PUT THIS
+          $message->to('thetatau@miamioh.edu');  // HARD CODED EXEC EMAIL ADDRESS, NOT SURE WHERE ELSE WE'D PUT THIS
         });
 
         return view ('pages.contact',['formSuccess'=>1]);
