@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use Carbon\Carbon;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -95,6 +96,32 @@ class HomeController extends Controller
 
     public function contact() {
         return view('pages.contact');
+    }
+
+    public function contactSubmit(Request $request){
+
+        $this->validate($request, [
+          'email' =>    'required|email',
+          'subject' =>  'required',
+          'message_body' =>  'required',
+          'name' =>     'required'
+        ]);
+
+        Mail::send('emails.contact-confirmation', ["name"=>$request->name], function ($message) use ($request) {
+          $message->from('noreply@thetataumiami.com', 'Theta Tau Miami');
+                $message->subject('Contact Form Confirmation');
+
+          $message->to($request->email);
+        });
+
+        Mail::send('emails.contact', ["name"=>$request->name,"email"=>$request->email,"subject"=>$request->subject,"message_body"=>$request->message_body], function ($message) use ($request) {
+          $message->from($request->email, $request->name);
+                $message->subject('Contact Form: '.$request->subject);
+
+          $message->to('thetatau@miamioh.edu');  // HARD CODED EXEC EMAIL ADDRESS, NOT SURE WHERE ELSE WE'D PUT THIS
+        });
+
+        return view ('pages.contact',['formSuccess'=>1]);
     }
 
     public function retrieveIndividualEvent($id)

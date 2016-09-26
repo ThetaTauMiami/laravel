@@ -36,6 +36,7 @@ Route::get('members/{user}/attendance',      'ProfileController@getUserAttendanc
 
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
+Route::post('contact',     'HomeController@contactSubmit');
 
 Route::get('profile',			'HomeController@profile');
 

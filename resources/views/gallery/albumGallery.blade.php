@@ -81,8 +81,6 @@
 
 
 
-
-
 <div class="container">
   <div class="row col-xs-12 col-md-8 col-md-offset-2">
 @if (count($images) > 0)

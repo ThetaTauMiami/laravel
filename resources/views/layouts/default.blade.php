@@ -11,8 +11,5 @@
 <br>
 
 
-
-@include('includes.scripts')
-
 </body>
 </html>
