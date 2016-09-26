@@ -92,9 +92,9 @@
 								<img id="profile-img" class="profile-img-card center-block img-responsive" src="{{ asset('/img/login-logo.png') }}" style="height: 214px; width: 125px;" />
 
 						<h1>Important Info: </h1>
-
 						<p>
-
+							Do not forget to join the Facebook event for further communication.  <a href="https://www.facebook.com/events/185208201913437" target="_blank">Event Page.</a>
+						<p>
 						If you are traveling from out of town, please contact Baymont Inn & Suites at 513-523-2722.  Oxford hotels are very limited, so schedule early.  If you are driving, make sure you call Miami for a parking pass.  Phone: 513-529-2224, email: parking@miamioh.edu.  
 						</p>
 						
