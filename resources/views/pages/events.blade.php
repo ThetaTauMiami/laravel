@@ -5,6 +5,7 @@
         <h1>EVENTS</h1>
     </div>
     <br>
+    @if(hasRole())
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -14,6 +15,7 @@
             </div>
         </div>
     </div>
+    @endif
     <br>
     <div class="container">
         <div clas="row">

@@ -19,17 +19,11 @@
 					});
 			</script>
 
-			@if(Auth::check())
+			@if(hasRole())
 			<div class="col-md-8">
 				<button id="button" class="btn btn-primary">
 						Create New Album
 				</button>
-			</div>
-			@elseif(!Auth::check())
-			<div class="col-md-8">
-				<a href="login"><button class="btn btn-primary">
-						Create New Album
-				</button></a>
 			</div>
 			@endif
 
@@ -65,7 +59,7 @@
 
                 <button type="submit" class="btn">Submit</button>
             </form>
-						
+
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
                     <ul>

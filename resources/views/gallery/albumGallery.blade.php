@@ -6,11 +6,13 @@
       <h1>{{ $album->name }}</h1>
   </div>
   <div class="panel panel-default text-center"><h4 style="display:inline-block;">{{ $album->description }}</h4>
-  @if(Auth::check())
+  @if(Auth::Check())
 
       <button id="button" class="btn btn-primary">
           Upload New Image
       </button>
+  @endif
+  @if(hasRole())
       <button onclick="location.href='/gallery/{{$album->id}}/edit';" class="btn btn-primary">
           Edit Album
       </button>
@@ -78,16 +80,6 @@
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-    width:60%;
-
-    margin: auto;
-}
-</style>
 
 
 
@@ -100,7 +92,7 @@
     <input type="radio" name="slide_switch" id="id{{++$i}}" {{($i == 1)?'checked="checked"':''}}/>
     <label for="id{{$i}}">
       <img src="{{asset($image->thumb_path)}}"/>
-      @if(Auth::check())
+      @if(hasRole())
 
         <span onclick="confirmation({{$image->id}})" style="color:grey" id="delete" class="delete-button"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
 
@@ -109,8 +101,8 @@
     <img src="{{asset($image->file_path)}}"/>
 
     @endforeach
-    
-    
+
+
   </div>
 @endif
 
