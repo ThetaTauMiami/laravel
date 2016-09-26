@@ -12,7 +12,8 @@
           rel="stylesheet">
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/jquery-ui.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/footer-distributed.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/slider.css') }}" rel="stylesheet">
+    <!--link href="{{ asset('/css/footer-distributed.css') }}" rel="stylesheet"-->
 
     <!-- Bootbox dependencies -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

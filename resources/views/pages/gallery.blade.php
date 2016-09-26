@@ -80,76 +80,36 @@
 
 
         </div>
-</div>
-
-
-
-
-    <!--<a class="thumbnail" href="#">
-    <img src="http://cdn.wpfreeware.com/wp-content/uploads/2014/09/placeholder-images.jpg?b65726" class="img-fluid center-block" alt="Responsive image">
-	</a>-->
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<style>
-	.carousel-inner > .item > img,
-	.carousel-inner > .item > a > img {
-			width: 60%;
-
-			margin: auto;
-	}
-	</style>
-
-	<!--<script>
-	$('left.carousel-control').click(function() {
-	  $('#myCarousel').carousel('prev');
-	});
-
-	$('right.carousel-control').click(function() {
-	  $('#myCarousel').carousel('next');
-	});
-
-</script>-->
-
-
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
-
-	  <ol class="carousel-indicators">
-	    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	    <li data-target="#myCarousel" data-slide-to="1"></li>
-	    <li data-target="#myCarousel" data-slide-to="2"></li>
-	    <li data-target="#myCarousel" data-slide-to="3"></li>
-	  </ol>
-
-
-	  <div class="carousel-inner" role="listbox">
-	    <div class="item active">
-	      <img src="{{ asset('img/carousel_1.jpg') }}" alt="">
-	    </div>
-
-	    <div class="item">
-	      <img src="{{ asset('img/carousel_2.jpg') }}" alt="">
-	    </div>
-
-	    <div class="item">
-	      <img src="{{ asset('img/carousel_3.jpg') }}" alt="">
-	    </div>
-
-	    <div class="item">
-	      <img src="{{ asset('img/carousel_4.jpg') }}" alt="">
-	    </div>
-	  </div>
-
-
-	  <a href="#myCarousel" role="button" data-slide="prev" onclick="$('#myCarousel').carousel('prev')">
-
-	    <span class="sr-only">Previous</span>
-	  </a>
-	  <a href="#myCarousel" role="button" data-slide="next" onclick="$('#myCarousel').carousel('next')">
-
-	    <span class="sr-only">Next</span>
-	  </a>
+		</div>
 	</div>
+    </div>
+
+
+    <!--div class="container">
+    <div class="row">
+
+	<div class="slider">
+		<?php $i = 0; ?>
+		@foreach ($albums as $album)
+			<?php
+				$thumbimage = $album->images->first();
+			?>
+		<input type="radio" name="slide_switch" id="id{{++$i}}" {{($i == 2)?'checked="checked"':''}}/>
+		<label for="id{{$i}}">
+			<img src="{{asset($thumbimage->thumb_path)}}" width="100"/>
+		</label>
+		<img src="{{asset($thumbimage->file_path)}}" class="img-responsive"/>
+
+		@endforeach
+		
+		
+	</div>
+
+	<script src="{{asset('/js/prefixfree.min.js')}}"></script>
+
+    </div>
+    </div-->
+
 
 
 
@@ -158,27 +118,24 @@
 
                 <div class="row">
 
-					  @foreach ($albums as $album)
+					@foreach ($albums as $album)
 						<?php
 							$thumbimage = $album->images->first();
 						 ?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="/gallery/{{ $album->id }}">
 
-										@if($thumbimage)
+									@if($thumbimage)
                     <img class="img-responsive" src="{{$thumbimage->thumb_path}}" alt="">
-										@else
+									@else
 										<img class="img-responsive" src="{{ asset('img/placeholder-thumb.png') }}" alt="">
-										@endif
+									@endif
 										<p> {{ $album->name }} </p>
                 </a>
             </div>
-						@endforeach
-
+					@endforeach
 
                 </div>
-            </div>
-        </div>
     </div>
 
 
