@@ -25,18 +25,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#5B0000">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <?php
-      function hasRole(){
-        $roles = Auth::User()->roles()->getResults();
-        $hasRole = false;
-        foreach($roles as $r){
-          if($r == "exec" || $r == "chair" || $r == "admin"){
-            $hasRole = true;
-          }
-        }
-        return $hasRole;
-      }
-    ?>
 
     @include('includes.scripts')
     
