@@ -85,32 +85,6 @@
     </div>
 
 
-    <!--div class="container">
-    <div class="row">
-
-	<div class="slider">
-		<?php $i = 0; ?>
-		@foreach ($albums as $album)
-			<?php
-				$thumbimage = $album->images->first();
-			?>
-		<input type="radio" name="slide_switch" id="id{{++$i}}" {{($i == 2)?'checked="checked"':''}}/>
-		<label for="id{{$i}}">
-			<img src="{{asset($thumbimage->thumb_path)}}" width="100"/>
-		</label>
-		<img src="{{asset($thumbimage->file_path)}}" class="img-responsive"/>
-
-		@endforeach
-		
-		
-	</div>
-
-	<script src="{{asset('/js/prefixfree.min.js')}}"></script>
-
-    </div>
-    </div-->
-
-
 
 
     <div class="container" style="margin-top: 20px">
