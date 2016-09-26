@@ -112,10 +112,10 @@ Route::post('admin/edit/roles',      'AdminController@manageRolesSubmit');
 
 
 //Post routes
-Route::post('createEvent', 'EventsController@store');
-Route::post('editProfile', 'ProfileController@store');
-Route::post('gallery', 'GalleryController@storeAlbum');
-Route::post('gallery/{album}', 'GalleryController@storeImage');
+Route::post('createEvent', 'EventsController@store')->middleware("roles:admin,exec,chair");
+Route::post('editProfile', 'ProfileController@store')->middleware("roles:admin,exec,chair");
+Route::post('gallery', 'GalleryController@storeAlbum')->middleware("roles:admin,exec,chair");
+Route::post('gallery/{album}', 'GalleryController@storeImage')->middleware("roles:admin,exec,chair");
 
 /* +--------------------------------------+
    | USER AUTHORIZATION ROUTES            |
