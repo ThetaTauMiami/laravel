@@ -78,6 +78,21 @@
                         </div>
 
 
+                        <div class="form-group{{ $errors->has('school_class') ? ' has-error' : '' }}">
+                            <label for="school_class" class="col-md-4 control-label">Expected Graduation Year</label>
+
+                            <div class="col-md-6">
+                                <input id="school_class" type="text" class="form-control" name="school_class" value="{{ old('school_class') }}" placeholder="Ex. 2014">
+
+                                @if ($errors->has('school_class'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('school_class') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="form-group{{ $errors->has('major') ? ' has-error' : '' }}">
                             <label for="major" class="col-md-4 control-label">Major(s)</label>
 

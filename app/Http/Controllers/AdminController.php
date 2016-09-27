@@ -197,7 +197,7 @@ class AdminController extends Controller
     		$bid = new Bid;
     		$bid->email = $request->email[$key];
     		$bid->roll_number = $request->roll_number[$key];
-    		$bid->school_class = $request->school_class[$key];
+    		$bid->school_class = '';
     		$bid->chapter_class = $request->chapter_class;
     		$bid->token = $token;
     		$bid->created_at = date("Y-m-d h:i:s");

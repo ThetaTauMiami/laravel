@@ -83,13 +83,6 @@
                         			temp = false;
                         		}
 
-                        		if($('input[name=\'school_class[]\']').first().val()==""){
-                        			bootbox.alert("Enter the default grad year in the first entry before creating additional fields.");
-                        			temp = false;
-                        		}else{
-                        			year = $('input[name=\'school_class[]\']').first().val();
-                        		}
-
                         		if(!temp)
                         			return;
                         		
@@ -99,7 +92,7 @@
                         	if(i>0)
                         		button = '<button type="button" class="btn btn-default" onclick="delMem('+i+');"><i class="fa fa-trash"></i></button>';
 
-                        	$("#memFields").append('<div class="form-group row" id="memField_'+i+'"><div class="col-sm-2 col-xs-10"><input id="rollNum_'+i+'" type="number" class="form-control" name="roll_number[]" placeholder="Roll Number" min="1" value="'+next+'"></div><div class="col-xs-2 visible-xs">'+button+'</div><div class="col-sm-5 col-xs-12"><input id="email_'+i+'" type="email" class="form-control" name="email[]" placeholder="Email Address"></div><div class="col-sm-3 col-xs-12"><input id="schoolClass_'+i+'" type="number" min="2000" max="2999" class="form-control" name="school_class[]" placeholder="Graduation Year" value="'+year+'"></div><div class="col-sm-2 hidden-xs">'+button+'</div></div>');
+                        	$("#memFields").append('<div class="form-group row" id="memField_'+i+'"><div class="col-sm-2 col-xs-10"><input id="rollNum_'+i+'" type="number" class="form-control" name="roll_number[]" placeholder="Roll Number" min="1" value="'+next+'"></div><div class="col-xs-2 visible-xs">'+button+'</div><div class="col-sm-5 col-xs-12"><input id="email_'+i+'" type="email" class="form-control" name="email[]" placeholder="Email Address"></div><div class="col-sm-2 hidden-xs">'+button+'</div></div>');
 
                         	i++;
                         }
