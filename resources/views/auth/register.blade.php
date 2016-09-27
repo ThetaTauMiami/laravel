@@ -112,7 +112,7 @@
                             <label for="minor" class="col-md-4 control-label">Minor(s)</label>
 
                             <div class="col-md-6">
-                                <input id="minor" type="text" class="form-control" name="minor" value="{{ old('minor') }}" placeholder="Major(s)">
+                                <input id="minor" type="text" class="form-control" name="minor" value="{{ old('minor') }}" placeholder="Minor(s)">
 
                                 @if ($errors->has('minor'))
                                     <span class="help-block">
