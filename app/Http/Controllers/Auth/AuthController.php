@@ -29,7 +29,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/welcome';
+    protected $redirectTo = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -94,6 +94,9 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+
+        $this->redirectTo = '/welcome';
+
         $bid = Bid::find($data['registration_token']);
 
 

@@ -23,7 +23,7 @@ class HelperServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        require base_path().'/app/Providers/AnythingHelper.php';
+        require_once base_path().'/app/Providers/AnythingHelper.php';
     }
 
 }

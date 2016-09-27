@@ -140,9 +140,9 @@
                     nights in order to get to know the maximum number of active brothers. These sessions should last two
                     hours and are casual dress.</p>
                 <div class="well well-sm">
-                    <p><b style="color: #5B0000">Informal Night 1:</b> 9/28 7:30-9:30pm GAR 155</p>
+                    <p><b style="color: #5B0000">Informal Night 1:</b> 9/28 7:30-9:30pm GAR 153</p>
                     <br>
-                    <p><b style="color: #5B0000">Informal Night 2:</b> 9/29 7:30-9:30pm GAR 155</p>
+                    <p><b style="color: #5B0000">Informal Night 2:</b> 9/29 7:30-9:30pm GAR 153</p>
                 </div>
             </div>
         </div>
