@@ -39,7 +39,7 @@
                 <?php
                 $user = Auth::user();
 
-                if (Auth::check()) {
+                if (isExecOrAdmin()) {
                         echo '<li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, ', $user->first_name ,'!
                         <span class="caret"></span></a>
@@ -51,7 +51,17 @@
                         <li><a href="/logout">LOGOUT</a></li>
                     </ul>
                 </li>';
-                } else {
+                }elseif(Auth::Check()){
+                  echo '<li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, ', $user->first_name ,'!
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+
+                  <li><a href="/members/'.$user->id.'">MY PROFILE</a></li>
+                  <li><a href="/logout">LOGOUT</a></li>
+                  </ul>
+                  </li>';
+                }  else {
                     echo ' <a href="/login"><button class="btn btn-warning" type=
                         "button" id="log-in-button">LOG IN</button></a>';
                 }
