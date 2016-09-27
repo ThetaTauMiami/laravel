@@ -55,7 +55,7 @@
                         				Email
                         			</div>
                         			<div class="col-sm-4">
-                        				Expected Grad Year
+                        				<!--Expected Grad Year-->
                         			</div>
                         		</div>
                         	</div>
