@@ -31,7 +31,7 @@
 
                         <div class="form-group row">
                             <div class="col-xs-12">
-                                <label for="name" class="col-md-4 control-label">Manage Available Roles</label>
+                                <h3>Manage Available Roles</h3>
                                 <table id="roles_list">
                                     <thead>
                                         <tr>
