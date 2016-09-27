@@ -110,7 +110,7 @@ class AuthController extends Controller
             'minor' => $data['minor'],
             'chapter_class' => $bid->chapter_class,
             'roll_number' => $bid->roll_number,
-            'school_class' => $bid->school_class
+            'school_class' => $data['school_class']
 
         ]);
     }
