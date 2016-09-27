@@ -203,7 +203,7 @@ class EventsController extends Controller
     {
 
       $this->validate($request, [
-          'eventName' => 'required|unique:events,eventName',
+          'eventName' => 'required|unique:events,name',
           'pointType' => 'required',
           'points' => 'required|between:0,4',
           'date' => 'required',
