@@ -98,6 +98,10 @@ class HomeController extends Controller
         return view('pages.contact');
     }
 
+    public function welcome() {
+      return view('auth.welcome');
+    }
+
     public function contactSubmit(Request $request){
 
         $this->validate($request, [

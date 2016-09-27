@@ -137,6 +137,8 @@ Route::post('gallery/{album}', 'GalleryController@storeImage')->middleware("role
    Route::get('register/{registration_token}', 'Auth\AuthController@showRegistrationForm');
    Route::post('register', 'Auth\AuthController@register');
 
+   Route::get('welcome', 'HomeController@welcome');
+
    // Password Reset Routes...
    Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
    Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
