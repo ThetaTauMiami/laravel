@@ -303,7 +303,7 @@ class EventsController extends Controller
     //this function updates events when you edit them
     public function update(Request $request, Event $event){
       $this->validate($request, [
-          'eventName' => 'required|unique:events,eventName',
+          'eventName' => 'required|unique:events,name',
           'pointType' => 'required',
           'points' => 'required|between:0,4',
           'date' => 'required',
