@@ -47,7 +47,10 @@ class ProfileController extends Controller
 
     //updates user values, and if an image has been uploaded, stores it and creates a thumbnail
     function update(Request $request, User $user){
-      $user->update($request->all());
+      //$user->update($request->all());
+      $user->email = $request->email;
+      $user->phone = $request->phone;
+      $user->school_class = $request->school_class;
       $user->major = $request->major;
       $user->minor = $request->minor;
 
