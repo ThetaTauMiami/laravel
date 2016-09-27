@@ -73,6 +73,7 @@ class AuthController extends Controller
             'last_name' => 'required|max:255',
             'phone' => 'required|min:13|max:13|regex:/\([0-9][0-9][0-9]\)[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]/',
             'email' => 'required|email|max:255|unique:users|exists:bids,email|unique:users,email',
+            'major' => 'required',
             'password' => 'required|min:8|confirmed|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}/',//8 characters, at least 1 alpha, at least 1 number, at least 1 special character
             'registration_token' => 'exists:bids,token'
         ], [
