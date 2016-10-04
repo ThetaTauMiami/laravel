@@ -46,7 +46,15 @@
                   <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
                     <label for="date" class="col-md-4 control-label">Date/Time of Event</label>
                     <div class="col-md-6">
-                      <input id="date" type="datetime-local" class="form-control" name="date" value="{{ $event->date_time }}">
+                      <input id="date" type="datetime-local" class="form-control" name="date" value="<?php 
+
+                      $old_date = "";
+                      if(isset($event->date_time) && $event->date_time !== ""){
+                        $d = date_create($event->date_time);
+                        echo date_format($d,"Y-m-d\TH:i:s.000");
+                      }
+
+                      ?>">
 
                     </div>
                   </div>
