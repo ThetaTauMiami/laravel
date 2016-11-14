@@ -73,6 +73,8 @@ class HomeController extends Controller
         ->where('id', $user->image_id)
         ->first();
 
+      
+
       return view('pages.profile', compact('user', 'image'));
     }
 
