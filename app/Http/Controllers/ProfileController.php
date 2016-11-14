@@ -59,19 +59,35 @@ class ProfileController extends Controller
         $res = $request->file('resume');
         $extension = $res->getClientOriginalExtension();
         $fileName = $res->getClientOriginalName();
+
+
         $publicPath = public_path();
         $filePath = "uploads/prof/resumes/".$fileName;
         $request['filepath'] = $filePath;
         $request['resume'] = $res;
 
+        //this code checks to see if there is a file by that name already and changes it if so
+        $nameWithoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+        $existing = DB::table('users')->where('resume_path', '=', $filePath)->first();
+        $iterator = 1;
+        while($existing != null){
+          $fileName = $nameWithoutExt.$iterator.".".$extension;
+          $filePath = "uploads/prof/resumes/".$fileName;
+          $existing = DB::table('users')->where('resume_path', '=', $filePath)->first();
+          $iterator = $iterator+1;
+        }
+
+
         //Do some validation stuff. I'm gonna be honest here,
         //I don't really know why we have to do this or what's actually
         //happening, but eveyone else on the tech committee says that it's
         //important. --Sam Mallamaci
-        /*$this->validate($request, [
-          'resume' => 'resume'
-        ]);*/
+        $this->validate($request, [
+          'resume' => 'file'
+        ]);
 
+        //get rid of old resume
+        unlink($user->resume_path);
         //AND NOW WE KERPLUNK THE RESUME INTO THE FOLDER
         //THIS IS SOMETHING THAT I UNDERSTAND
         $res->move("uploads/prof/resumes/", $fileName);
@@ -86,14 +102,26 @@ class ProfileController extends Controller
         $img = $request->file('image');
         $extension = $img->getClientOriginalExtension();
         $fileName = $img->getClientOriginalName();
+
         $publicPath = public_path();
         $filePath = "uploads/prof/".$fileName;
+        //gets filePath without the extension, like .JPG
+        $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $filePath);
+        $nameWithoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
         $request['filepath'] = $filePath;
+        $existing = DB::table('images')->where('file_path', '=', $filePath)->first();
+        $iterator = 1;
+        //this code checks to see if there is a file by that name already and changes it if so
+        while($existing != null){
+          $filePath = $withoutExt.$iterator.".".$extension;
+          $fileName = $nameWithoutExt.$iterator.".".$extension;
+          $iterator = $iterator+1;
+          $existing = DB::table('images')->where('file_path', '=', $filePath)->first();
+        }
         $request['image'] = $img;
 
         //validates that the new filepath and image are unique I guess, ask Cole.
         $this->validate($request, [
-            'filepath' => 'unique:images,file_path',
             'image' => 'image'
         ]);
 
@@ -110,12 +138,16 @@ class ProfileController extends Controller
 
         $image->save();
 
-        //and now make the user point to the new image
-
+        //and now make the user point to the new image and delete old image
+        $oldImage = Image::where('id', '=', $user->image_id)->first();
+        unlink($oldImage->file_path);
+        unlink($oldImage->thumb_path);
+        DB::table('images')
+        ->where('id', '=', $user->image_id)
+        ->delete();
         $user->image_id = $image->id;
 
-        //$user->image()->save($image);
-        //return var_dump($user->image_id);
+
 
       }//end image saving/replacing
       $user->save();
@@ -124,6 +156,7 @@ class ProfileController extends Controller
 
     public function createThumbnail($image, $extension)
     {
+
       $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
         $img = Imager::make($image)->fit(300, 300)->save($withoutExt.'_thumb.'.$extension);
         return $withoutExt.'_thumb.'.$extension;

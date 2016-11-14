@@ -223,9 +223,16 @@ class EventsController extends Controller
           $filePath = "uploads/Event_Thumbs/{$fileName}";
           $request['filepath'] = $filePath;
 
-          $this->validate($request, [
-              'filepath' => 'unique:images,file_path'
-          ]);
+          //this code checks to see if there is a file by that name already and changes it if so
+          $nameWithoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+          $existing = DB::table('events')->where('thumb_path', '=', $filePath)->first();
+          $iterator = 1;
+          while($existing != null){
+            $fileName = $nameWithoutExt.$iterator.".".$extension;
+            $filePath = "uploads/Event_Thumbs/".$fileName;
+            $existing = DB::table('events')->where('thumb_path', '=', $filePath)->first();
+            $iterator = $iterator+1;
+          }
 
           $img->move("uploads/Event_Thumbs", $fileName);
           $im = Imager::make($filePath)->fit(300, 300)->save($filePath);
@@ -343,7 +350,7 @@ class EventsController extends Controller
       //saving an image thumbnail
       if($request->image){
         if($image){
-          //delete the old image
+          //delete the old image so we can replace it
           unlink($image->file_path);
           DB::table('images')
           ->where('id', '=', $event->image_id)
@@ -356,9 +363,16 @@ class EventsController extends Controller
         $filePath = "uploads/Event_Thumbs/{$fileName}";
         $request['filepath'] = $filePath;
 
-        $this->validate($request, [
-            'filepath' => 'unique:images,file_path'
-        ]);
+        //this code checks to see if there is a file by that name already and changes it if so
+        $nameWithoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+        $existing = DB::table('events')->where('thumb_path', '=', $filePath)->first();
+        $iterator = 1;
+        while($existing != null){
+          $fileName = $nameWithoutExt.$iterator.".".$extension;
+          $filePath = "uploads/Event_Thumbs/".$fileName;
+          $existing = DB::table('events')->where('thumb_path', '=', $filePath)->first();
+          $iterator = $iterator+1;
+        }
 
         $img->move("uploads/Event_Thumbs", $fileName);
         $im = Imager::make($filePath)->resize(150, 150)->save($filePath);

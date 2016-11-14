@@ -84,8 +84,18 @@ class GalleryController extends Controller
         $request['filepath'] = $filePath;
         $request['image'] = $img;
 
+        //this code checks to see if there is a file by that name already and changes it if so
+        $nameWithoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+        $existing = DB::table('images')->where('file_path', '=', $filePath)->first();
+        $iterator = 1;
+        while($existing != null){
+          $fileName = $nameWithoutExt.$iterator.".".$extension;
+          $filePath = "uploads/{$album->id}/".$fileName;
+          $existing = DB::table('images')->where('file_path', '=', $filePath)->first();
+          $iterator = $iterator+1;
+        }
+
         $this->validate($request, [
-            'filepath' => 'unique:images,file_path',
             'image' => 'image'
         ]);
 
