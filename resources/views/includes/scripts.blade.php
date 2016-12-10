@@ -12,5 +12,4 @@
 
 
 <!-- This script always goes last, contains custom scripts -->
-<script src="{{asset('/js/site.js')}}">
-	</script>
+<script src="{{asset('/js/site.js')}}"></script>

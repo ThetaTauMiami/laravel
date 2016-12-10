@@ -7,9 +7,9 @@
 	position: relative;
 	/*Instead of height we will use padding*/
 	padding-top: 75%; /*That helps bring the labels down*/
-	
+
 	margin: 30px auto 80px auto;
-	
+
 }
 
 
@@ -34,11 +34,11 @@
 	/*Lets add some spacing for the thumbnails*/
 	margin: 18px 0 0 18px;
 	border: 3px solid #999;
-	
+
 	float: left;
 	cursor: pointer;
 	transition: all 0.5s;
-	
+
 	/*Default style = low opacity*/
 	opacity: 0.6;
 
@@ -47,8 +47,8 @@
 
 .slider label span.delete-button{
 	position: absolute;
-	top: -15px;
-	right: -15px;
+	top: -5px;
+	right: 0px;
 }
 
 .slider label img{

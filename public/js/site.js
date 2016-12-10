@@ -2,7 +2,7 @@
 
 // animate scrolling whenever an anchor link is clicked
 $(function() {
-	
+
   var scrollTime = 1000; // Speed of animated scroll, lower = faster
 
   $('a[href*="#"]:not([href="#"])').click(function() {
@@ -19,13 +19,6 @@ $(function() {
     }
   });
 });
-
-
-
-
-
-
-
 
 
 // mask inputs with custom patterns

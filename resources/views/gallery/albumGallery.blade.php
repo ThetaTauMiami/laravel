@@ -92,7 +92,11 @@
       <img src="{{asset($image->thumb_path)}}"/>
       @if(hasRole())
 
-        <span onclick="confirmation({{$image->id}})" style="color:grey" id="delete" class="delete-button"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+        <span onclick="bootbox.confirm('Really Delete Image?', function(result){
+          if(result){
+            window.location = '/gallery/{{$album->id}}/{{$image->id}}/delete';
+          }
+        })" style="color:grey" id="delete" class="delete-button"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
 
       @endif
     </label>
