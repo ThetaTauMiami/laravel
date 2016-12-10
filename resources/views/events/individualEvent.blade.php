@@ -27,9 +27,13 @@
                             <p><b>Event:</b> {{ $event->name }}</p>
                             <p><b>Description:</b> {{ $event->description }}</p>
 
+                            <?php if(Auth::check()) { // mdepero: only show attendance point info if user is logged in ?>
+
                             <p><b>Type of Points:</b> {{ $event->type_id }}</p>
 
                             <p><b># of Points:</b> {{ $event->points }}</p>
+
+                            <?php } ?>
 
                             <p><b>Date:</b> <?php
                                 $dt = $event->date_time;
