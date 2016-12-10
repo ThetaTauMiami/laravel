@@ -80,7 +80,7 @@ class EventsController extends Controller
         $attended = DB::table('users')
         ->whereIn('id', $ids)
         ->where('active_status', '=', 1)
-        ->orderBy('roll_number')
+        ->orderBy('first_name')
         ->get();
       }
       return view('events.takeAttendanceVariable', compact('event', 'attended', 'attendance'));
