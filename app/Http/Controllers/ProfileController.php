@@ -87,7 +87,7 @@ class ProfileController extends Controller
         ]);
 
         //get rid of old resume
-        if(isset($user->resume_path && !is_null($user->resume_path))
+        if(!is_null($user->resume_path) && file_exists($user->resume_path))
           unlink($user->resume_path);
         //AND NOW WE KERPLUNK THE RESUME INTO THE FOLDER
         //THIS IS SOMETHING THAT I UNDERSTAND
@@ -141,9 +141,9 @@ class ProfileController extends Controller
 
         //and now make the user point to the new image and delete old image
         $oldImage = Image::where('id', '=', $user->image_id)->first();
-        if(isset($oldImage->file_path) && !is_null($oldImage->file_path) && file_exsts($oldImage->file_path))
+        if(!is_null($oldImage->file_path) && file_exsts($oldImage->file_path))
           unlink($oldImage->file_path);
-        if(isset($oldImage->thumb_path) && !is_null($oldImage->thumb_path) && file_exists($oldImage->thumb_path))
+        if(!is_null($oldImage->thumb_path) && file_existsf($oldImage->thumb_path))
           unlink($oldImage->thumb_path);
         DB::table('images')
         ->where('id', '=', $user->image_id)
