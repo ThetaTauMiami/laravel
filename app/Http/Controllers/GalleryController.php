@@ -106,7 +106,7 @@ class GalleryController extends Controller
         $image->thumb_path = $this->createThumbnail($filePath, $extension);
 
         $image->description = $request->description;
-        $image->file_path = $filePath;
+        $image->file_path = $this->createResizedImage($filePath, $extension);
         $image->user_id = Auth::user()->id;
         $image->album_id = $request->album_id;
         $image->save();
@@ -121,6 +121,14 @@ class GalleryController extends Controller
       $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
         $img = Imager::make($image)->fit(400, 300)->save($withoutExt.'_thumb.'.$extension);
         return $withoutExt.'_thumb.'.$extension;
+
+    }
+
+    public function createResizedImage($image, $extension)
+    {
+      $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
+        $img = Imager::make($image)->fit(1000, 800)->save($withoutExt.'_uploads.'.$extension);
+        return $withoutExt.'.'.$extension;
 
     }
 
