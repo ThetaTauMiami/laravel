@@ -141,7 +141,12 @@ class EventsController extends Controller
       $attended = $request->attended;
       $didNotAttend = $request->didNotAttend;
       if($request->mobile == 1){
-        $didNotAttend = DB::table('users')->whereNotIn('id', $attended)->get();
+        if($attended === NULL){
+          $didNotAttend = DB::table('users')->pluck('id');
+        }
+        else{
+          $didNotAttend = DB::table('users')->whereNotIn('id', $attended)->pluck('id');
+        }
       }
       $eventAtt = DB::table('attendance')->where('event_id', '=', $event->id)->pluck('user_id');
 
