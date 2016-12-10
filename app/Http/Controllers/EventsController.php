@@ -146,6 +146,7 @@ class EventsController extends Controller
 
       if($attended != NULL){
         foreach($attended as $a){
+          if($a != -1){
           if(!in_array($a, $eventAtt)){
             //DB::table('attendance')->insert(['user_id' => $a, 'event_id' => $event->id, 'points' => $event->points]);
             $attend = new Attendance;
@@ -159,15 +160,18 @@ class EventsController extends Controller
             }
             $attend->save();
           }
+         }
         }
       }
 
       if($didNotAttend != NULL){
         foreach($didNotAttend as $b){
+          if($b != -1){
           if(in_array($b, $eventAtt)){
             DB::table('attendance')
             ->where([['event_id', '=', $event->id],['user_id', '=', $b]])
             ->delete();
+          }
           }
         }
       }

@@ -92,7 +92,7 @@ $users = App\User::get();
                   <label for="attended" class="select">Attendance</label>
                   <br/>
                   <select name="attended[]" id="attended" multiple="true">
-                      <option value=""></option>
+                      <option value="-1"></option>
                       @foreach($users as $user)
                         @if(in_array($user->id, $attended))
                         <option value="{{$user->id}}" selected="true">{{$user->first_name." ".$user->last_name}}</option>
