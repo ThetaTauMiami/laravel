@@ -99,7 +99,8 @@ class GalleryController extends Controller
             'image' => 'image'
         ]);
 
-        $img->move("uploads/{$album->id}", $fileName);
+        //$img->move("uploads/{$album->id}", $fileName);
+        $img = Imager::make(Input::file($img))->fit(1280, 720)->save("uploads/{$album->id}".$fileName);
 
         $image = new Image;
 
