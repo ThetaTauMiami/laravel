@@ -9,7 +9,8 @@
     	<div class="row">
     		<div class="col-xs-12">
           <?php
-          $member = Auth::User();
+          //$member = Auth::User();
+          $member = $user;
           $userAtt = DB::table('attendance')->where('user_id', '=', $member->id)->get();
           $general = 0;
           $service = 0;

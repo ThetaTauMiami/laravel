@@ -32,12 +32,24 @@ class ProfileController extends Controller
     }
 
     function getUserAttendanceSheet(User $user) {
-			$semester = app('App\Http\Controllers\HomeController')->getCurrentSemester();
-			$attendance = DB::table('attendance')
-      ->where('user_id', '=', $user->id)
-			->get();
-			$events = Event::where('semester_id', '=', $semester->id)->get();
-			return view('admin.userAttendanceSheet', compact('attendance', 'events', 'user'));
+      //check if is user or if is exec
+      $loggedinuser = Auth::user();
+      $roles = $loggedinuser->roles()->getResults();
+      $exec = false;
+      foreach ($roles as $role){
+        if($role->type == "exec" || $role->type == "admin"){
+          $exec = true;
+        }
+      }
+      if($user->id == $loggedinuser->id || $exec){
+  			$semester = app('App\Http\Controllers\HomeController')->getCurrentSemester();
+  			$attendance = DB::table('attendance')
+        ->where('user_id', '=', $user->id)
+  			->get();
+  			$events = Event::where('semester_id', '=', $semester->id)->get();
+  			return view('admin.userAttendanceSheet', compact('attendance', 'events', 'user'));
+      }
+      return redirect('members/');
 		}
 
     //editProfile page
