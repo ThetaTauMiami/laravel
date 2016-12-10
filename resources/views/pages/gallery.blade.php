@@ -52,6 +52,11 @@
 							<input class="form-control" type="text" name="location"/>
 						</div>
 
+            <div class="form-group{{ $errors->has('is_public') ? ' has-error' : '' }}">
+							<label for="is_public" class="col-md-4 control-label">Is Public?</label>
+							<input type="checkbox" name="is_public" value="Public" checked/>
+						</div>
+
 						<!--<div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
 							<label for="image" class="col-md-4 control-label">Image</label>
 							<input type="file" id="image" name="image" accept="image/*"/>
@@ -87,6 +92,7 @@
                 <div class="row">
 
 					@foreach ($albums as $album)
+            <?php if($album->is_public || Auth::check()) { ?>
 						<?php
 							$thumbimage = $album->images->first();
 						 ?>
@@ -101,6 +107,7 @@
 										<p> {{ $album->name }} </p>
                 </a>
             </div>
+            <?php } ?>
 					@endforeach
 
                 </div>

@@ -148,6 +148,12 @@ class GalleryController extends Controller
       $album->description = $request->description;
       $album->location = $request->location;
       $album->user_id = Auth::user()->id;
+      if($request->is_public == "Public"){
+        $album->is_public = true;
+      }
+      else{
+        $album->is_public = false;
+      }
 
       //adding semester
       $today = Carbon::today()->toDateString();
@@ -179,6 +185,13 @@ class GalleryController extends Controller
       $album->name = $request->name;
       $album->description = $request->description;
       $album->location = $request->location;
+
+      if($request->is_public == "Public"){
+        $album->is_public = true;
+      }
+      else{
+        $album->is_public = false;
+      }
       $album->save();
 
       return redirect()->action('HomeController@retrieveImagesByAlbum', [$album->id]);

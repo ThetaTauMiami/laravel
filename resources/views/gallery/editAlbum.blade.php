@@ -26,6 +26,15 @@
                     <input class="form-control" type="text" name="location" value="{{$album->location}}"/>
                   </div>
 
+                  <div class="form-group{{ $errors->has('is_public') ? ' has-error' : '' }}">
+      							<label for="is_public" class="col-md-4 control-label">Is Public?</label>
+                    @if($album->is_public)
+      							  <input type="checkbox" name="is_public" value="Public" checked/>
+                    @else
+                      <input type="checkbox" name="is_public" value="Public"/>
+                    @endif
+      						</div>
+
                   <!--<div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
                     <label for="location" class="col-md-4 control-label">Date</label>
                     <input class="form-control" type="text" name="location" value=""/>
