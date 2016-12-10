@@ -1,5 +1,6 @@
 <head>
     <title>Theta Tau | Tau Delta Chapter</title>
+    <meta property="og:site_name" content="Theta Tau | Miami University" />
     <link href="/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/img/favicon.ico" rel="icon" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel=
@@ -27,5 +28,5 @@
 
 
     @include('includes.scripts')
-    
+
 </head>
