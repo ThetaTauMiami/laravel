@@ -31,7 +31,9 @@
 
                 @foreach ($events as $event)
 
-                <tr class='clickable-row' data-href='/events/{{ $event->id }}' @if(!$event->is_public && !Auth::check()) hidden @endif >
+                <?php if($event->is_public || Auth::check()) {  // mdepero: Don't want to just "hide" non-public events, don't even print them ?>
+
+                <tr class='clickable-row' data-href='/events/{{ $event->id }}' >
 
                     <th scope="row" style="text-align:center; vertical-align:middle;">
                       <?php
@@ -47,6 +49,8 @@
                         <p>{{ $event->description }} </p></td>
                     <td style="vertical-align:middle">{{ $event->location }}</td>
                 </tr>
+
+                <?php } ?>
 
                 @endforeach
 
