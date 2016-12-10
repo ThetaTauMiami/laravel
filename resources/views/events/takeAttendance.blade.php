@@ -93,7 +93,11 @@ $users = App\User::get();
                   <br/>
                   <select name="attended[]" id="attended" multiple="true">
                       @foreach($users as $user)
+                        @if(in_array($user->id, $attended))
+                        <option value="{{$user->id}}" selected="true">{{$user->first_name." ".$user->last_name}}</option>
+                        @else
                         <option value="{{$user->id}}">{{$user->first_name." ".$user->last_name}}</option>
+                        @endif
                       @endforeach
                   </select>
 
