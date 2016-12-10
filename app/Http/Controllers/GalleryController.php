@@ -129,7 +129,7 @@ class GalleryController extends Controller
       $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
         $img = Imager::make($image)->fit(1000, 800)->save($withoutExt.'_uploads.'.$extension);
         unlink($withoutExt.'.'.$extension);
-        return $withoutExt.'_resize.'.$extension;
+        return $withoutExt.'_uploads.'.$extension;
 
     }
 
