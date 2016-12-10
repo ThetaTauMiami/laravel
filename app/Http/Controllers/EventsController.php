@@ -121,7 +121,10 @@ class EventsController extends Controller
         ->get();
       }
       else{
-        $didNotAttend = DB::table('users')->get();
+        $didNotAttend = DB::table('users')
+        ->where('active_status', '=', 1)
+        ->orderBy('first_name')
+        ->get();
       }
 
 
