@@ -106,6 +106,7 @@ class EventsController extends Controller
       }
 
       $attended = NULL;
+      $attendedID = $ids;
       $didNotAttend = NULL;
       if($ids != NULL){
         $attended = DB::table('users')
@@ -129,7 +130,7 @@ class EventsController extends Controller
 
 
 
-      return view('events.takeAttendance', compact('event', 'attended', 'didNotAttend'));
+      return view('events.takeAttendance', compact('event', 'attended', 'didNotAttend', 'attendedID'));
 
     }
 
