@@ -39,7 +39,7 @@
             </div>
         -->
 
-<!--
+
 
     <div class="container">
         <div class="row">
@@ -76,6 +76,8 @@
     <div class="container">
         <div class="row">
             <h1 style="color: #5B0000; text-align: center">The Recruitment Process</h1>
+			
+			<!-- THE FOLLOWING IS RANDOM RECRUITMENT EVENTS FOR PNMs
             <hr>
             <div class="col-sm-offset-1 col-sm-5">
                 <div>
@@ -83,6 +85,7 @@
                          src="{{ asset('/img/icecream.jpg') }}">
                 </div>
             </div>
+
             <div class="col-sm-5">
                 <h2>Open Events</h2>
                 <hr>
@@ -101,6 +104,8 @@
                 </div>
             </div>
         </div>
+		-->
+		
         <hr>
         <br>
         <div class="row">
@@ -118,9 +123,9 @@
                     only expected and required at one of these. These sessions should last approximately 45 minutes and
                     are casual dress.</p>
                 <div class="well well-sm">
-                    <p><b style="color: #5B0000">Session 1:</b> 9/20 @ 7:30pm KRG 319</p>
+                    <p><b style="color: #5B0000">Session 1:</b> 1/31 @ 6:00pm LAWS 100</p>
                     <br>
-                    <p><b style="color: #5B0000">Session 2:</b> 9/21 @ 7:30pm KRG 319</p>
+                    <p><b style="color: #5B0000">Session 2:</b> 2/2 @ 6:00pm LAWS 100</p>
                 </div>
             </div>
         </div>
@@ -142,9 +147,9 @@
                     nights in order to get to know the maximum number of active brothers. These sessions should last two
                     hours and are casual dress.</p>
                 <div class="well well-sm">
-                    <p><b style="color: #5B0000">Informal Night 1:</b> 9/28 7:30-9:30pm GAR 153</p>
+                    <p><b style="color: #5B0000">Informal Night 1:</b> 2/7 @ 7:00pm PSN 112</p>
                     <br>
-                    <p><b style="color: #5B0000">Informal Night 2:</b> 9/29 7:30-9:30pm GAR 153</p>
+                    <p><b style="color: #5B0000">Informal Night 2:</b> 2/8 @ 7:00pm  PSN 112</p>
                 </div>
             </div>
         </div>
@@ -171,8 +176,8 @@
             </div>
         </div>
     </div>
-    -->
-
+    
+	<!-- USE THE FOLLOWING WHEN NO RUSH IS SCHEDULED YOU LIL BITCH
     <div class="container">
         <div class="row">
             <div class="col-sm-offset-1 col-sm-5">
@@ -188,7 +193,7 @@
             </div>
         </div>
     </div>
-
+	-->
 
     <br>
 
