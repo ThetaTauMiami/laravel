@@ -102,7 +102,13 @@ class GalleryController extends Controller
         //dd($_FILES['images']);
         //$img->move("uploads/{$album->id}", $fileName);
         ini_set('memory_limit','256M');
-        $img = Imager::make($img)->fit(1280, 720)->save("uploads/{$album->id}/".$fileName);
+        if(file_exists("uploads/{$album->id}")){
+          $img = Imager::make($img)->fit(1280, 720)->save("uploads/{$album->id}/".$fileName);
+        }
+        else{
+          mkdir("uploads/{$album->id}");
+          $img = Imager::make($img)->fit(1280, 720)->save("uploads/{$album->id}/".$fileName);
+        }
 
         $image = new Image;
 
