@@ -153,9 +153,9 @@ class ProfileController extends Controller
 
         //and now make the user point to the new image and delete old image
         $oldImage = Image::where('id', '=', $user->image_id)->first();
-        if(!is_null($oldImage) && file_exsts($oldImage->file_path))
+        if(!is_null($oldImage) && file_exists($oldImage->file_path))
           unlink($oldImage->file_path);
-        if(!is_null($oldImage) && file_existsf($oldImage->thumb_path))
+        if(!is_null($oldImage) && file_exists($oldImage->thumb_path))
           unlink($oldImage->thumb_path);
         DB::table('images')
         ->where('id', '=', $user->image_id)

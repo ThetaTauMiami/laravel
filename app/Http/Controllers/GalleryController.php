@@ -62,6 +62,7 @@ class GalleryController extends Controller
       return \Redirect::to('/gallery/'.$album->id);
     }
 
+
     //stores a new photo in the uploads folder and puts the path and metadata in database
     public function storeImage(Request $request)
     {
@@ -73,7 +74,6 @@ class GalleryController extends Controller
 
 
       foreach ($request->images as $img){
-
         $extension = $img->getClientOriginalExtension();
         $fileName = $img->getClientOriginalName();
         $album = DB::table('albums')
@@ -98,9 +98,11 @@ class GalleryController extends Controller
         $this->validate($request, [
             'image' => 'image'
         ]);
-
+        //dd(Input::all());
+        //dd($_FILES['images']);
         //$img->move("uploads/{$album->id}", $fileName);
-        $img = Imager::make(Input::file($img))->fit(1280, 720)->save("uploads/{$album->id}".$fileName);
+        ini_set('memory_limit','256M');
+        $img = Imager::make($img)->fit(1280, 720)->save("uploads/{$album->id}/".$fileName);
 
         $image = new Image;
 
