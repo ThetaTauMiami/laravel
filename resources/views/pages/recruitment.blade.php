@@ -64,7 +64,7 @@
                 @if($complete == 1)
                     <script>
                         $(document).ready(function(){
-                            bootbox.alert("<h1>Thank you for signing up!</h1><p>You'll now get emails related to our recruitment this semester! If you have any questions, feel free to reach out directly at <a href='mailto:thetataurecruitmentmu@gmail.com'>thetataurecruitmentmu@gmail.com</a></p><p><a class='btn btn-warning' href='/recruitment/signup'>Add Another?</a></p>");
+                            bootbox.alert("<h1>Thank you for signing up!</h1><p>You'll now get emails related to our recruitment this semester! If you have any questions, feel free to reach out directly at <a href='mailto:thetataurecruitmentmu@gmail.com'>thetataurecruitmentmu@gmail.com</a>.</p><p><a class='btn btn-warning' href='/recruitment/signup'>Add Another?</a></p>");
                         });
 
                     </script>
