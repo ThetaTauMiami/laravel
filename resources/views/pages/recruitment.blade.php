@@ -64,7 +64,7 @@
                 @if($complete == 1)
                     <script>
                         $(document).ready(function(){
-                            bootbox.alert("Thanks for Signing up!");
+                            bootbox.alert("Thanks for Signing up!<br/><a class='btn btn-secondary' href='/recruitment/signup'>Add Another</a>");
                         });
 
                     </script>
