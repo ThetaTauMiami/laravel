@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\tempregionals;
+use App\Pnm;
 
 class FormController extends Controller
 {
