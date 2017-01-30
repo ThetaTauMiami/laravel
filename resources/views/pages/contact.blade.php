@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="row" style="text-align: center">
 			<a href="https://www.facebook.com/ThetaTauMU/" target="_blank"><i id="social" class="fa fa-facebook-official fa-5x" aria-hidden="true">&nbsp;&nbsp; </i></a>
-			<a href="https://twitter.com/theta_tau" target="_blank"><i id="social" class="fa fa-twitter fa-5x" aria-hidden="true">&nbsp;&nbsp;</i></a>
+			<a href="https://twitter.com/thetataumu?lang=en" target="_blank"><i id="social" class="fa fa-twitter fa-5x" aria-hidden="true">&nbsp;&nbsp;</i></a>
 			<a href="https://www.instagram.com/thetataumu/?hl=en" target="_blank"><i id="social" class="fa fa-instagram fa-5x" aria-hidden="true">&nbsp;&nbsp;</i></a>
 			<a href="http://www.linkedin.com/groups/8471878" target="_blank"><i id="social" class="fa fa-linkedin fa-5x" aria-hidden="true"></i></a>
 		</div>

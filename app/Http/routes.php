@@ -85,7 +85,7 @@ Route::patch('events/edit/{event}', 'EventsController@update');
 
 // =============== Admin Panel ===============
 
-Route::get('admin/recruitment',      'AdminController@recruitmentList');
+Route::get('recruitment/list',      'HomeController@recruitmentList');
 
 Route::get('admin',                'AdminController@showPanel');
 

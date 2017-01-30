@@ -23,7 +23,6 @@
                             <li><a href="/admin/edit/brothers">Manage Brothers</a></li>
                             <li><a href="/admin/edit/roles">Manage Available Roles</a></li>
                             <li><a href="/admin/new/specialevent">Create a New Special Event Registration</a></li>
-                            <li><a href="/admin/recruitment">Recruitment Email List</a></li>
                             <li><a href="/admin/attendance">Attendance Sheet</a></li>
                         </ul>
 

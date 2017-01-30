@@ -77,10 +77,7 @@ class AdminController extends Controller
     }
 
 
-		function recruitmentList() {
-        $pnms = DB::table('pnms')->get();
-        return view('admin.recruitmentList', compact('pnms'));
-    }
+		
 
 		function getAttendanceSheet() {
 			$members = User::orderby('roll_number', 'asc')->where('active_status', 1)->get();

@@ -61,6 +61,11 @@ class HomeController extends Controller
       return view('pages.recruitment')->with('complete', $complete);
     }
 
+    function recruitmentList() {
+        $pnms = DB::table('pnms')->get();
+        return view('pages.recruitmentList', compact('pnms'));
+    }
+
 
     public function recruitmentSignUp() {
 
@@ -73,7 +78,7 @@ class HomeController extends Controller
         ->where('id', $user->image_id)
         ->first();
 
-      
+
 
       return view('pages.profile', compact('user', 'image'));
     }
@@ -157,7 +162,7 @@ class HomeController extends Controller
       $album = DB::table('albums')
         ->where('id', '=', $album->id)
         ->first();
-        
+
       return view("gallery.albumGallery", compact('images'), compact('album'));
     }
 
