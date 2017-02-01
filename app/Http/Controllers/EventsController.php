@@ -162,7 +162,7 @@ class EventsController extends Controller
               $attend->points = $event->points;
             }
             else{
-              $attend->points = 1;
+              $attend->points = 0;
             }
             $attend->save();
           }
