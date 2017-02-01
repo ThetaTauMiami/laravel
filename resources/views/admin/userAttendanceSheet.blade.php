@@ -18,15 +18,16 @@
           $brotherhood = 0;
           foreach($userAtt as $ua){
             $event = DB::table('events')->where('id', '=', $ua->event_id)->where('semester_id', '=', app('App\Http\Controllers\HomeController')->getCurrentSemester()->id)->first();
-
-            if($event->type_id == "General"){
-              $general += $ua->points;
-            }elseif($event->type_id == "Service"){
-              $service += $ua->points;
-            }elseif($event->type_id == "PD"){
-              $pd += $ua->points;
-            }elseif($event->type_id == "Brotherhood"){
-              $brotherhood += $ua->points;
+            if($event != null){
+              if($event->type_id == "General"){
+                $general += $ua->points;
+              }elseif($event->type_id == "Service"){
+                $service += $ua->points;
+              }elseif($event->type_id == "PD"){
+                $pd += $ua->points;
+              }elseif($event->type_id == "Brotherhood"){
+                $brotherhood += $ua->points;
+              }
             }
 
           }
