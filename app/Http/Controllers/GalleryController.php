@@ -103,15 +103,15 @@ class GalleryController extends Controller
         //$img->move("uploads/{$album->id}", $fileName);
         ini_set('memory_limit','256M');
         if(file_exists("uploads/{$album->id}")){
-          $img = Imager::make($img)->fit(1280, 720)->save("uploads/{$album->id}/".$fileName);
+          $img = Imager::make($img)->save("uploads/{$album->id}/".$fileName);
         }
         else{
           mkdir("uploads/{$album->id}");
-          $img = Imager::make($img)->fit(1280, 720)->save("uploads/{$album->id}/".$fileName);
+          $img = Imager::make($img)->save("uploads/{$album->id}/".$fileName);
         }
 
         $image = new Image;
-
+        $image->original_path = $filePath;
         $image->thumb_path = $this->createThumbnail($filePath, $extension);
 
         $image->description = $request->description;
@@ -136,8 +136,10 @@ class GalleryController extends Controller
     public function createResizedImage($image, $extension)
     {
       $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $image);
-        $img = Imager::make($image)->fit(1000, 800)->save($withoutExt.'_uploads.'.$extension);
-        unlink($withoutExt.'.'.$extension);
+        $img = Imager::make($image)->resize(1280, null, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->save($withoutExt.'_uploads.'.$extension);
         return $withoutExt.'_uploads.'.$extension;
 
     }
