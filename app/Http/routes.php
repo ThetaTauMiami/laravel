@@ -64,7 +64,8 @@ Route::get('editProfile', 'ProfileController@editMyProfile');
 
 Route::get('specialevents/{id}',    'FormController@specialeventsSignup');
 Route::post('specialevents/{id}',    'FormController@specialeventsStore');
-Route::post('phpinfo',    'HomeController@phpinfo');
+
+Route::get('phpinfo',    'HomeController@phpinfo');
 
 
 
