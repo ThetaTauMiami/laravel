@@ -30,6 +30,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
 */
+
+    public function phpinfo(){
+      return phpinfo();
+    }
+
     public function index(Request $request)
     {
         // check if someone is logged in, if so send user to view
