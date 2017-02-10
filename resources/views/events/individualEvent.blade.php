@@ -52,7 +52,7 @@
                                 <button class="btn btn-warning" type="button">Edit Event</button>
                             </a>
 
-                            <a href='/events/{{$event->id}}/attendance'>
+                            <a href='/events/{{$event->id}}/order'>
                                 <button class="btn btn-warning" type="button">Take Attendance</button>
                             </a>
                             @endif

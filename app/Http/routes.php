@@ -50,7 +50,8 @@ Route::get('createEvent', 'EventsController@createEvent');
 
 
 Route::get('events/{event}', 'HomeController@retrieveIndividualEvent');
-Route::get('events/{event}/attendance', 'EventsController@takeAttendance');
+Route::get('events/{event}/order', 'EventsController@whichOrder');
+Route::get('events/{event}/attendance/{type}', 'EventsController@takeAttendance');
 Route::get('events/{event}/attendance/variable', 'EventsController@takeAttendanceVariable');
 Route::post('events/{event}/attendance', 'EventsController@saveAttendance');
 Route::patch('events/{event}/attendance/variable', 'EventsController@saveVariableAttendance');
