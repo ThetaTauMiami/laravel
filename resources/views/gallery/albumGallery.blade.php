@@ -32,10 +32,61 @@
 
   @endif
   </div>
+  <script>
+          $(function() {
+              $( "#button" ).click(function() {
+                  $( "#uploader" ).toggle();
+              });
+          });
+      </script>
 
+      @if(count($errors) == 0)
+      <div id="uploader" style="display:none" class="col-md-8 col-md-offset-2">
+      @elseif(count($errors) > 0)
+      <div id="uploader" class="col-md-8 col-md-offset-2">
+      @endif
+        <div class="panel panel-default">
+          <form enctype="multipart/form-data" method="post" action="/gallery/{{ $album->id }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="album_id" value="{{ $album->id }}">
+
+            <!--<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+              <label for="description" class="col-md-4 control-label">Description</label>
+              <input class="form-control" type="text" name="description"/>
+            </div>-->
+
+            <div class="form-group{{ $errors->has('images') ? ' has-error' : '' }}">
+              <label for="images" class="col-md-4 control-label">Image</label>
+              <input type="file" id="images" name="images[]" accept="image/*" multiple/>
+            </div>
+
+            <button type="submit" class="btn">Submit</button>
+          </form>
+
+          @if (count($errors) > 0)
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  </div>
+  </div>
   <div class="container-fluid">
   <div class="row">
   <div class="col-xs-8 col-md-offset-2">
+
+
     @if (count($images) > 0)
     <div class="slider">
         <?php $i = 0; ?>
