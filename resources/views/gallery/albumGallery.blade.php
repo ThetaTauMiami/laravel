@@ -198,7 +198,7 @@ function startSlideshow(i){
               $size = getimagesize($path);
             }
             else{
-              $size = {1280, 720};
+              $size = [1280, 720];
             }
             echo "{\nsrc: \"/".$path."\",\norigsrc: \"/".$origpath."\",\nw: ".$size[0].",\nh: ".$size[1]."\n},\n";
           }?>
