@@ -194,7 +194,12 @@ function startSlideshow(i){
             $origpath = $image->original_path;
             $path = $image->file_path;
             if($origpath == null) $origpath = $path;
-            $size = getimagesize($path);
+            if(file_exists($path)){
+              $size = getimagesize($path);
+            }
+            else{
+              $size = {1280, 720};
+            }
             echo "{\nsrc: \"/".$path."\",\norigsrc: \"/".$origpath."\",\nw: ".$size[0].",\nh: ".$size[1]."\n},\n";
           }?>
       ];
