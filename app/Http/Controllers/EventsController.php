@@ -68,6 +68,7 @@ class EventsController extends Controller
     }
 
     public function takeAttendanceVariable(Event $event) {
+      
       $attendance = DB::table('attendance')
       ->where('event_id', '=', $event->id)
       ->get();
@@ -199,7 +200,7 @@ class EventsController extends Controller
       }
 
       if($event->variable_points && $attended != NULL){
-        return \Redirect::to('/events/'.$event->id.'/attendance/variable');
+        return redirect()->route('variable', $event->id);
       }
       else{
         return \Redirect::to('/events/'.$event->id);
