@@ -77,7 +77,7 @@ class AdminController extends Controller
     }
 
 
-		
+
 
 		function getAttendanceSheet() {
 			$members = User::orderby('roll_number', 'asc')->where('active_status', 1)->get();
@@ -101,14 +101,32 @@ class AdminController extends Controller
 
 
     function manageBrothersSubmit(Request $request){
-
         $semester_id = $this->getCurrentSemester()->id;
+				//Changes active brother to alumni
+				for($i = 0; $i<sizeof($request->alumni_request);$i++){
+					DB::table('users')
+					->where([['id','=',$request->alumni_request[$i]]])
+					->update(array('active_status'=>0));
+				}
+
+				for($i = 0; $i<sizeof($request->active_request);$i++){
+
+					DB::table('users')
+					->where([['id','=',$request->active_request[$i]]])
+					->update(array('active_status'=>1));
+				}
 
         foreach($request->id as $key => $id){
 
+						// return var_dump($request->alumni_request);
+						// if($request->alumni_request[$key]  == 'alumni'){
+						// //if($request->alumni_request  == 'alumni'){
+						// 	DB::table('users')
+						// 	->where([['id','=',$id]])
+						// 	->update(array('active_status'=> 0));
+						// }
+
             if($request->role[$key] != ''){
-
-
                 $current = DB::table('role_user')
                 ->where([
                     ['user_id','=',$id],

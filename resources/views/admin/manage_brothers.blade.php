@@ -37,13 +37,15 @@
                                     <?php if($type == 'actives'){ ?>
                                     <th>Role</th>
                                     <?php } if($type == 'actives'){ ?>
-                                    <!--<th>Make Active</th>-->
+                                    <th>Make Alumni</th>
                                     <?php } if($type == 'alum'){ ?>
-                                    <!--<th>Make Alum</th>-->
+                                    <th>Make Active</th>
+                                    <?php } if($type == 'all'){ ?>
+                                    <th>Status</th>
                                     <?php } ?>
                                 </tr>
 
-                        <?php } 
+                        <?php }
 
                             function displayMember($member,$roles,$type){ ?>
 
@@ -72,13 +74,32 @@
                                     </select></td>
 
                                     <?php } if($type == 'actives'){ ?>
-                                    <!--<td><button class="btn btn-primary make-alum" id="toggle_alum_{{$member->id}}" brother-id="{{$member->id}}" type="button"><i class="fa fa-paper-plane"></i></button></td>-->
+                                      <!--My Check Box-->
+                                      <td><input type ="checkbox" name = "alumni_request[]" value ="{{$member->id}}"/></td>
+                                      <!--Original button by Matt<td><button class="btn btn-primary make-alum" id="toggle_alum_{{$member->id}}" brother-id="{{$member->id}}" type="button"><i class="fa fa-paper-plane"></i></button></td>-->
                                     <?php } if($type == 'alum'){ ?>
+                                      <td><input type ="checkbox" name = "active_request[]" value ="{{$member->id}}"/></td>
                                     <!--<td><button class="btn btn-primary make-active" id="toggle_active_{{$member->id}}" brother-id="{{$member->id}}" type="button"><i class="fa fa-reply"></i></button></td>-->
+                                        <?php if($member->active_status == 0){
+
+
+                                        } ?>
+                                    <?php } if($type == 'all'){ ?>
+                                      <!--<td><select  name = "alumni[]" class"form-control">
+                                          <option value ="Active">Active</option>
+                                          <option value ="Alumni">Alumni</option>
+                                        </select></td>-->
+
+                                        <!-- This is where I will need to retrieve their status from the database-->
+                                        <?php if($member->active_status == 0){ ?>
+                                          <td> Alumni</td>
+                                        <?php } if($member->active_status == 1){ ?>
+                                          <td> Active</td>
+                                        <?php } ?>
                                     <?php } ?>
                                 </tr>
 
-                        <?php } 
+                        <?php }
 
                             function displayRoster($members,$roles,$type,$name){ ?>
 
@@ -89,7 +110,7 @@
                                         $first = true;
 
                                         foreach($members as $member){
-                                            if(($member->active_status && $type == "actives") || (!$member->active_status && $type == "alum") || ($type == "all")){ 
+                                            if(($member->active_status && $type == "actives") || (!$member->active_status && $type == "alum") || ($type == "all")){
                                                 if($first) $first = false;
                                                 else echo ',';
                                                 echo $member->email;
@@ -98,28 +119,28 @@
 
                                     ?>"><i class="fa fa-envelope"></i></a></h2>
 
-                                    
-                                    <?php if($type=='actives'){ ?><form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/edit/brothers') }}"> <?php } ?>
+
+                                    <?php if($type=='actives'|| $type=='alum'){ ?><form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/edit/brothers') }}"> <?php } ?>
                                         {{ csrf_field() }}
                                         <table class="table table-responsive table-striped table-hover">
 
-                                            
+
                                             <?php displayHeader($type); ?>
 
                                             @foreach($members as $member)
 
-                                            <?php if(($member->active_status && $type == "actives") || (!$member->active_status && $type == "alum") || ($type == "all")){ 
-                                                displayMember($member,$roles,$type); 
+                                            <?php if(($member->active_status && $type == "actives") || (!$member->active_status == 1 && $type == "alum") || ($type == "all")){
+                                                displayMember($member,$roles,$type);
                                             } ?>
 
                                             @endforeach
 
                                         </table>
 
-                                        <?php if($type=='actives'){ ?><input type="submit" class="btn btn-primary" value="Submit">
+                                        <?php if($type=='alum'||$type=='actives'){ ?><input type="submit" class="btn btn-primary" value="Submit"><?php } ?>
 
-                                    </form><?php } ?>
 
+                                    </form>
                                 </div>
 
                         <?php } ?>
