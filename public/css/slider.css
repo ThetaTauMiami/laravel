@@ -2,29 +2,6 @@
 /* * {margin: 0; padding: 0;}*/
 /* body {background: #ccc;} */
 
-.slider{
-	width: 100%; /*Same as width of the large image*/
-	position: relative;
-	/*Instead of height we will use padding*/
-	padding-top: 75%; /*That helps bring the labels down*/
-
-	margin: 30px auto 80px auto;
-
-}
-
-
-/*Last thing remaining is to add transitions*/
-.slider>img{
-	position: absolute;
-	left: 0; top: 0;
-	transition: all 0.5s;
-	max-width: 100%;
-	max-height: 100%;
-	margin-left: auto;
-
-	/*Lets add a shadow*/
-	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
-}
 
 .slider input[name='slide_switch'] {
 	display: none;
@@ -40,7 +17,7 @@
 	transition: all 0.5s;
 
 	/*Default style = low opacity*/
-	opacity: 0.6;
+	opacity: 1.0;
 
 	position: relative;
 }

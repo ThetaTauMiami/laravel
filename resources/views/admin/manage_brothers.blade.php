@@ -55,7 +55,6 @@
                                     <td><a href="/members/{{$member->id}}">{{ $member->first_name." ".$member->last_name }}</a></td>
                                     <td><a href="mailto:{{$member->email}}">{{$member->email}}</a></td>
                                     <td>{{$member->chapter_class}}</td>
-
                                     <?php if($type == 'actives'){ ?>
                                     <td><select name="role[] " class="form-control">
                                         <option value=""></option>
@@ -120,7 +119,9 @@
                                     ?>"><i class="fa fa-envelope"></i></a></h2>
 
 
-                                    <?php if($type=='actives'|| $type=='alum'){ ?><form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/edit/brothers') }}"> <?php } ?>
+                                    <?php if($type=='actives'|| $type=='alum'){ ?><form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/edit/brothers') }}"> <?php }
+
+
                                         {{ csrf_field() }}
                                         <table class="table table-responsive table-striped table-hover">
 
@@ -129,7 +130,10 @@
 
                                             @foreach($members as $member)
 
+
                                             <?php if(($member->active_status && $type == "actives") || (!$member->active_status == 1 && $type == "alum") || ($type == "all")){
+
+
                                                 displayMember($member,$roles,$type);
                                             } ?>
 

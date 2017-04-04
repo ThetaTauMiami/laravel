@@ -67,7 +67,8 @@ class AdminController extends Controller
     	$members = User::orderby('roll_number','asc')
 	        ->with('image')->with('roles')->get();
         $roles = Role::orderby('rank_order')->where('active',1)->get();
-	    return view('admin.manage_brothers', compact('members','roles'));
+				$currSemester = $this->getCurrentSemester()->id;
+	    return view('admin.manage_brothers', compact('members','roles', 'currSemester'));
     }
 
 
@@ -154,8 +155,7 @@ class AdminController extends Controller
             }else{
                 $current = DB::table('role_user')
                 ->where([
-                    ['user_id','=',$id],
-                    ['semester_id','=',$semester_id]
+                    ['user_id','=',$id]
                 ])
                 ->delete();
             }

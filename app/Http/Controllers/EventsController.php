@@ -68,6 +68,7 @@ class EventsController extends Controller
     }
 
     public function takeAttendanceVariable(Event $event) {
+      
       $attendance = DB::table('attendance')
       ->where('event_id', '=', $event->id)
       ->get();
@@ -85,12 +86,26 @@ class EventsController extends Controller
       }
       return view('events.takeAttendanceVariable', compact('event', 'attended', 'attendance'));
     }
+
+    /*
+
+      Orders attendance based on roll number or first name
+
+    */
+    public function whichOrder($id) {
+      $event = DB::table('events')
+      ->where('id', '=', $id)
+      ->first();
+
+      return view('events.attendanceOrder', compact('event'));
+    }
+
     /*
 
       This function routes to the taking attendance page
 
     */
-    public function takeAttendance($id) {
+    public function takeAttendance($id, $order) {
 
       $event = DB::table('events')
       ->where('id', '=', $id)
@@ -108,23 +123,25 @@ class EventsController extends Controller
       $attended = NULL;
       $attendedID = $ids;
       $didNotAttend = NULL;
+      if($order == 1) $sort = 'first_name';
+      else $sort = 'roll_number';
       if($ids != NULL){
         $attended = DB::table('users')
         ->whereIn('id', $ids)
         ->where('active_status', '=', 1)
-        ->orderBy('first_name')
+        ->orderBy($sort)
         ->get();
 
         $didNotAttend = DB::table('users')
         ->whereNotIn('id', $ids)
         ->where('active_status', '=', 1)
-        ->orderBy('first_name')
+        ->orderBy($sort)
         ->get();
       }
       else{
         $didNotAttend = DB::table('users')
         ->where('active_status', '=', 1)
-        ->orderBy('first_name')
+        ->orderBy($sort)
         ->get();
       }
 
@@ -183,7 +200,7 @@ class EventsController extends Controller
       }
 
       if($event->variable_points && $attended != NULL){
-        return \Redirect::to('/events/'.$event->id.'/attendance/variable');
+        return redirect()->route('variable', $event->id);
       }
       else{
         return \Redirect::to('/events/'.$event->id);
