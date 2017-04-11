@@ -49,8 +49,8 @@
               }
               $total_general += $general;
               $total_service += $service;
-              $total_pd = $pd;
-              $total_brotherhood = $brotherhood;
+              $total_pd += $pd;
+              $total_brotherhood += $brotherhood;
              ?>
             <tr>
               <td><a href="/members/{{$member->id}}/attendance">{{$member->first_name}} {{$member->last_name}}</a></td>
