@@ -119,7 +119,7 @@
                                     ?>"><i class="fa fa-envelope"></i></a></h2>
 
 
-                                    <?php if($type=='actives'|| $type=='alum'){ ?><form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/edit/brothers') }}"> <?php }
+                                    <?php if($type=='actives'|| $type=='alum'){ ?><form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/edit/brothers') }}"> <?php }?>
 
 
                                         {{ csrf_field() }}
