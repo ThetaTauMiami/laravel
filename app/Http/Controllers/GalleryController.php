@@ -49,7 +49,7 @@ class GalleryController extends Controller
       ->delete();
       return \Redirect::to('/gallery');
     }
-
+    
     function deleteImage(Album $album, Image $image){
       File::delete($image->file_path);
       File::delete($image->thumb_path);

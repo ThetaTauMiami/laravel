@@ -18,8 +18,15 @@
                 <th>Brotherhood Points</th>
               </tr>
             </thead>
+            <?php
+            $total_general = 0;
+            $total_service = 0;
+            $total_pd = 0;
+            $total_brotherhood = 0;
+            $total_peeps = 0; ?>
           @foreach($members as $member)
             <?php
+            $total_peeps+=1;
               $userAtt = DB::table('attendance')->where('user_id', '=', $member->id)->get();
               $general = 0;
               $service = 0;
@@ -40,6 +47,10 @@
                 }
 
               }
+              $total_general += $general;
+              $total_service += $service;
+              $total_pd = $pd;
+              $total_brotherhood = $brotherhood;
              ?>
             <tr>
               <td><a href="/members/{{$member->id}}/attendance">{{$member->first_name}} {{$member->last_name}}</a></td>
@@ -51,6 +62,18 @@
 
           @endforeach
         </table>
+
+        <div>
+          <?="Avg general: "?><b><?=($total_general/$total_peeps); ?></b>
+          <br/>
+          <?="Avg service: "?><b><?=($total_service/$total_peeps); ?></b>
+          <br/>
+          <?="Avg pd: "?><b><?=($total_pd/$total_peeps); ?></b>
+          <br/>
+          <?= "Avg brotherhood: "?><b><?=($total_brotherhood/$total_peeps); ?></b>
+
+        </div>
+
     		</div>
 	     </div>
     </div>
