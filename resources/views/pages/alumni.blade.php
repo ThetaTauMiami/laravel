@@ -30,7 +30,7 @@
 		@foreach ($alumni as $alum)
 			<div class="col-lg-4 col-sm-6 text-center">
 					<a href="/members/{{$alum->id}}">
-						@if ($alum->image->thumb_path)
+						@if (isset($alum->image->thumb_path))
 							<img class="img-circle img-responsive img-center" src="/{{$alum->image->thumb_path}}" alt="{{$alum->first_name}} {{$alum->last_name}}" style="width:200; height:200">
 						@else
 							<img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" alt="{{$alum->first_name}} {{$alum->last_name}}">
