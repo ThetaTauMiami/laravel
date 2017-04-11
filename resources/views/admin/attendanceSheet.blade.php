@@ -64,13 +64,13 @@
         </table>
 
         <div>
-          <?="Avg general: "?><b><?=($total_general/$total_peeps); ?></b>
+          <?="Avg general: "?><b><?=round(($total_general/$total_peeps), 2); ?></b>
           <br/>
-          <?="Avg service: "?><b><?=($total_service/$total_peeps); ?></b>
+          <?="Avg service: "?><b><?=round(($total_service/$total_peeps), 2); ?></b>
           <br/>
-          <?="Avg pd: "?><b><?=($total_pd/$total_peeps); ?></b>
+          <?="Avg pd: "?><b><?=round(($total_pd/$total_peeps), 2); ?></b>
           <br/>
-          <?= "Avg brotherhood: "?><b><?=($total_brotherhood/$total_peeps); ?></b>
+          <?= "Avg brotherhood: "?><b><?=round(($total_brotherhood/$total_peeps), 2); ?></b>
 
         </div>
 
