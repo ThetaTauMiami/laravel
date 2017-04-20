@@ -5,7 +5,7 @@
         <h1>CURRENT RUSH INFO</h1>
     </div>
     <br>
-    <!--
+    <!--     START OFF SEASON FOR RUSH SECTION -->
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-center">
@@ -37,9 +37,10 @@
     @endif
 
             </div>
-        -->
+   <!--    END OFF SEASON FOR RUSH SECTION     -->
 
 
+   <!--    START RUSH SEASON SECTION
 
     <div class="container">
         <div class="row">
@@ -177,7 +178,10 @@
         </div>
     </div>
     
-	<!-- USE THE FOLLOWING WHEN NO RUSH IS SCHEDULED YOU LIL BITCH
+    
+     END RUSH SEASON SECTION      -->
+    
+    <!--   START OFF SEASON RUSH SECTION   -->
     <div class="container">
         <div class="row">
             <div class="col-sm-offset-1 col-sm-5">
@@ -193,7 +197,7 @@
             </div>
         </div>
     </div>
-	-->
+    <!-- END OFF SEASON RUSH SECTION -->
 
     <br>
 
