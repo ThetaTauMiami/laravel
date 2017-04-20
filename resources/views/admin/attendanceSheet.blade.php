@@ -45,6 +45,18 @@
                     $brotherhood += $ua->points;
                   }
                 }
+                if($service > 5) {
+                  $general += $service - 5;
+                  $service -= 5;
+                }
+                if($brotherhood > 5) {
+                  $general += $brotherhood - 5;
+                  $brotherhood -= 5;
+                }
+                if($pd > 5) {
+                  $general += $pd - 5;
+                  $pd -= 5;
+                }
 
               }
               $total_general += $general;
