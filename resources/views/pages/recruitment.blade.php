@@ -12,8 +12,7 @@
         <div class="row">
             <div class="col-xs-12 text-center">
                 <div class="well well-sm">
-                    <img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/13103548_629859100498663_8067044036751974394_n.jpg?oh=09f68fd282963cd82d6fb79e1a4da862&oe=58560E71"
-                         height="288" width="288">
+                    
                     <h1>Click the button below to sign up for our recruitment email list!</h1>
                     <hr>
 
@@ -51,7 +50,7 @@
             <div class="col-sm-5">
                 <h2>Check Back Next Semester!</h2>
                 <hr>
-                <p style="font-size: medium">We rush at the beginning of every semester. If you are interested in joining our brotherhood, please check back early next semester for more information. You are also welcome to reach out to our recruitment team using the email below if you would like more information or would like to ensure your name be included in our mailing list for next semester's rush.
+                <p style="font-size: medium">We rush at the beginning of every semester. If you are interested in joining our brotherhood, please check back early next semester for more information. You are also welcome to reach out to our recruitment team using the email below if you would like more information or have any questions.
                 </p>
             </div>
         </div>
