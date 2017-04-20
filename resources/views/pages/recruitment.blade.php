@@ -5,6 +5,8 @@
         <h1>CURRENT RUSH INFO</h1>
     </div>
     <br>
+    
+    
     <!--     START OFF SEASON FOR RUSH SECTION -->
     <div class="container">
         <div class="row">
@@ -37,10 +39,27 @@
     @endif
 
             </div>
+	    
+	   
+   <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-5">
+                <div>
+                    <img class="img-responsive center-block" src="{{ asset('/img/exec.jpg') }}">
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <h2>Check Back Next Semester!</h2>
+                <hr>
+                <p style="font-size: medium">We rush at the beginning of every semester. If you are interested in joining our brotherhood, please check back early next semester for more information. You are also welcome to reach out to our recruitment team using the email below if you would like more information or would like to ensure your name be included in our mailing list for next semester's rush.
+                </p>
+            </div>
+        </div>
+    </div>
    <!--    END OFF SEASON FOR RUSH SECTION     -->
 
 
-   <!--    START RUSH SEASON SECTION
+   <!--    START RUSH SEASON SECTION, BE SURE TO EDIT ALL INFORMATION BEFORE UNCOMMENTING
 
     <div class="container">
         <div class="row">
@@ -77,8 +96,8 @@
     <div class="container">
         <div class="row">
             <h1 style="color: #5B0000; text-align: center">The Recruitment Process</h1>
-			
-			<!-- THE FOLLOWING IS RANDOM RECRUITMENT EVENTS FOR PNMs
+
+
             <hr>
             <div class="col-sm-offset-1 col-sm-5">
                 <div>
@@ -105,7 +124,6 @@
                 </div>
             </div>
         </div>
-		-->
 		
         <hr>
         <br>
@@ -179,25 +197,7 @@
     </div>
     
     
-     END RUSH SEASON SECTION      -->
-    
-    <!--   START OFF SEASON RUSH SECTION   -->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-5">
-                <div>
-                    <img class="img-responsive center-block" src="{{ asset('/img/exec.jpg') }}">
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <h2>Check Back Next Semester!</h2>
-                <hr>
-                <p style="font-size: medium">We rush at the beginning of every semester. If you are interested in joining our brotherhood, please check back early next semester for more information. You are also welcome to reach out to our recruitment team using the email below if you would like more information or would like to ensure your name be included in our mailing list for next semester's rush.
-                </p>
-            </div>
-        </div>
-    </div>
-    <!-- END OFF SEASON RUSH SECTION -->
+                  END RUSH SEASON SECTION      -->
 
     <br>
 
