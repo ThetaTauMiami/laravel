@@ -24,6 +24,8 @@
                             <li><a href="/admin/edit/roles">Manage Available Roles</a></li>
                             <li><a href="/admin/new/specialevent">Create a New Special Event Registration</a></li>
                             <li><a href="/admin/attendance">Attendance Sheet</a></li>
+                            <li><a href="/download/attendance">Download Attendance</a></li>
+                            <li><a href="/download/events">Download Events</a></li>
                         </ul>
 
                 </div>

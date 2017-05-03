@@ -142,6 +142,9 @@ Route::post('gallery/{album}', 'GalleryController@storeImage')->middleware("role
 
    Route::get('welcome', 'HomeController@welcome');
 
+   Route::get('download/attendance', 'AdminController@userExcel');
+   Route::get('download/events', 'AdminController@eventExcel');
+
    // Password Reset Routes...
    Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
    Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
