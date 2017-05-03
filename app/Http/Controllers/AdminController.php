@@ -313,10 +313,10 @@ class AdminController extends Controller
 				$eventAtt = DB::table('attendance')->where('event_id', '=', $event->id)->where('user_id', '=', $member->id)->get();
 				//eventually need to add Excused or unexcused for absence for mandatory
 				if($eventAtt != null) {
-					$data[$i][$member->first_name.$member->last_name] = "P";
+					$data[$i][$member->first_name." ".$member->last_name] = "P";
 				}
 				else {
-					$data[$i][$member->first_name.$member->last_name] = "U";
+					$data[$i][$member->first_name." ".$member->last_name] = "U";
 				}
 			}
 			$i++;
