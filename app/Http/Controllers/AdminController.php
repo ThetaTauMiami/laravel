@@ -257,8 +257,6 @@ class AdminController extends Controller
     }
 
 
-
-
     function generateRandomString($length = 10) {
 	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	    $charactersLength = strlen($characters);
@@ -268,4 +266,66 @@ class AdminController extends Controller
 	    }
 	    return $randomString;
 	}
+
+	function outputData($data, $filename){
+		header("Content-Disposition: attachment; filename=\"$filename\"");
+  	header("Content-Type: text/csv");
+		$out = fopen("php://output", 'w');
+		$flag = false;
+	  foreach($data as $row) {
+	    if(!$flag) {
+	      // display field/column names as first row
+	      fputcsv($out, array_keys($row), ',', '"');
+	      $flag = true;
+	    }
+	    fputcsv($out, array_values($row), ',', '"');
+	  }
+
+	  fclose($out);
+	}
+
+	//for the events tab of the annual report
+	function eventExcel() {
+		$members = User::orderby('roll_number', 'asc')->where('active_status', 1)->get();
+		$semester = app('App\Http\Controllers\HomeController')->getCurrentSemester();
+		$attendance = DB::table('attendance')
+		->get();
+		$events = Event::where('semester_id', '=', $semester->id)->get();
+		$i = 0;
+		foreach($events as $event) {
+			$data[$i] = ["Event Name" => $event->name, "Date" => substr($event->date_time, 0, 10), "Type" => $event->type_id, "Description" => $event->description];
+			$i++;
+		}
+		$filename = "EventsTab" . date('Ymd') . ".csv";
+		AdminController::outputData($data, $filename);
+	}
+
+	//for the attendance tab of the annual report
+	function userExcel() {
+		$members = User::orderby('first_name', 'asc')->where('active_status', 1)->get();
+		$semester = app('App\Http\Controllers\HomeController')->getCurrentSemester();
+		$attendance = DB::table('attendance')->get();
+		$events = Event::where('semester_id', '=', $semester->id)->get();
+		$i = 0;
+		foreach($events as $event) {
+			$data[$i] = ["Event Name" => $event->name, "Date" => substr($event->date_time, 0, 10)];
+			foreach($members as $member) {
+				$eventAtt = DB::table('attendance')->where('event_id', '=', $event->id)->where('user_id', '=', $member->id)->get();
+				//eventually need to add Excused or unexcused for absence for mandatory
+				if($eventAtt != null) {
+					$data[$i][$member->first_name.$member->last_name] = "P";
+				}
+				else {
+					$data[$i][$member->first_name.$member->last_name] = "U";
+				}
+			}
+			$i++;
+		}
+		//return $data;
+		$filename = "AttendanceTab" . date('Ymd') . ".csv";
+		AdminController::outputData($data, $filename);
+		//return redirect('/download/events');
+		//AdminController::eventExcel();
+	}
+
 }
