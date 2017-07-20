@@ -29,7 +29,7 @@ Route::get('gallery', 		'HomeController@gallery');
 Route::get('events', 		'HomeController@events');
 Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('recruitment/signup', 	'HomeController@recruitmentSignUp');
-Route::post('recruitment/signup', 	'FormController@store');
+Route::post('recruitment/signup', 	'HomeController@recruitmentSubmit');
 Route::get('members', 		'HomeController@members');
 Route::get('members/{user}', 'HomeController@profile');
 Route::get('members/{user}/attendance',      'ProfileController@getUserAttendanceSheet'); //should be only accessible to admin or that user
@@ -62,12 +62,11 @@ Route::get('editProfile/{user}', 'ProfileController@editProfile');
 
 Route::get('editProfile', 'ProfileController@editMyProfile');
 
-
-Route::get('specialevents/{id}',    'FormController@specialeventsSignup');
-Route::post('specialevents/{id}',    'FormController@specialeventsStore');
-
 Route::get('phpinfo',    'HomeController@phpinfo');
 
+// **Note: /event/ is different than /events/, /event/ is for special event registration and is separate
+Route::get ('event/{slug}', 'HomeController@specialEventShow');
+Route::post('event/{id}', 'HomeController@specialEventStore');
 
 
 // redirect /home route to the root directory
@@ -86,9 +85,21 @@ Route::patch('events/edit/{event}', 'EventsController@update');
 
 
 
-// =============== Admin Panel ===============
+// =============== Chair Accessible Pages ===============
 
-Route::get('recruitment/list',      'HomeController@recruitmentList');
+Route::get('chair',   'ChairController@showPanel');
+
+Route::get ('recruitment/list',      'ChairController@recruitmentList');
+Route::post('recruitment/list',      'ChairController@recruitmentListDelete');
+
+Route::get  ('specialevents/new',   'ChairController@newSpecialEventForm');
+Route::post ('specialevents/new',   'ChairController@newSpecialEventSubmit');
+Route::get  ('specialevents',       'ChairController@listSpecialEvents');
+Route::get  ('specialevents/{id}',  'ChairController@editSpecialEventForm');
+Route::patch('specialevents/{id}',  'ChairController@editSpecialEventSubmit');
+Route::get  ('specialevents/{id}/attendees',  'ChairController@specialEventDownload');
+
+// =============== Admin Panel ===============
 
 Route::get('admin',                'AdminController@showPanel');
 
@@ -97,9 +108,6 @@ Route::post('admin/new/class',     'AdminController@newClassSubmit');
 
 Route::get('admin/new/semester',      'AdminController@newSemesterForm');
 Route::post('admin/new/semester',     'AdminController@newSemesterSubmit');
-
-Route::get('admin/new/specialevent',         'AdminController@newSpecialeventForm');
-Route::get('admin/edit/specialevent/{id]',   'AdminController@editSpecialeventForm');
 
 Route::get('admin/edit/brothers',   'AdminController@manageBrothersForm');
 Route::post('admin/edit/brothers',   'AdminController@manageBrothersSubmit');
@@ -162,8 +170,9 @@ Route::get('/linkedin/callback',
 
 
 /* +--------------------------------------+
-   | Maintenance Routes                   |
+   | Maintenance Routes  (not used)       |
    +--------------------------------------+
 */
 
 Route::get('/deploy', 'Maintenance@deploy');
+

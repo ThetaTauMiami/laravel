@@ -17,8 +17,7 @@ class SpecialEventsSetup extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('description');
-            $table->text('fields');
-            $table->string('complete');
+            $table->text('fields')->nullable();
             $table->dateTime('reg_open');
             $table->dateTime('reg_close');
             $table->timestamps();
@@ -26,7 +25,10 @@ class SpecialEventsSetup extends Migration
         Schema::create('attendees', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('special_event_id');
-            $table->text('responses');
+            $table->string('name');
+            $table->string('email');
+            $table->text('responses')->nullable();
+            $table->text('comments');
             $table->timestamps();
         });
     }

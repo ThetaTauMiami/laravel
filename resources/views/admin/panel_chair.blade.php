@@ -15,16 +15,12 @@
                                 <img id="profile-img" class="img-responsive" src="{{ asset('/img/login-logo.png') }}" />
                             </div>
                         </div>
-                        <p id="profile-name" class="profile-name-card">Theta Tau | Administration</p>
+                        <p id="profile-name" class="profile-name-card">Theta Tau | Chair Admin Panel</p>
 
                         <ul>
-                            <li><a href="/admin/new/class">Create a new Class</a></li>
-                            <li><a href="/admin/new/semester">Start a New Semester</a></li>
-                            <li><a href="/admin/edit/brothers">Manage Brothers</a></li>
-                            <li><a href="/admin/edit/roles">Manage Available Roles</a></li>
-                            <li><a href="/admin/attendance">Attendance Sheet</a></li>
-                            <li><a href="/download/attendance">Download Attendance</a></li>
-                            <li><a href="/download/events">Download Events</a></li>
+                            <li><a href="/recruitment/list">Manage Recruitment Email List</a></li>
+                            <li><a href="/specialevents/new">Create a New Special Event Registration</a></li>
+                            <li><a href="/specialevents">Manage Special Event Registrations</a></li>
                         </ul>
 
                 </div>
