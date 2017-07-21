@@ -50,7 +50,7 @@
             <div class="col-sm-5">
                 <h2>Check Back Next Semester!</h2>
                 <hr>
-                <p style="font-size: medium">We rush at the beginning of every semester. If you are interested in joining our brotherhood, please check back early next semester for more information. You are also welcome to reach out to our recruitment team using the email below if you would like more information or have any questions.
+                <p style="font-size: medium">We rush at the beginning of every Fall semester. If you are interested in joining our brotherhood, please check back early next semester for more information. You are also welcome to reach out to our recruitment team using the email below if you would like more information or have any questions.
                 </p>
             </div>
         </div>
