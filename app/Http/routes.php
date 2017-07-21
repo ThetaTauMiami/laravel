@@ -109,6 +109,8 @@ Route::get('admin/attendance',      'AdminController@getAttendanceSheet');
 Route::get('admin/edit/roles',      'AdminController@manageRolesForm');
 Route::post('admin/edit/roles',      'AdminController@manageRolesSubmit');
 
+Route::get('admin/sendAttendance',      'AdminController@sendAttendanceReminderEmail');
+
 
 
 // ============= End Admin Panel =============

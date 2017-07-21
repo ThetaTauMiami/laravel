@@ -40,6 +40,8 @@
                                     <th>Make Alumni</th>
                                     <?php } if($type == 'alum'){ ?>
                                     <th>Make Active</th>
+                                    <?php } if($type == 'actives' || $type == 'alum'){ ?>
+                                    <th>Big</th>
                                     <?php } if($type == 'all'){ ?>
                                     <th>Status</th>
                                     <?php } ?>
@@ -47,7 +49,7 @@
 
                         <?php }
 
-                            function displayMember($member,$roles,$type){ ?>
+                            function displayMember($member,$roles,$type, $members){ ?>
 
                                 <tr>
                                     <input type="hidden" name="id[]" value="{{$member->id}}">
@@ -75,14 +77,26 @@
                                     <?php } if($type == 'actives'){ ?>
                                       <!--My Check Box-->
                                       <td><input type ="checkbox" name = "alumni_request[]" value ="{{$member->id}}"/></td>
-                                      <!--Original button by Matt<td><button class="btn btn-primary make-alum" id="toggle_alum_{{$member->id}}" brother-id="{{$member->id}}" type="button"><i class="fa fa-paper-plane"></i></button></td>-->
+                                      <td><select>
+                                        <option value=""></option>
+                                        @foreach($members as $member)
+                                        <option value="{{$member->id}}" name="big_request[] " class="form-control">{{$member->first_name}} {{$member->last_name}}</option>
+                                        @endforeach
+                                      </select></td>
                                     <?php } if($type == 'alum'){ ?>
                                       <td><input type ="checkbox" name = "active_request[]" value ="{{$member->id}}"/></td>
-                                    <!--<td><button class="btn btn-primary make-active" id="toggle_active_{{$member->id}}" brother-id="{{$member->id}}" type="button"><i class="fa fa-reply"></i></button></td>-->
+
                                         <?php if($member->active_status == 0){
 
 
                                         } ?>
+                                        <td><select>
+                                          <option value=""></option>
+                                          @foreach($members as $member)
+                                          <option value="{{$member->id}}" name="big_request[] " class="form-control">{{$member->first_name}} {{$member->last_name}}</option>
+                                          @endforeach
+                                        </select></td>
+
                                     <?php } if($type == 'all'){ ?>
                                       <!--<td><select  name = "alumni[]" class"form-control">
                                           <option value ="Active">Active</option>
@@ -134,7 +148,7 @@
                                             <?php if(($member->active_status && $type == "actives") || (!$member->active_status == 1 && $type == "alum") || ($type == "all")){
 
 
-                                                displayMember($member,$roles,$type);
+                                                displayMember($member,$roles,$type, $members);
                                             } ?>
 
                                             @endforeach

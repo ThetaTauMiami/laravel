@@ -77,9 +77,6 @@ class AdminController extends Controller
         return view('admin.manage_roles',compact('roles'));
     }
 
-
-
-
 		function getAttendanceSheet() {
 			$members = User::orderby('roll_number', 'asc')->where('active_status', 1)->get();
 			$semester = app('App\Http\Controllers\HomeController')->getCurrentSemester();
@@ -102,6 +99,7 @@ class AdminController extends Controller
 
 
     function manageBrothersSubmit(Request $request){
+			return var_dump($request->big_request);
         $semester_id = $this->getCurrentSemester()->id;
 				//Changes active brother to alumni
 				for($i = 0; $i<sizeof($request->alumni_request);$i++){
@@ -326,6 +324,47 @@ class AdminController extends Controller
 		AdminController::outputData($data, $filename);
 		//return redirect('/download/events');
 		//AdminController::eventExcel();
+	}
+
+  /*
+	 * Function that sends out an email to each active brother containing
+	 * their point totals
+	 */
+	function sendAttendanceReminderEmail(){
+		$members = User::orderby('first_name', 'asc')->where('active_status', 1)->get();
+		$semester = app('App\Http\Controllers\HomeController')->getCurrentSemester();
+		$attendance = DB::table('attendance')->get();
+		$events = Event::where('semester_id', '=', $semester->id)->get();
+
+		foreach($members as $member) {
+			if($member->last_name = "Hoffbauer"){
+			$userAtt = DB::table('attendance')->where('user_id', '=', $member->id)->get();
+			$general = 0;
+			$service = 0;
+			$pd = 0;
+			$brotherhood = 0;
+			foreach($userAtt as $ua){
+				$event = DB::table('events')->where('id', '=', $ua->event_id)->where('semester_id', '=', app('App\Http\Controllers\HomeController')->getCurrentSemester()->id)->first();
+				if($event != null){
+					if($event->type_id == "General"){
+						$general += $ua->points;
+					}elseif($event->type_id == "Service"){
+						$service += $ua->points;
+					}elseif($event->type_id == "PD"){
+						$pd += $ua->points;
+					}elseif($event->type_id == "Brotherhood"){
+						$brotherhood += $ua->points;
+					}
+				}
+			}
+			Mail::send('emails.attendance-email', ["name"=>$member->first_name,"generalTotal"=>$general,"brotherhoodTotal"=>$brotherhood,"serviceTotal"=>$service,"pdTotal"=>$pd], function ($message) use ($member) {
+				$message->from('noreply@thetataumiami.com', 'Theta Tau Miami');
+				$message->subject('Theta Tau Attedance');
+				$message->to($member->email);
+			});
+		}
+		}
+		return redirect("/admin");
 	}
 
 }

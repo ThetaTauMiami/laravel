@@ -17,15 +17,20 @@
                         </div>
                         <p id="profile-name" class="profile-name-card">Theta Tau | Administration</p>
 
+                        <h4>Website Administration</h4>
                         <ul>
                             <li><a href="/admin/new/class">Create a new Class</a></li>
                             <li><a href="/admin/new/semester">Start a New Semester</a></li>
                             <li><a href="/admin/edit/brothers">Manage Brothers</a></li>
                             <li><a href="/admin/edit/roles">Manage Available Roles</a></li>
                             <li><a href="/admin/new/specialevent">Create a New Special Event Registration</a></li>
+                        </ul>
+                        <h4>Attendance Administration</h4>
+                        <ul>
                             <li><a href="/admin/attendance">Attendance Sheet</a></li>
                             <li><a href="/download/attendance">Download Attendance</a></li>
                             <li><a href="/download/events">Download Events</a></li>
+                            <li><a href="/admin/sendAttendance">Send Attendance Reminder</a></li>
                         </ul>
 
                 </div>
