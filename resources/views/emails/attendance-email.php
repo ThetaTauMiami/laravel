@@ -16,12 +16,12 @@
     <li>Service: {{ $serviceTotal }}</li>
   </ul>
   <br/>
-  <h6>You still need...</h6>
+  <h5>You still need...</h5>
   <ul>
     <li>{{ max(5-($generalTotal+max($brotherhoodTotal-5, 0)+max($pdTotal-5, 0)+max($serviceTotal-5, 0)), 0) }} General Points</li>
-    <li>{{ max(0, 5-$brotherhoodTotal) }}</li>
-    <li>{{ max(0, 5-$pdTotal) }}</li>
-    <li>{{ max(0, 5-$serviceTotal) }}</li>
+    <li>{{ max(0, 5-$brotherhoodTotal) }} Brotherhood Points</li>
+    <li>{{ max(0, 5-$pdTotal) }} PD Points</li>
+    <li>{{ max(0, 5-$serviceTotal) }} Service Points</li>
   </ul>
   <br/><br/>
   <p>
