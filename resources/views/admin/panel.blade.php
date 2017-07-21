@@ -23,7 +23,6 @@
                             <li><a href="/admin/new/semester">Start a New Semester</a></li>
                             <li><a href="/admin/edit/brothers">Manage Brothers</a></li>
                             <li><a href="/admin/edit/roles">Manage Available Roles</a></li>
-                            <li><a href="/admin/new/specialevent">Create a New Special Event Registration</a></li>
                         </ul>
                         <h4>Attendance Administration</h4>
                         <ul>
