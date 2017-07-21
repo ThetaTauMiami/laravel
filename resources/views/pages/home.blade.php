@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('includes.errors')
+
     <link href="css/home.css" rel="stylesheet">
     <header>
         <div class="header-content">

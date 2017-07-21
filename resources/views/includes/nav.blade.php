@@ -39,45 +39,40 @@
                 <?php
                 $user = Auth::user();
 
-                if (isExecOrAdmin()) {
-                        echo '<li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, ', $user->first_name ,'!
+                $userDropDown = '';
+
+                if (isExecOrAdmin() || hasRole() || Auth::Check()) {
+                    $userDropDown .= '
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, '. $user->first_name .'!
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><a href="/members/'.$user->id.'">MY PROFILE</a></li>';
+                }
 
-                        <li><a href="/members/'.$user->id.'">MY PROFILE</a></li>
+                if (isExecOrAdmin()){
+                    $userDropDown .= '
+                        <li><a href="/admin">ADMIN PANEL</a></li>';
+                }
 
-                        <li><a href="/admin">ADMIN PANEL</a></li>
-                        <li><a href="/recruitment/list">RECRUITMENT EMAIL LIST</a></li>
+                if (hasRole() || isExecOrAdmin()) {
+                    $userDropDown .= '
+                        <li><a href="/chair">CHAIR PANEL</a></li>';
+                }
+
+                if(Auth::check()) {
+                    $userDropDown .= '
                         <li><a href="/logout">LOGOUT</a></li>
                     </ul>
                 </li>';
-              }elseif(hasRole()){
-                echo '<li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, ', $user->first_name ,'!
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
+                }
 
-                <li><a href="/members/'.$user->id.'">MY PROFILE</a></li>
-                <li><a href="/recruitment/list">RECRUITMENT EMAIL LIST</a></li>
-                <li><a href="/logout">LOGOUT</a></li>
-                </ul>
-                </li>';
-              }
-                elseif(Auth::Check()){
-                  echo '<li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Welcome, ', $user->first_name ,'!
-                  <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-
-                  <li><a href="/members/'.$user->id.'">MY PROFILE</a></li>
-                  <li><a href="/logout">LOGOUT</a></li>
-                  </ul>
-                  </li>';
-                }  else {
-                    echo ' <a href="/login"><button class="btn btn-warning" type=
+                if(!Auth::Check()) {
+                    $userDropDown = ' <a href="/login"><button class="btn btn-warning" type=
                         "button" id="log-in-button">LOG IN</button></a>';
                 }
+
+                echo $userDropDown;
                 ?>
             </ul>
 

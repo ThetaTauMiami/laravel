@@ -11,7 +11,8 @@ use App\User;
 use App\Semester;
 use App\Role;
 use App\Event;
-use App\Specialevent;
+use App\SpecialEvent;
+use App\Attendee;
 use DB;
 use Carbon\Carbon;
 use Mail;
@@ -86,16 +87,6 @@ class AdminController extends Controller
 			return view('admin.attendanceSheet', compact('members', 'attendance', 'events'));
 		}
 
-    function newSpecialeventForm(){
-
-        return view('admin.specialevent_form');
-    }
-
-    function editSpecialeventForm($id){
-        $event = Specialevent::find($id);
-
-        return view('admin.specialevent_form', compact('event'));
-    }
 
 
     function manageBrothersSubmit(Request $request){

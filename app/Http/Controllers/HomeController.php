@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\User;
 use App\Album;
+use App\SpecialEvent;
+use App\Attendee;
+use App\Pnm;
 use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth;
 use Auth;
@@ -45,6 +48,48 @@ class HomeController extends Controller
         }
     }
 
+    function specialEventShow($slug){
+
+      $event = SpecialEvent::where('slug', $slug)->first();
+
+      if ($event == null) return redirect('/')->withErrors(['The event you tried to open does not exist or was removed. Check your spelling or please feel free to contact us with any questions.']);
+      
+      return view('pages.specialevent', compact('event'));
+
+    }
+
+    function specialEventStore($id, Request $request){
+
+      $special_event = SpecialEvent::find($id);
+
+      if ($special_event == null) return redirect('/')->withErrors(['The event you tried to open does not exist or was removed. Check your spelling or please feel free to contact us with any questions.']);
+
+      $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+          ]);
+
+      $responses = [];
+
+      foreach ($request->all() as $key => $value){
+        if(!in_array($key, ['name', 'email', 'comments', '_token'])) {
+          $responses[str_replace('_',' ',$key)] = $value;
+        }
+      }
+
+      $new = new Attendee();
+      $new->special_event_id = $special_event->id;
+      $new->name = $request->name;
+      $new->email = $request->email;
+      $new->responses = $responses;
+      $new->comments = $request->comments;
+      $new->save();
+
+
+
+      return redirect(url('/event/'.$special_event->slug))->with('status', 'You have successfully been registered for this event!');
+    }
+
 
 
     public function gallery() {
@@ -66,15 +111,29 @@ class HomeController extends Controller
       return view('pages.recruitment')->with('complete', $complete);
     }
 
-    function recruitmentList() {
-        $pnms = DB::table('pnms')->get();
-        return view('pages.recruitmentList', compact('pnms'));
-    }
-
 
     public function recruitmentSignUp() {
 
       return view('pages.recruitmentSignUp');
+    }
+
+    public function recruitmentSubmit(Request $request)
+    {
+        $this->validate($request, [
+          'email' => 'required|unique:pnms,email',
+          'first_name' => 'required',
+          'last_name' => 'required'
+        ]);
+
+        $pnm = new Pnm;
+        $pnm->email = $request->email;
+        $pnm->first_name = $request->first_name;
+        $pnm->last_name = $request->last_name;
+
+        $pnm->save();
+
+        $complete = 1;
+        return view('pages.recruitment')->with('complete', $complete);
     }
 
 
