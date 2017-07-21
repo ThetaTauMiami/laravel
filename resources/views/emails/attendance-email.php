@@ -9,12 +9,19 @@
 	<p>
 		Hey, {{ $name }} here's a reminder of your point totals!
 	</p>
-
   <ul>
     <li>General: {{ $generalTotal }}</li>
     <li>Brotherhood: {{ $brotherhoodTotal }}</li>
     <li>PD: {{ $pdTotal }}</li>
     <li>Service: {{ $serviceTotal }}</li>
+  </ul>
+  <br/>
+  <h6>You still need...</h6>
+  <ul>
+    <li>{{ max(5-($generalTotal+max($brotherhoodTotal-5, 0)+max($pdTotal-5, 0)+max($serviceTotal-5, 0)), 0) }} General Points</li>
+    <li>{{ max(0, 5-$brotherhoodTotal) }}</li>
+    <li>{{ max(0, 5-$pdTotal) }}</li>
+    <li>{{ max(0, 5-$serviceTotal) }}</li>
   </ul>
   <br/><br/>
   <p>
