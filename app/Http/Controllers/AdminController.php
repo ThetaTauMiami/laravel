@@ -350,7 +350,7 @@ class AdminController extends Controller
 			}
 			Mail::queue('emails.attendance-email', ["name"=>$member->first_name,"generalTotal"=>$general,"brotherhoodTotal"=>$brotherhood,"serviceTotal"=>$service,"pdTotal"=>$pd], function ($message) use ($member) {
 				$message->from('noreply@thetataumiami.com', 'Theta Tau Miami');
-				$message->subject('Theta Tau Attedance');
+				$message->subject('Theta Tau Attendance');
 				$message->to($member->email);
 			});
 		}
