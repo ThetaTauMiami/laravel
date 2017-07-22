@@ -328,7 +328,6 @@ class AdminController extends Controller
 		$events = Event::where('semester_id', '=', $semester->id)->get();
 
 		foreach($members as $member) {
-			if($member->last_name = "Hoffbauer"){
 			$userAtt = DB::table('attendance')->where('user_id', '=', $member->id)->get();
 			$general = 0;
 			$service = 0;
@@ -353,7 +352,6 @@ class AdminController extends Controller
 				$message->subject('Theta Tau Attendance');
 				$message->to($member->email);
 			});
-		}
 		}
 		return redirect("/admin");
 	}
