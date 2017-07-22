@@ -7,7 +7,7 @@
 	<h2>Attendance Reminder</h2>
 
 	<p>
-		Hey, {{ $name }} here's a reminder of your point totals!
+		Hey {{ $name }}, here's a reminder of your point totals!
 	</p>
   <ul>
     <li>General: {{ $generalTotal }}</li>
