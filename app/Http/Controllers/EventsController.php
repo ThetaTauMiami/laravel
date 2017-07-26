@@ -68,7 +68,7 @@ class EventsController extends Controller
     }
 
     public function takeAttendanceVariable(Event $event) {
-      
+
       $attendance = DB::table('attendance')
       ->where('event_id', '=', $event->id)
       ->get();
@@ -235,9 +235,10 @@ class EventsController extends Controller
       $this->validate($request, [
           'eventName' => 'required',
           'pointType' => 'required',
-          'points' => 'required|between:0,4',
+          'points' => 'required|between:0,5',
           'date' => 'required',
           'image' => 'image',
+          'description' => 'required'
         ]);
 
         $event = new Event;

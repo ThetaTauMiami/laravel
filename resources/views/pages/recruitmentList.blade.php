@@ -15,7 +15,13 @@
 					@endforeach
 					<label for="website">Emails:</label>
 					<input type="text" id="website" value = "{{ $list }}" />
-					<button data-copytarget="#website">Copy</button>
+					<button class="btn btn-info" data-copytarget="#website">Copy</button>
+          <form method="post" action="" onsubmit="return confirm('Are you sure you want to PERMANENTLY delete this lit of PNMs and start over with a fresh list?');">
+            {{ csrf_field() }}
+            <input type="hidden" name="_delete" value="true">
+            <input type="submit" value="Clear PNM List**" class="btn btn-danger">
+            **Warning! This cannot be undone! Only clear this list if you are sure you want to delete all existing sign ups.
+          </form>
 
 					<div class="panel panel-default">
     			@foreach ($pnms as $pnm)
