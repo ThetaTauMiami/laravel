@@ -24,9 +24,9 @@
                             </span>
                         </div>
                         @endif
-                        
+
                         @include('includes.errors')
-                        
+
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Event Name</label>
@@ -69,7 +69,7 @@
                                     </span>
                                 @else
                                     <span>
-                                        For example: thetataumiami.com/<strong><u>my-cool-event</u></strong>
+                                        For example: thetataumiami.com/events<strong><u>my-cool-event</u></strong>
                                     </span>
                                 @endif
                             </div>
@@ -111,7 +111,7 @@
                             <p>
                                 Add custom fields you want people to fill out when registering. For example: tshirt size, allergies, favorite sea animal, etc.
                             </p>
-                        	
+
                         	<div id="fields">
 
                         	</div>
