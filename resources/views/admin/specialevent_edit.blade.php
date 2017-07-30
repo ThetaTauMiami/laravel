@@ -87,7 +87,7 @@
                                   $old_date = "";
                                   if(isset($event->reg_open) && $event->reg_open !== ""){
                                     $d = date_create($event->reg_open);
-                                    echo date_format($d,"Y-m-d\TH:i:s.000");
+                                    echo date_format($d,"Y-m-d");
                                   }
 
                                   ?>">
@@ -107,7 +107,7 @@
                                   $old_date = "";
                                   if(isset($event->reg_close) && $event->reg_close !== ""){
                                     $d = date_create($event->reg_close);
-                                    echo date_format($d,"Y-m-d\TH:i:s.000");
+                                    echo date_format($d,"Y-m-d");
                                   }
 
                                   ?>">
