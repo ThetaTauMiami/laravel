@@ -7,7 +7,7 @@
     <br>
     
     
-    <!--     START OFF SEASON FOR RUSH SECTION -->
+    <!--     START OFF SEASON FOR RUSH SECTION 
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-center">
@@ -55,10 +55,10 @@
             </div>
         </div>
     </div>
-   <!--    END OFF SEASON FOR RUSH SECTION     -->
+       END OFF SEASON FOR RUSH SECTION     -->
 
 
-   <!--    START RUSH SEASON SECTION, BE SURE TO EDIT ALL INFORMATION BEFORE UNCOMMENTING
+   <!--    START RUSH SEASON SECTION, BE SURE TO EDIT ALL INFORMATION BEFORE UNCOMMENTING -->
 
     <div class="container">
         <div class="row">
@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-5">
+            <!--<div class="col-sm-5">
                 <h2>Open Events</h2>
                 <hr>
                 <p style="font-size: medium">Theta Tau conducts recruitment at the beginning of each semester. Our
@@ -121,7 +121,7 @@
                     <p><b style="color: #5B0000">Kickball & Chipotle:</b> 9/13 @ 4pm Millet Front Lawn</p>
 
                 </div>
-            </div>
+            </div>-->
         </div>
 		
         <hr>
@@ -138,12 +138,12 @@
                 <p style="font-size: medium">Information nights allow interested students an opportunity to learn more
                     about our chapter of Theta Tau and the recruitment process, ask questions, formally sign up for
                     recruitment, and meet our brothers. Each semester we offer two information nights, but attendance is
-                    only expected and required at one of these. These sessions should last approximately 45 minutes and
+                    only expected and required at one of these. These sessions should last approximately 1 hour and
                     are casual dress.</p>
                 <div class="well well-sm">
-                    <p><b style="color: #5B0000">Session 1:</b> 1/31 @ 6:00pm LAWS 100</p>
+                    <p><b style="color: #5B0000">Session 1:</b> 9/19/17 @ 7:30pm BEN 102</p>
                     <br>
-                    <p><b style="color: #5B0000">Session 2:</b> 2/2 @ 6:00pm LAWS 100</p>
+                    <p><b style="color: #5B0000">Session 2:</b> 9/21/17 @ 7:30pm BEN 102</p>
                 </div>
             </div>
         </div>
@@ -165,9 +165,9 @@
                     nights in order to get to know the maximum number of active brothers. These sessions should last two
                     hours and are casual dress.</p>
                 <div class="well well-sm">
-                    <p><b style="color: #5B0000">Informal Night 1:</b> 2/7 @ 7:00pm PSN 112</p>
+                    <p><b style="color: #5B0000">Informal Night 1:</b> 9/27/17 @ 7:00pm EGB 165 & GAR 156</p>
                     <br>
-                    <p><b style="color: #5B0000">Informal Night 2:</b> 2/8 @ 7:00pm  PSN 112</p>
+                    <p><b style="color: #5B0000">Informal Night 2:</b> 9/28/17 @ 7:00pm EGB 165 & GAR 156</p>
                 </div>
             </div>
         </div>
@@ -196,7 +196,7 @@
     </div>
     
     
-                  END RUSH SEASON SECTION      -->
+        <!--          END RUSH SEASON SECTION      -->
 
     <br>
 
