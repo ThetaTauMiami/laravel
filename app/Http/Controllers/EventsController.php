@@ -225,6 +225,17 @@ class EventsController extends Controller
 
     }
 
+    //This function is used for generating random strings. Using it for file names
+    public function generateRandomString($length = 30) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
 
     /*
       This function creates a new Event in the database after validating them
@@ -249,13 +260,13 @@ class EventsController extends Controller
         if($request->image){
           $img = $request->file('image');
           $extension = $img->getClientOriginalExtension();
-          $fileName = $img->getClientOriginalName();
+          $fileName = EventsController::generateRandomString();//$img->getClientOriginalName();
           $publicPath = public_path();
           $filePath = "uploads/Event_Thumbs/{$fileName}";
           $request['filepath'] = $filePath;
 
           //this code checks to see if there is a file by that name already and changes it if so
-          $nameWithoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+          /*$nameWithoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
           $existing = DB::table('events')->where('thumb_path', '=', $filePath)->first();
           $iterator = 1;
           while($existing != null){
@@ -263,10 +274,10 @@ class EventsController extends Controller
             $filePath = "uploads/Event_Thumbs/".$fileName;
             $existing = DB::table('events')->where('thumb_path', '=', $filePath)->first();
             $iterator = $iterator+1;
-          }
+          }*/
 
           $img->move("uploads/Event_Thumbs", $fileName);
-          $im = Imager::make($filePath)->fit(300, 300)->save($filePath);
+          $im = Imager::make($filePath)->fit(200, 200)->save($filePath);
 
           $image = new Image;
 
@@ -389,13 +400,13 @@ class EventsController extends Controller
         }
         $img = $request->file('image');
         $extension = $img->getClientOriginalExtension();
-        $fileName = $img->getClientOriginalName();
+        $fileName = EventsController::generateRandomString();//$img->getClientOriginalName();
         $publicPath = public_path();
         $filePath = "uploads/Event_Thumbs/{$fileName}";
         $request['filepath'] = $filePath;
 
         //this code checks to see if there is a file by that name already and changes it if so
-        $nameWithoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
+        /*$nameWithoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $fileName);
         $existing = DB::table('events')->where('thumb_path', '=', $filePath)->first();
         $iterator = 1;
         while($existing != null){
@@ -403,7 +414,7 @@ class EventsController extends Controller
           $filePath = "uploads/Event_Thumbs/".$fileName;
           $existing = DB::table('events')->where('thumb_path', '=', $filePath)->first();
           $iterator = $iterator+1;
-        }
+        }*/
 
         $img->move("uploads/Event_Thumbs", $fileName);
         $im = Imager::make($filePath)->resize(150, 150)->save($filePath);
@@ -447,5 +458,7 @@ class EventsController extends Controller
 
       return \Redirect::to("/events/".$event->id);
     }
+
+
 
 }
