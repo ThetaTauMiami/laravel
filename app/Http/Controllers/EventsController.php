@@ -417,7 +417,7 @@ class EventsController extends Controller
         }*/
 
         $img->move("uploads/Event_Thumbs", $fileName);
-        $im = Imager::make($filePath)->resize(150, 150)->save($filePath);
+        $im = Imager::make($filePath)->fit(200, 200)->save($filePath);
 
         $image = new Image;
 
