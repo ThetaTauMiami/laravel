@@ -1,4 +1,4 @@
-
+g
 
 @extends('layouts.default')
 
@@ -48,8 +48,12 @@
 					{{ csrf_field() }}
 						<fieldset>
 
-							<p style="margin-bottom: 2.5em;">
-								{{$event->description}}
+							<p style="margin-bottom: 1.5em;">
+								{!! nl2br($event->description) !!}
+							</p>
+
+							<p style="margin-bottom: 2.5em;font-style:italic;">
+								If you need to update your information, you may resubmit the form with the same email address, or <a href="{{url('/contact')}}">Contact Us</a> with updates.
 							</p>
 
 							<h2>Register for Event</h2>

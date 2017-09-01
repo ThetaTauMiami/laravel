@@ -82,7 +82,15 @@
                             <label for="reg_open" class="col-md-2 control-label">Registration Opens</label>
 
                             <div class="col-md-4">
-                                <input id="reg_open" type="date" class="form-control" name="reg_open" placeholder="The name of the event" value="{{ $event->reg_open }}">
+                                <input id="reg_open" type="date" class="form-control" name="reg_open" placeholder="The name of the event" value="<?php 
+
+                                  $old_date = "";
+                                  if(isset($event->reg_open) && $event->reg_open !== ""){
+                                    $d = date_create($event->reg_open);
+                                    echo date_format($d,"Y-m-d");
+                                  }
+
+                                  ?>">
 
                                 @if ($errors->has('reg_open'))
                                     <span class="help-block">
@@ -94,7 +102,15 @@
                             <label for="reg_close" class="col-md-2 control-label">Registration Closes</label>
 
                             <div class="col-md-4">
-                                <input id="reg_close" type="date" class="form-control" name="reg_close" placeholder="The name of the event" value="{{ $event->reg_close }}">
+                                <input id="reg_close" type="date" class="form-control" name="reg_close" placeholder="The name of the event" value="<?php 
+
+                                  $old_date = "";
+                                  if(isset($event->reg_close) && $event->reg_close !== ""){
+                                    $d = date_create($event->reg_close);
+                                    echo date_format($d,"Y-m-d");
+                                  }
+
+                                  ?>">
 
                                 @if ($errors->has('reg_close'))
                                     <span class="help-block">
