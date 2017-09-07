@@ -164,6 +164,54 @@ class HomeController extends Controller
         return view('pages.members', compact('members'));
     }
 
+    public function resumes(Request $request) {
+
+      if (isset($request->gradYears) && isset($request->majors)) {
+        $members= User::with('image')
+          ->where('active_status', 1)
+          ->whereNotNull('resume_path')
+          ->whereIn('school_class', $request->gradYears)
+          ->whereIn('major', $request->majors)
+          ->orderby('roll_number')
+          ->get();
+      } else {
+        $members= User::with('image')
+          ->where('active_status', 1)
+          ->whereNotNull('resume_path')
+          ->orderby('roll_number')
+          ->get();
+      } 
+
+      $gradYearsUsers = DB::table('users')
+        ->select('school_class')
+        ->orderby('school_class')
+        ->groupby('school_class')
+        ->get();
+
+      $i = 0;
+      $gradYears = [];
+
+      foreach($gradYearsUsers as $gradYear) {
+        $gradYears[$i++] = $gradYear->school_class;
+      }
+
+      $majorsUsers = DB::table('users')
+        ->select('major')
+        ->orderby('major')
+        ->groupby('major')
+        ->get();
+
+      $i = 0;
+      $majors = [];
+
+      foreach($majorsUsers as $major) {
+        $majors[$i++] = $major->major;
+      }
+
+
+      return view('pages.resumes', compact('members', 'majors', 'gradYears'));
+    }
+
     public function alumni() {
       $alumni = User::where('active_status', 0)
         ->with ('image')
