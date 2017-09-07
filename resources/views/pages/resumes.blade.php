@@ -25,13 +25,23 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-2 col-md-4 col-sm-12">
-          FILTER GOES HERE
+          <form action="/resumes" method="post">
+              {{ csrf_field() }}
+            <h3>Major</h3>
+              <input type="checkbox" name="majors[]" value="Software">
+              <input type="checkbox" name="majors[]" value="General">
+            <h3>Graduation Years</h3>
+              <input type="checkbox" name="gradYears[]" value="2020">
+              <input type="checkbox" name="gradYears[]" value="2019">
+
+            <input type="submit" class="btn btn-primary">
+          </form>
         </div>
         <div class="col-lg-3 col-md-8 col-sm-12" style="max-height:100%;overflow-y: auto;">
           <ul style="list-style-type: none;">
           @foreach ($members as $member)
-            <li class="member_resume" resume_path="/members/{{$member->id}}/resume" style="cursor:pointer;">
-                <h3>{{$member->first_name}} {{$member->last_name}}
+            <li style="display: -webkit-flex;display: flex;">
+                <h3 class="member_resume" resume_path="/members/{{$member->id}}/resume" style="cursor:pointer;display:inline-block;">{{$member->first_name}} {{$member->last_name}}
                     <br/><small>{{$member->major}} | Class of {{$member->school_class}}</small>
                 </h3>
             </li>
