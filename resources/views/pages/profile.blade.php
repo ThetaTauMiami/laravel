@@ -50,7 +50,7 @@
                                 @if ($user->resume_path!=null)
                                 </br>
                                 </br>
-                                <a href="/{{$user->resume_path}}">Resume</a>
+                                <a href="/members/{{$user->id}}/resume">Resume</a>
                                 @endif
                                 <br>
                                 <br>

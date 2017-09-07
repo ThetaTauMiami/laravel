@@ -14,6 +14,7 @@ use Auth;
 use DB;
 use Carbon\Carbon;
 use Mail;
+use Response;
 
 class HomeController extends Controller
 {
@@ -46,6 +47,13 @@ class HomeController extends Controller
         }else{
             return view('pages.home');
         }
+    }
+
+    function resume(User $user) {
+      return Response::make(file_get_contents(public_path().'/'.$user->resume_path), 200, [
+          'Content-Type' => 'application/pdf',
+          'Content-Disposition' => 'inline; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"'
+      ]);
     }
 
     function specialEventShow($slug){
