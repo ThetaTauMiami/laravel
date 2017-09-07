@@ -1,4 +1,3 @@
-g
 
 @extends('layouts.default')
 
