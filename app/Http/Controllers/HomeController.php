@@ -14,6 +14,7 @@ use Auth;
 use DB;
 use Carbon\Carbon;
 use Mail;
+use Response;
 
 class HomeController extends Controller
 {
