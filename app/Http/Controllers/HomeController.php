@@ -50,7 +50,7 @@ class HomeController extends Controller
     }
 
     function resume(User $user) {
-      return Response::make(file_get_contents(public_path().$user->resume_path), 200, [
+      return Response::make(file_get_contents(public_path().'/'.$user->resume_path), 200, [
           'Content-Type' => 'application/pdf',
           'Content-Disposition' => 'inline; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"'
       ]);
