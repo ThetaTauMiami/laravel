@@ -14,6 +14,7 @@ use Auth;
 use DB;
 use Carbon\Carbon;
 use Mail;
+use Response;
 
 class HomeController extends Controller
 {
@@ -46,6 +47,13 @@ class HomeController extends Controller
         }else{
             return view('pages.home');
         }
+    }
+
+    function resume(User $user) {
+      return Response::make(file_get_contents(public_path().'/'.$user->resume_path), 200, [
+          'Content-Type' => 'application/pdf',
+          'Content-Disposition' => 'inline; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"'
+      ]);
     }
 
     function specialEventShow($slug){
@@ -154,6 +162,77 @@ class HomeController extends Controller
         ->get();
 
         return view('pages.members', compact('members'));
+    }
+
+    public function resumes(Request $request) { 
+
+      $gradYearsUsers = DB::table('users')
+        ->where('active_status', 1)
+        ->whereNotNull('resume_path')
+        ->select('school_class')
+        ->orderby('school_class')
+        ->groupby('school_class')
+        ->get();
+
+      $i = 0;
+      $gradYears = [];
+
+      foreach($gradYearsUsers as $gradYear) {
+        $gradYears[$i++] = $gradYear->school_class;
+      }
+
+      // $majorsUsers = DB::table('users')
+      //   ->where('active_status', 1)
+      //   ->whereNotNull('resume_path')
+      //   ->select('major')
+      //   ->orderby('major')
+      //   ->groupby('major')
+      //   ->get();
+
+      // $i = 0;
+      // $majors = [];
+
+      // foreach($majorsUsers as $major) {
+      //   $majors[$i++] = $major->major;
+      // }
+
+      $majors = [
+        'Computer Science',
+        'Software Engineering',
+        'General Engineering',
+        'Undecided'
+      ];
+
+
+      if (isset($request->gradYears) && isset($request->majors)) {
+        $members= User::with('image')
+          ->where('active_status', 1)
+          ->whereNotNull('resume_path')
+          ->where(function($query) use ($request) {
+            $query->where('active_status', 0);
+            foreach($request->majors as $major) {
+              $query->orWhere('major','like','%'.$major.'%');
+            }
+          })
+          ->whereIn('school_class', $request->gradYears)
+          ->orderby('last_name')
+          ->get();
+
+          $filteredMajors = $request->majors;
+          $filteredYears = $request->gradYears;
+      } else {
+        $members= User::with('image')
+          ->where('active_status', 1)
+          ->whereNotNull('resume_path')
+          ->orderby('roll_number')
+          ->get();
+
+          $filteredMajors = $majors;
+          $filteredYears = $gradYears;
+      }
+
+
+      return view('pages.resumes', compact('members', 'majors', 'gradYears', 'filteredMajors', 'filteredYears'));
     }
 
     public function alumni() {
