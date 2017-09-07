@@ -222,7 +222,7 @@ class HomeController extends Controller
             }
           })
           ->whereIn('school_class', $request->gradYears)
-          ->orderby('last_name')
+          ->orderby('first_name')
           ->get();
 
           $filteredMajors = $request->majors;
@@ -231,7 +231,7 @@ class HomeController extends Controller
         $members= User::with('image')
           ->where('active_status', 1)
           ->whereNotNull('resume_path')
-          ->orderby('roll_number')
+          ->orderby('first_name')
           ->get();
 
           $filteredMajors = $majors;
