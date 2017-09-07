@@ -45,7 +45,7 @@
             <input type="submit" class="btn btn-primary">
           </form>
         </div>
-        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-12" style="max-height:100%;overflow-y: auto;">
+        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-12" style="max-height:50%;overflow-y: auto;">
           <ul style="list-style-type: none;">
           @foreach ($members as $member)
             <li style="display: -webkit-flex;display: flex;">
@@ -72,7 +72,7 @@ $(".member_resume").click(function(event){
   $('#resume').remove();
   resume = $(this).attr("resume_path");
   $('#resume_container').append('<embed id="resume" src="'+resume+'" width="100%" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
-  sizeResume();
+  setTimeout(sizeResume, 100);
 });
 
 function sizeResume() {

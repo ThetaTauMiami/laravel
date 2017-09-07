@@ -197,10 +197,17 @@ class HomeController extends Controller
       // }
 
       $majors = [
+        'Bioengineering',
+        'Chemical Engineering',
+        'Paper Science',
         'Computer Science',
         'Software Engineering',
-        'General Engineering',
-        'Undecided'
+        'Computer Engineering',
+        'Electrical Engineering',
+        'Manufacturing Engineering',
+        'Mechanical Engineering',
+        'Engineering Management',
+        'General Engineering'
       ];
 
 
