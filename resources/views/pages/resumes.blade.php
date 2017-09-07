@@ -24,20 +24,28 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-2 col-md-4 col-sm-12">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
           <form action="/resumes" method="post">
               {{ csrf_field() }}
-            <h3>Major</h3>
-              <input type="checkbox" name="majors[]" value="Software">
-              <input type="checkbox" name="majors[]" value="General">
             <h3>Graduation Years</h3>
-              <input type="checkbox" name="gradYears[]" value="2020">
-              <input type="checkbox" name="gradYears[]" value="2019">
+              <ul style="list-style-type: none;">
+              @foreach ($gradYears as $gradYear)
+                <?php $checked = (in_array($gradYear, $filteredYears)) ? "checked" : ""; ?>
+                <li><input id="{{$gradYear}}" type="checkbox" name="gradYears[]" value="{{$gradYear}}" {{$checked}}> <label for="{{$gradYear}}">{{$gradYear}}</label></li>
+              @endforeach
+              </ul>
+            <h3>Major</h3>
+              <ul style="list-style-type: none;">
+              @foreach ($majors as $major)
+                <?php $checked = (in_array($major, $filteredMajors)) ? "checked" : ""; ?>
+                <li><input id="{{$major}}" type="checkbox" name="majors[]" value="{{$major}}" {{$checked}}> <label for="{{$major}}">{{$major}}</label></li>
+              @endforeach
+              </ul>
 
             <input type="submit" class="btn btn-primary">
           </form>
         </div>
-        <div class="col-lg-3 col-md-8 col-sm-12" style="max-height:100%;overflow-y: auto;">
+        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-12" style="max-height:100%;overflow-y: auto;">
           <ul style="list-style-type: none;">
           @foreach ($members as $member)
             <li style="display: -webkit-flex;display: flex;">
