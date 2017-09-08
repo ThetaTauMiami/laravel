@@ -214,7 +214,7 @@ class HomeController extends Controller
       if (isset($request->gradYears) && isset($request->majors)) {
         $members= User::with('image')
           ->where('active_status', 1)
-          ->whereNotNull('resume_path')
+          ->where('resume_path', 'like', '%.pdf')
           ->where(function($query) use ($request) {
             $query->where('active_status', 0);
             foreach($request->majors as $major) {
@@ -230,7 +230,7 @@ class HomeController extends Controller
       } else {
         $members= User::with('image')
           ->where('active_status', 1)
-          ->whereNotNull('resume_path')
+          ->where('resume_path', 'like', '%.pdf')
           ->orderby('first_name')
           ->get();
 
