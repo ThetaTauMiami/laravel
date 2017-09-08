@@ -51,7 +51,7 @@ class HomeController extends Controller
 
     function resume(User $user) {
       return Response::make(file_get_contents(public_path().'/'.$user->resume_path), 200, [
-          'Content-Type' => 'application/pdf',
+          'Content-Type' => 'application/pdf; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"',
           'Content-Disposition' => 'inline; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"'
       ]);
     }
@@ -169,6 +169,7 @@ class HomeController extends Controller
       $gradYearsUsers = DB::table('users')
         ->where('active_status', 1)
         ->whereNotNull('resume_path')
+        ->where('resume_path', 'like', '%.pdf')
         ->select('school_class')
         ->orderby('school_class')
         ->groupby('school_class')
@@ -214,6 +215,7 @@ class HomeController extends Controller
       if (isset($request->gradYears) && isset($request->majors)) {
         $members= User::with('image')
           ->where('active_status', 1)
+          ->whereNotNull('resume_path')
           ->where('resume_path', 'like', '%.pdf')
           ->where(function($query) use ($request) {
             $query->where('active_status', 0);
@@ -230,6 +232,7 @@ class HomeController extends Controller
       } else {
         $members= User::with('image')
           ->where('active_status', 1)
+          ->whereNotNull('resume_path')
           ->where('resume_path', 'like', '%.pdf')
           ->orderby('first_name')
           ->get();

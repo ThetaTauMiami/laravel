@@ -71,12 +71,12 @@
 $(".member_resume").click(function(event){
   $('#resume').remove();
   resume = $(this).attr("resume_path");
-  $('#resume_container').append('<embed id="resume" src="'+resume+'" width="100%" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
+  $('#resume_container').append('<embed id="MyResume" src="'+resume+'" width="100%" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
   setTimeout(sizeResume, 100);
 });
 
 function sizeResume() {
-  $('#resume').attr('height',($('#resume').width()*1.33)+'px')
+  $('#MyResume').attr('height',($('#MyResume').width()*1.33)+'px')
 }
 
 $(window).resize(sizeResume);
