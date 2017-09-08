@@ -45,7 +45,7 @@
             <input type="submit" class="btn btn-primary">
           </form>
         </div>
-        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-12" style="max-height:50%;overflow-y: auto;">
+        <div class="col-lg-3 col-md-8 col-sm-8 col-xs-12" style="max-height:50vh;overflow-y: auto;">
           <ul style="list-style-type: none;">
           @foreach ($members as $member)
             <li style="display: -webkit-flex;display: flex;">
