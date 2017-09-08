@@ -71,15 +71,15 @@
 $(".member_resume").click(function(event){
   $('#resume').remove();
   resume = $(this).attr("resume_path");
-  $('#resume_container').append('<embed id="MyResume" src="'+resume+'" width="100%" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
-  setTimeout(sizeResume, 100);
+  $('#resume_container').append('<embed id="resume" src="'+resume+'" width="100%" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html">');
 });
 
-function sizeResume() {
-  $('#MyResume').attr('height',($('#MyResume').width()*1.33)+'px')
-}
+// hacky McHackHack to get firefox to resize the pdf window because it doesn't display the embed tag until it's loaded, no way to tell when that happens easily
+$(document).ready(function(){setInterval(sizeResume, 150);});
 
-$(window).resize(sizeResume);
+function sizeResume() {
+  $('#resume').attr('height',($('#resume').width()*1.33)+'px')
+}
 
 </script>
 
