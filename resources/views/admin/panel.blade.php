@@ -29,13 +29,22 @@
                             <li><a href="/admin/attendance">Attendance Sheet</a></li>
                             <li><a href="/download/attendance">Download Attendance</a></li>
                             <li><a href="/download/events">Download Events</a></li>
-                            <li><a href="/admin/sendAttendance">Send Attendance Reminder</a></li>
+                            <li><a href="javascript:areYouSure('/admin/sendAttendance', 'Are you sure you want to send an email to the entire chapter?')"><!--<a href="/admin/sendAttendance">-->Send Attendance Reminder</a></li>
                         </ul>
 
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </div>
+
+<script>
+ function areYouSure(url, message){
+   bootbox.confirm("<p>"+message+"</p>", function(yes){
+     if(yes) window.location = url;
+   });
+ }
+</script>
 
 @endsection
