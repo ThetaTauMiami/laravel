@@ -176,4 +176,14 @@ class ProfileController extends Controller
         $img = Imager::make($image)->fit(300, 300)->save($withoutExt.'_thumb.'.$extension);
         return $withoutExt.'_thumb.'.$extension;
     }
+
+    public function removeResume(User $user)
+    {
+      if(Auth::id()==$user->id){
+        unlink($user->resume_path);
+        $user->resume_path = null;
+        $user->save();
+      }
+      return redirect('members/'.$user->id);
+    }
 }
