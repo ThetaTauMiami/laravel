@@ -54,7 +54,8 @@
                                 @endif
                                 <br>
                                 <br>
-                                @if (Auth::id()==$user->id)
+                              
+                                @if (Auth::id()==$user->id || isExecOrAdmin())
                                     <a href="/editProfile/{{$user->id}}">
                                         <button>Edit Profile</button>
                                     </a>
