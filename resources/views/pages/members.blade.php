@@ -22,7 +22,8 @@
             </div>
         </div>
 
-    <div class="row">
+    <div class="container-fluid">
+      <div class="row">
         @foreach ($members as $member)
           <div class="col-lg-4 col-sm-6 text-center">
                 @if (isset($member->image->thumb_path))
@@ -41,5 +42,6 @@
           </div>
         @endforeach
       </div>
+    </div>
 </div>
 @stop

@@ -25,6 +25,7 @@
                         <div class="panel-heading">Member Information</div>
                         <div class="panel-body">
                             <br>
+                            <div class="row">
                             <div class="col-sm-offset-2 col-sm-4">
                                 @if(isset($image))
                                     <a href="/{{$image->file_path}}">
@@ -50,7 +51,7 @@
                                 @if ($user->resume_path!=null)
                                 </br>
                                 </br>
-                                <a href="/{{$user->resume_path}}">Resume</a>
+                                <a href="/members/{{$user->id}}/resume">Resume</a><br/>
                                 @endif
                                 <br>
                                 <br>
@@ -64,6 +65,22 @@
                                     </a>
                                 @endif
                             </div>
+                          </div>
+                            <div class="row">
+                            @if (Auth::id()==$user->id)
+                                <a href="/editProfile/{{$user->id}}">
+                                    <button style="margin-left:30%;">Edit Profile</button>
+                                </a>
+                                @if ($user->resume_path!=null)
+                                <a href="/editProfile/{{$user->id}}/removeresume">
+                                  <button style="margin-left:15px;">Remove Resume</button>
+                                </a>
+                                @endif
+                                <a href="/members/{{$user->id}}/attendance">
+                                    <button style="margin-left:15px;">View Attendance</button>
+                                </a>
+                            @endif
+                          </div>
                         </div>
                     </div>
                 </div>

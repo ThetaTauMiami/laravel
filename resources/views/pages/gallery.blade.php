@@ -89,14 +89,14 @@
     <div class="container" style="margin-top: 20px">
 
 
-                <div class="row">
+          <div class="row">
 
 					@foreach ($albums as $album)
             <?php if($album->is_public || Auth::check()) { ?>
 						<?php
 							$thumbimage = $album->images->first();
 						 ?>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <div class="col-lg-3 col-md-4 col-xs-6">
                 <a class="thumbnail" href="/gallery/{{ $album->id }}">
 
 									@if($thumbimage)
@@ -104,7 +104,7 @@
 									@else
 										<img class="img-responsive" src="{{ asset('img/placeholder-thumb.png') }}" alt="">
 									@endif
-										<p> {{ $album->name }} </p>
+										<p style="max-height: 18px; text-overflow: ellipsis; overflow:auto;"> {{ $album->name }} </p>
                 </a>
             </div>
             <?php } ?>

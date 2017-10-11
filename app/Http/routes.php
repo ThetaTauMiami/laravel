@@ -32,7 +32,11 @@ Route::get('recruitment/signup', 	'HomeController@recruitmentSignUp');
 Route::post('recruitment/signup', 	'HomeController@recruitmentSubmit');
 Route::get('members', 		'HomeController@members');
 Route::get('members/{user}', 'HomeController@profile');
+Route::get('members/{user}/resume', 'HomeController@resume');
 Route::get('members/{user}/attendance',      'ProfileController@getUserAttendanceSheet'); //should be only accessible to admin or that user
+
+Route::get('resumes',      'HomeController@resumes');
+Route::post('resumes',      'HomeController@resumes');
 
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
@@ -82,6 +86,7 @@ Route::get('home', function () {
 //Patch Routes
 Route::patch('editProfile/{user}', 'ProfileController@update');
 Route::patch('events/edit/{event}', 'EventsController@update');
+Route::get('/editProfile/{user}/removeresume', 'ProfileController@removeResume');
 
 
 
@@ -177,4 +182,3 @@ Route::get('/linkedin/callback',
 */
 
 Route::get('/deploy', 'Maintenance@deploy');
-
