@@ -54,7 +54,16 @@
                                 <a href="/members/{{$user->id}}/resume">Resume</a><br/>
                                 @endif
                                 <br>
-
+                                <br>
+                              
+                                @if (Auth::id()==$user->id || isExecOrAdmin())
+                                    <a href="/editProfile/{{$user->id}}">
+                                        <button>Edit Profile</button>
+                                    </a>
+                                    <a href="/members/{{$user->id}}/attendance">
+                                        <button>View Attendance</button>
+                                    </a>
+                                @endif
                             </div>
                           </div>
                             <div class="row">
