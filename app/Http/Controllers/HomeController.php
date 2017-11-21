@@ -61,7 +61,7 @@ class HomeController extends Controller
       $event = SpecialEvent::where('slug', $slug)->first();
 
       if ($event == null) return redirect('/')->withErrors(['The event you tried to open does not exist or was removed. Check your spelling or please feel free to contact us with any questions.']);
-      
+
       return view('pages.specialevent', compact('event'));
 
     }
@@ -160,11 +160,11 @@ class HomeController extends Controller
         ->where('active_status', 1)
         ->orderby('roll_number')
         ->get();
-
+        
         return view('pages.members', compact('members'));
     }
 
-    public function resumes(Request $request) { 
+    public function resumes(Request $request) {
 
       $gradYearsUsers = DB::table('users')
         ->where('active_status', 1)
