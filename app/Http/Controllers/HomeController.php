@@ -160,7 +160,7 @@ class HomeController extends Controller
         ->where('active_status', 1)
         ->orderby('roll_number')
         ->get();
-        
+
         return view('pages.members', compact('members'));
     }
 
