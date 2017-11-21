@@ -145,9 +145,13 @@ class EventsController extends Controller
         ->get();
       }
 
+      $users = DB::table('users')
+      ->orderBy($sort)
+      ->get();
 
 
-      return view('events.takeAttendance', compact('event', 'attended', 'didNotAttend', 'attendedID'));
+
+      return view('events.takeAttendance', compact('event', 'attended', 'didNotAttend', 'attendedID', 'users'));
 
     }
 
