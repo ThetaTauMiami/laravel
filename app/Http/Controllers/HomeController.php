@@ -51,7 +51,7 @@ class HomeController extends Controller
 
     function resume(User $user) {
       return Response::make(file_get_contents(public_path().'/'.$user->resume_path), 200, [
-          'Content-Type' => 'application/pdf',
+          'Content-Type' => 'application/pdf; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"',
           'Content-Disposition' => 'inline; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"'
       ]);
     }
@@ -160,7 +160,7 @@ class HomeController extends Controller
         ->where('active_status', 1)
         ->orderby('roll_number')
         ->get();
-        
+
         return view('pages.members', compact('members'));
     }
 
@@ -169,6 +169,7 @@ class HomeController extends Controller
       $gradYearsUsers = DB::table('users')
         ->where('active_status', 1)
         ->whereNotNull('resume_path')
+        ->where('resume_path', 'like', '%.pdf')
         ->select('school_class')
         ->orderby('school_class')
         ->groupby('school_class')
@@ -197,10 +198,17 @@ class HomeController extends Controller
       // }
 
       $majors = [
+        'Bioengineering',
+        'Chemical Engineering',
+        'Paper Science',
         'Computer Science',
         'Software Engineering',
-        'General Engineering',
-        'Undecided'
+        'Computer Engineering',
+        'Electrical Engineering',
+        'Manufacturing Engineering',
+        'Mechanical Engineering',
+        'Engineering Management',
+        'General Engineering'
       ];
 
 
@@ -208,6 +216,7 @@ class HomeController extends Controller
         $members= User::with('image')
           ->where('active_status', 1)
           ->whereNotNull('resume_path')
+          ->where('resume_path', 'like', '%.pdf')
           ->where(function($query) use ($request) {
             $query->where('active_status', 0);
             foreach($request->majors as $major) {
@@ -215,7 +224,7 @@ class HomeController extends Controller
             }
           })
           ->whereIn('school_class', $request->gradYears)
-          ->orderby('last_name')
+          ->orderby('first_name')
           ->get();
 
           $filteredMajors = $request->majors;
@@ -224,7 +233,8 @@ class HomeController extends Controller
         $members= User::with('image')
           ->where('active_status', 1)
           ->whereNotNull('resume_path')
-          ->orderby('roll_number')
+          ->where('resume_path', 'like', '%.pdf')
+          ->orderby('first_name')
           ->get();
 
           $filteredMajors = $majors;
