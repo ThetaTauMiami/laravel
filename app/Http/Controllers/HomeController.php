@@ -53,7 +53,7 @@ class HomeController extends Controller
       $event = SpecialEvent::where('slug', $slug)->first();
 
       if ($event == null) return redirect('/')->withErrors(['The event you tried to open does not exist or was removed. Check your spelling or please feel free to contact us with any questions.']);
-      
+
       return view('pages.specialevent', compact('event'));
 
     }
@@ -93,8 +93,17 @@ class HomeController extends Controller
 
 
     public function gallery() {
-        $albums = Album::with('images')->orderBy('created_at', 'desc')->get();
-        return view('pages.gallery', compact('albums'));
+      $semester = HomeController::getCurrentSemester();
+      return HomeController::gallerySemester($semester->id);
+    }
+
+    //TODO: Add checking for semesters that don't exist.
+
+    public function gallerySemester($semester_id){
+      $semester_name = HomeController::getSemesterByID($semester_id)->name;
+      $currentSemester = HomeController::getCurrentSemester()->id;
+      $albums = Album::with('images')->orderBy('created_at', 'desc')->where('semester_id', '=', $semester_id)->get();
+      return view('pages.gallery', compact('albums', 'semester_id', 'semester_name', 'currentSemester'));
     }
 
     public function events() {
@@ -262,5 +271,9 @@ class HomeController extends Controller
       return $semester;
     }
 
+    public function getSemesterByID($semester_id){
+      $semester = DB::table('semesters')->where('id', '=', $semester_id)->first();
+      return $semester;
+    }
 
 }

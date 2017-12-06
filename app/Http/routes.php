@@ -26,6 +26,7 @@
 
 Route::get('/', 			'HomeController@index');
 Route::get('gallery', 		'HomeController@gallery');
+Route::get('gallery/semester/{semester}', 		'HomeController@gallerySemester');
 Route::get('events', 		'HomeController@events');
 Route::get('recruitment', 	'HomeController@recruitment');
 Route::get('recruitment/signup', 	'HomeController@recruitmentSignUp');
@@ -177,4 +178,3 @@ Route::get('/linkedin/callback',
 */
 
 Route::get('/deploy', 'Maintenance@deploy');
-
