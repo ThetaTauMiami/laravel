@@ -20,7 +20,7 @@
   </div>
   <div class="panel panel-default text-center"><h4 style="display:inline-block;">{{ $album->description }}</h4>
   @if(Auth::Check())
-
+  <br/>
       <button id="button" class="btn btn-primary">
           Upload New Image
       </button>

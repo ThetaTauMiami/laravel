@@ -29,6 +29,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="/members">ACTIVES</a></li>
                         <li><a href="/alumni">ALUMNI</a></li>
+                        <li><a href="/resumes">MEMBER RESUMES</a></li>
                     </ul>
                 </li>
                 <li>

@@ -12,7 +12,7 @@
                         Welcome to our brotherhood. Be sure to <a href="/linkedin">connect your LinkedIn account</a> and later view your profile so that you can upload a profile picture and upload your resume.
                     </p>
                     <p>
-                        If you have any questions or find any issues related to the site, contact <a href="mailto:deperomm@miamioh.edu,hoffbact@miamioh.edu">the tech chairs</a> Matt DePero and Cole Hoffbauer.
+                        If you have any questions or find any issues related to the site, contact <a href="mailto:hoffbact@miamioh.edu">the tech chair</a> Cole Hoffbauer.
                     </p>
                 </div>
             </div>

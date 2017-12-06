@@ -8,12 +8,15 @@ use App\Album;
 use App\SpecialEvent;
 use App\Attendee;
 use App\Pnm;
+use App\RecruitmentEvent;
 use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth;
 use Auth;
 use DB;
 use Carbon\Carbon;
 use Mail;
+use App\Image;
+use Intervention\Image\ImageManagerStatic as Imager;
 
 class HomeController extends Controller
 {
@@ -46,6 +49,13 @@ class HomeController extends Controller
         }else{
             return view('pages.home');
         }
+    }
+
+    function resume(User $user) {
+      return Response::make(file_get_contents(public_path().'/'.$user->resume_path), 200, [
+          'Content-Type' => 'application/pdf; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"',
+          'Content-Disposition' => 'inline; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"'
+      ]);
     }
 
     function specialEventShow($slug){
@@ -115,9 +125,118 @@ class HomeController extends Controller
       return view('pages.events', compact('events'));
     }
 
-    public function recruitment() {
+    public function recruitment(){
       $complete = ['value' => 0];
-      return view('pages.recruitment')->with('complete', $complete);
+      //$recruitment_events = DB::table('recruitment_events')->get();
+      $recruitment_events = RecruitmentEvent::with("image")->get();
+      //die(var_dump($recruitment_events));
+      return view('pages.recruitment',compact('recruitment_events'))->with('complete',$complete);
+    }
+
+    public function createRecruitmentEvent(){
+        return view('pages.createRecruitment');
+    }
+
+    //Stores the new recruitment event in the database
+    protected function store(Request $request){
+      $this->validate($request, [
+          'title' => 'required',
+          'description' => 'required'
+        ]);
+      $recruitment_event = new RecruitmentEvent;
+
+      //RecruitmentEvent
+      if($request->image){
+        $img = $request->file('image');
+        $extension = $img->getClientOriginalExtension();
+        $fileName = $img->getClientOriginalName();//EventsController::generateRandomString();//$img->getClientOriginalName();
+        $publicPath = public_path();
+        $filePath = "uploads/RecruitmentEvent_Thumbs/{$fileName}";
+        $request['filepath'] = $filePath;
+
+
+        $img->move("uploads/RecruitmentEvent_Thumbs", $fileName);
+        //$im = Imager::make($filePath)->fit(350, 350)->save($filePath);
+          $im = Imager::make($filePath)->save($filePath);
+        $image = new Image;
+
+        $image->description = $request->description;
+        $image->file_path = $filePath;
+        $image->user_id = Auth::user()->id;
+        $image->thumb_path = $filePath;
+        $image->save();
+
+        $recruitment_event->image_id = $image->id;
+      }
+      $recruitment_event->title = $request->title;
+      $recruitment_event->description = $request->description;
+      $recruitment_event->location = $request->location;
+      //$recruitment_event->date_time = $request->date_time;
+      $recruitment_event->when = $request->when;
+      $recruitment_event->note = $request->note;
+      $recruitment_event->save();
+      //   $event = new Event;
+      return redirect('recruitment');
+    }
+
+
+
+    public function editRecruitmentEvent($id){
+      $recruitment_event = DB::table('recruitment_events')
+      ->where("id", "=", $id)
+      ->first();
+      return view('pages.editRecruitment' , compact('recruitment_event'));
+    }
+
+    //Saves the changes to the RecruitmentEvent
+    public function update(Request $request,  $id){
+
+      $this->validate($request,[
+        'title' => 'required',
+        'description' => 'required'
+      ]);
+      $recruitment_event1 = new RecruitmentEvent;
+      $recruitment_event1 = \App\RecruitmentEvent::where("id", "=", $id)->first();
+      //die(var_dump($recruitment_event1));
+      if($request->image){
+        $img = $request->file('image');
+        $extension = $img->getClientOriginalExtension();
+        $fileName = $img->getClientOriginalName();//EventsController::generateRandomString();//$img->getClientOriginalName();
+        $publicPath = public_path();
+        $filePath = "uploads/RecruitmentEvent_Thumbs/{$fileName}";
+        $request['filepath'] = $filePath;
+
+
+        $img->move("uploads/RecruitmentEvent_Thumbs", $fileName);
+        //$im = Imager::make($filePath)->fit(350, 350)->save($filePath);
+          $im = Imager::make($filePath)->save($filePath);
+        $image = new Image;
+
+        $image->description = $request->description;
+        $image->file_path = $filePath;
+        $image->user_id = Auth::user()->id;
+        $image->thumb_path = $filePath;
+        $image->save();
+
+        $recruitment_event1->image_id = $image->id;
+      }
+
+      $recruitment_event1->title = $request->title;
+      $recruitment_event1->description = $request->description;
+      $recruitment_event1->location = $request->location;
+      //$recruitment_event1->date_time = $request->date_time;
+      $recruitment_event1->when = $recruitment_event1->when;
+      $recruitment_event1->note = $request->note;
+      $recruitment_event1->save();
+      return redirect('recruitment');
+    }
+
+    public function deleteRecruitmentEvent($id){
+      //File::delete($recruitment_event->image_id);
+      DB::table('recruitment_events')
+      ->where("id", "=", $id)
+      ->delete();
+      return redirect('recruitment');
     }
 
 
@@ -163,6 +282,87 @@ class HomeController extends Controller
         ->get();
 
         return view('pages.members', compact('members'));
+    }
+
+    public function resumes(Request $request) {
+
+      $gradYearsUsers = DB::table('users')
+        ->where('active_status', 1)
+        ->whereNotNull('resume_path')
+        ->where('resume_path', 'like', '%.pdf')
+        ->select('school_class')
+        ->orderby('school_class')
+        ->groupby('school_class')
+        ->get();
+
+      $i = 0;
+      $gradYears = [];
+
+      foreach($gradYearsUsers as $gradYear) {
+        $gradYears[$i++] = $gradYear->school_class;
+      }
+
+      // $majorsUsers = DB::table('users')
+      //   ->where('active_status', 1)
+      //   ->whereNotNull('resume_path')
+      //   ->select('major')
+      //   ->orderby('major')
+      //   ->groupby('major')
+      //   ->get();
+
+      // $i = 0;
+      // $majors = [];
+
+      // foreach($majorsUsers as $major) {
+      //   $majors[$i++] = $major->major;
+      // }
+
+      $majors = [
+        'Bioengineering',
+        'Chemical Engineering',
+        'Paper Science',
+        'Computer Science',
+        'Software Engineering',
+        'Computer Engineering',
+        'Electrical Engineering',
+        'Manufacturing Engineering',
+        'Mechanical Engineering',
+        'Engineering Management',
+        'General Engineering'
+      ];
+
+
+      if (isset($request->gradYears) && isset($request->majors)) {
+        $members= User::with('image')
+          ->where('active_status', 1)
+          ->whereNotNull('resume_path')
+          ->where('resume_path', 'like', '%.pdf')
+          ->where(function($query) use ($request) {
+            $query->where('active_status', 0);
+            foreach($request->majors as $major) {
+              $query->orWhere('major','like','%'.$major.'%');
+            }
+          })
+          ->whereIn('school_class', $request->gradYears)
+          ->orderby('first_name')
+          ->get();
+
+          $filteredMajors = $request->majors;
+          $filteredYears = $request->gradYears;
+      } else {
+        $members= User::with('image')
+          ->where('active_status', 1)
+          ->whereNotNull('resume_path')
+          ->where('resume_path', 'like', '%.pdf')
+          ->orderby('first_name')
+          ->get();
+
+          $filteredMajors = $majors;
+          $filteredYears = $gradYears;
+      }
+
+
+      return view('pages.resumes', compact('members', 'majors', 'gradYears', 'filteredMajors', 'filteredYears'));
     }
 
     public function alumni() {
