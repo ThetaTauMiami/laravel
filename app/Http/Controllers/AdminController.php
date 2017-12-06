@@ -90,7 +90,6 @@ class AdminController extends Controller
 
 
     function manageBrothersSubmit(Request $request){
-			return var_dump($request->big_request);
 			//return var_dump($request->big_request);
         $semester_id = $this->getCurrentSemester()->id;
 				//Changes active brother to alumni

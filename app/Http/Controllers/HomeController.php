@@ -51,6 +51,13 @@ class HomeController extends Controller
         }
     }
 
+    function resume(User $user) {
+      return Response::make(file_get_contents(public_path().'/'.$user->resume_path), 200, [
+          'Content-Type' => 'application/pdf; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"',
+          'Content-Disposition' => 'inline; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"'
+      ]);
+    }
+
     function specialEventShow($slug){
 
       $event = SpecialEvent::where('slug', $slug)->first();
