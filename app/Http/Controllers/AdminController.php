@@ -29,7 +29,7 @@ class AdminController extends Controller
     }
 
 
-
+  
 
     public function getCurrentSemester(){
       $today = Carbon::today()->toDateString();

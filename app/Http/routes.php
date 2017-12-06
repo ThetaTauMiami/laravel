@@ -68,7 +68,12 @@ Route::get('phpinfo',    'HomeController@phpinfo');
 Route::get ('event/{slug}', 'HomeController@specialEventShow');
 Route::post('event/{id}', 'HomeController@specialEventStore');
 
+//New route that allows editing of the recruitment page
+Route::get ('editRecruitmentEvent/{id}', 'HomeController@editRecruitmentEvent');
 
+Route::get ('createRecruitmentEvent', 'HomeController@createRecruitmentEvent');
+
+Route::get('recruitmentEvent/{event}/delete', 'HomeController@deleteRecruitmentEvent');
 // redirect /home route to the root directory
 Route::get('home', function () {
     return redirect('/');
@@ -82,6 +87,8 @@ Route::get('home', function () {
 //Patch Routes
 Route::patch('editProfile/{user}', 'ProfileController@update');
 Route::patch('events/edit/{event}', 'EventsController@update');
+//recruitmentEvent patch Route
+Route::patch('editRecruitmentEvent/{recruitmentEvent}', 'HomeController@update');
 
 
 
@@ -98,6 +105,7 @@ Route::get  ('specialevents',       'ChairController@listSpecialEvents');
 Route::get  ('specialevents/{id}',  'ChairController@editSpecialEventForm');
 Route::patch('specialevents/{id}',  'ChairController@editSpecialEventSubmit');
 Route::get  ('specialevents/{id}/attendees',  'ChairController@specialEventDownload');
+
 
 // =============== Admin Panel ===============
 
@@ -130,6 +138,7 @@ Route::post('createEvent', 'EventsController@store')->middleware("roles:admin,ex
 Route::post('editProfile', 'ProfileController@store')->middleware("roles:admin,exec,chair");
 Route::post('gallery', 'GalleryController@storeAlbum')->middleware("roles:admin,exec,chair");
 Route::post('gallery/{album}', 'GalleryController@storeImage')->middleware("roles:admin,exec,chair");
+Route::post('createRecruitmentEvent', 'HomeController@store')->middleware("roles:admin,exec,chair");
 
 /* +--------------------------------------+
    | USER AUTHORIZATION ROUTES            |
@@ -177,4 +186,3 @@ Route::get('/linkedin/callback',
 */
 
 Route::get('/deploy', 'Maintenance@deploy');
-

@@ -58,15 +58,18 @@
                     Interviews.</p>
                 <br>
                 <p style="font-size: medium">For more information, read all of the information below and click this sign up button!</p>
+
                 <a href="/recruitment/signup">
                     <button class="btn btn-warning" type="button">Sign up for Our Email List!</button>
                 </a>
+
+
+
                 @if($complete == 1)
                     <script>
                         $(document).ready(function(){
                             bootbox.alert("<h1>Thank you for signing up!</h1><p>You'll now get emails related to our recruitment this semester! If you have any questions, feel free to reach out directly at <a href='mailto:thetataurecruitmentmu@gmail.com'>thetataurecruitmentmu@gmail.com</a>.</p><p><a class='btn btn-warning' href='/recruitment/signup'>Add Another?</a></p>");
                         });
-
                     </script>
                 @endif
             </div>
@@ -76,7 +79,7 @@
     <div class="container">
         <div class="row">
             <h1 style="color: #5B0000; text-align: center">The Recruitment Process</h1>
-			
+
 			<!-- THE FOLLOWING IS RANDOM RECRUITMENT EVENTS FOR PNMs
             <hr>
             <div class="col-sm-offset-1 col-sm-5">
@@ -105,78 +108,52 @@
             </div>
         </div>
 		-->
-		
-        <hr>
-        <br>
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-5">
-                <div>
-                    <img class="img-responsive center-block" src="{{ asset('/img/desk.jpg') }}">
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <h2>Information Sessions</h2>
-                <hr>
-                <p style="font-size: medium">Information nights allow interested students an opportunity to learn more
-                    about our chapter of Theta Tau and the recruitment process, ask questions, formally sign up for
-                    recruitment, and meet our brothers. Each semester we offer two information nights, but attendance is
-                    only expected and required at one of these. These sessions should last approximately 45 minutes and
-                    are casual dress.</p>
-                <div class="well well-sm">
-                    <p><b style="color: #5B0000">Session 1:</b> 1/31 @ 6:00pm LAWS 100</p>
-                    <br>
-                    <p><b style="color: #5B0000">Session 2:</b> 2/2 @ 6:00pm LAWS 100</p>
-                </div>
+    @foreach ($recruitment_events as $event)
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-5">
+            <div>
+                @if(isset($event->image_id))
+
+                <img class="img-responsive center-block" src="{{$event->image->thumb_path}}">
+                <?php //var_dump($event->image_id)?>
+                @else
+
+                <!--<img class="img-responsive center-block" src="{{ asset('/img/informal.jpg') }}">-->
+                @endif
             </div>
         </div>
-        <hr>
-        <br>
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-5">
-                <div>
-                    <img class="img-responsive center-block" src="{{ asset('/img/informal.jpg') }}">
-                </div>
+        <div class="col-sm-5">
+            <h2>{{$event->title}}</h2>
+            <hr>
+            <p style="font-size: medium">{{$event->description}}</p>
+            @if($event->location || $event->note || $event->when)
+            <div class="well well-sm">
+              @if($event->location)
+                <p><b style="color: #5B0000">Where: </b>{{$event->location}}</p>
+                <br>
+              @endif
+              @if($event->when)
+                <p><b style="color: #5B0000">When: </b>{{$event->when}}</p>
+                <br>
+              @endif
+              @if($event->note)
+                <p><b style="color: #5B0000">Additional information: </b>{{$event->note}}</p>
+              @endif
             </div>
-            <div class="col-sm-5">
-                <h2>Informal Nights</h2>
-                <hr>
-                <p style="font-size: medium">The week following information sessions we host 2 “Informal Nights” in
-                    which students and brothers are given the opportunity to meet in small groups through “speed dating”
-                    sessions. This allows students the opportunity to have personal conversations with active brothers
-                    and learn more about what makes our members great. Attendance is strongly recommended at both
-                    nights in order to get to know the maximum number of active brothers. These sessions should last two
-                    hours and are casual dress.</p>
-                <div class="well well-sm">
-                    <p><b style="color: #5B0000">Informal Night 1:</b> 2/7 @ 7:00pm PSN 112</p>
-                    <br>
-                    <p><b style="color: #5B0000">Informal Night 2:</b> 2/8 @ 7:00pm  PSN 112</p>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <br>
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-5">
-                <div>
-                    <img class="img-responsive center-block" src="{{ asset('/img/exec.jpg') }}">
-                </div>
-            </div>
-            <div class="col-sm-5">
-                <h2>Formal Interviews</h2>
-                <hr>
-                <p style="font-size: medium">Following informal nights, students that display a good fit for our chapter
-                    will be invited to participate in 2 of 3 nights of formal interviews during which they will discuss
-                    their professional experiences, achievements, goals, and their values in more depth with active
-                    brothers. Students will be asked to bring several copies of their resume and professional dress is
-                    strongly recommended for these events.
-                </p>
-                <div class="well well-sm">
-                    <p><b style="color: #5B0000">By Invitation Only</b></p>
-                </div>
-            </div>
+            @endif
         </div>
     </div>
-    
+    @if(isExecOrAdmin())
+      <a href="/editRecruitmentEvent/{{$event->id}}">
+          <button class ="btn btn-warning" type ="button" style="float:right">Edit Event</button>
+      </a>
+    @endif
+    @endforeach
+
+
+
 	<!-- USE THE FOLLOWING WHEN NO RUSH IS SCHEDULED YOU LIL BITCH
     <div class="container">
         <div class="row">
@@ -195,8 +172,12 @@
     </div>
 	-->
 
-    <br>
-
+    <br><br><br><br>
+    <div class ="container" style="text-align: center;">
+      <a href="createRecruitmentEvent">
+          <button class ="btn btn-warning" type ="button" style="float:center">Add Event</button>
+      </a>
+    </div>
     <div class="container" style="text-align: center;">
         <div class="row">
             <h1 style="color: #5B0000; text-align: center">Contact Us</h1>
