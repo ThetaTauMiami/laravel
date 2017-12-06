@@ -5,43 +5,15 @@
         <h1>CURRENT RUSH INFO</h1>
     </div>
     <br>
-    <!--
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <div class="well well-sm">
-                    <img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/13103548_629859100498663_8067044036751974394_n.jpg?oh=09f68fd282963cd82d6fb79e1a4da862&oe=58560E71"
-                         height="288" width="288">
-                    <h1>Click the button below to sign up for our recruitment email list!</h1>
-                    <hr>
 
-                    <p>Signing up for our email list will allow for you to receive updates regarding the most current
-                        recruitment information. In addition, check back on this page in the future to see more
-                        information once we make it available. </p>
-                    <br>
-                    <a href="/recruitment/signup">
-                        <button class="btn btn-warning" type="button">Sign up for Our Email List!</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-		@if($complete == 1)
-        <script>
-            $(document).ready(function(){
-                bootbox.alert("Thanks for Signing up!");
-            });
-
-        </script>
-    @endif
 
             </div>
-        -->
 
 
 
-    <div class="container">
+
+    <!--<div class="container">
         <div class="row">
             <h1 style="color: #5B0000; text-align: center">Ready to Join Our Brotherhood?</h1>
             <hr>
@@ -51,7 +23,7 @@
                 </div>
             </div>
             <div class="col-sm-5">
-                <p style="font-size: medium">Theta Tau conducts recruitment at the beginning of each semester. Our
+                <p style="font-size: medium">Theta Tau conducts recruitment at the beginning of each fall semester. Our
                     recruitment process consists of
                     events that allow our chapter to evaluate candidates on their values, credentials, and overall fit
                     in our brotherhood. These events include Information Sessions, Informal Nights, and Formal
@@ -74,9 +46,9 @@
                 @endif
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <div class="container">
+    <!--<div class="container">
         <div class="row">
             <h1 style="color: #5B0000; text-align: center">The Recruitment Process</h1>
 
@@ -158,19 +130,36 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-offset-1 col-sm-5">
-                <div>
-                    <img class="img-responsive center-block" src="{{ asset('/img/exec.jpg') }}">
+                <div style = "margin-top: 50px;">
+                    <img class="img-responsive center-block" src="{{ asset('/img/fraternity-full.jpg') }}">
                 </div>
             </div>
             <div class="col-sm-5">
-                <h2>Check Back Next Semester!</h2>
+                <h2>Check Back Next Fall!</h2>
                 <hr>
-                <p style="font-size: medium">We rush at the beginning of every semester. If you are interested in joining our brotherhood, please check back early next semester for more information. You are also welcome to reach out to our recruitment team using the email below if you would like more information or would like to ensure your name be included in our mailing list for next semester's rush.
+                <p style="font-size: medium">We rush at the beginning of every fall semester. If you are interested in joining our brotherhood, please check back early next fall semester for more information. You are also welcome to reach out to our recruitment team using the email below if you would like more information or would like to ensure your name be included in our mailing list for next fall's rush.
                 </p>
+                <h4>Click the button below to sign up for our recruitment email list!</h4>
+                <hr>
+
+                <p style="font-size:10px;">Signing up for our email list will allow for you to receive updates regarding the most current
+                    recruitment information. In addition, check back on this page in the future to see more
+                    information once we make it available. </p>
+                <a href="/recruitment/signup">
+                    <button class="btn btn-warning" type="button">Sign up for Our Email List!</button>
+                </a>
+                @if($complete == 1)
+                    <script>
+                        $(document).ready(function(){
+                            bootbox.alert("Thanks for Signing up!");
+                        });
+
+                    </script>
+                @endif
             </div>
         </div>
     </div>
-	-->
+
 
     <br><br><br><br>
     <div class ="container" style="text-align: center;">

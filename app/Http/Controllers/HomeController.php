@@ -268,6 +268,87 @@ class HomeController extends Controller
         return view('pages.members', compact('members'));
     }
 
+    public function resumes(Request $request) {
+
+      $gradYearsUsers = DB::table('users')
+        ->where('active_status', 1)
+        ->whereNotNull('resume_path')
+        ->where('resume_path', 'like', '%.pdf')
+        ->select('school_class')
+        ->orderby('school_class')
+        ->groupby('school_class')
+        ->get();
+
+      $i = 0;
+      $gradYears = [];
+
+      foreach($gradYearsUsers as $gradYear) {
+        $gradYears[$i++] = $gradYear->school_class;
+      }
+
+      // $majorsUsers = DB::table('users')
+      //   ->where('active_status', 1)
+      //   ->whereNotNull('resume_path')
+      //   ->select('major')
+      //   ->orderby('major')
+      //   ->groupby('major')
+      //   ->get();
+
+      // $i = 0;
+      // $majors = [];
+
+      // foreach($majorsUsers as $major) {
+      //   $majors[$i++] = $major->major;
+      // }
+
+      $majors = [
+        'Bioengineering',
+        'Chemical Engineering',
+        'Paper Science',
+        'Computer Science',
+        'Software Engineering',
+        'Computer Engineering',
+        'Electrical Engineering',
+        'Manufacturing Engineering',
+        'Mechanical Engineering',
+        'Engineering Management',
+        'General Engineering'
+      ];
+
+
+      if (isset($request->gradYears) && isset($request->majors)) {
+        $members= User::with('image')
+          ->where('active_status', 1)
+          ->whereNotNull('resume_path')
+          ->where('resume_path', 'like', '%.pdf')
+          ->where(function($query) use ($request) {
+            $query->where('active_status', 0);
+            foreach($request->majors as $major) {
+              $query->orWhere('major','like','%'.$major.'%');
+            }
+          })
+          ->whereIn('school_class', $request->gradYears)
+          ->orderby('first_name')
+          ->get();
+
+          $filteredMajors = $request->majors;
+          $filteredYears = $request->gradYears;
+      } else {
+        $members= User::with('image')
+          ->where('active_status', 1)
+          ->whereNotNull('resume_path')
+          ->where('resume_path', 'like', '%.pdf')
+          ->orderby('first_name')
+          ->get();
+
+          $filteredMajors = $majors;
+          $filteredYears = $gradYears;
+      }
+
+
+      return view('pages.resumes', compact('members', 'majors', 'gradYears', 'filteredMajors', 'filteredYears'));
+    }
+
     public function alumni() {
       $alumni = User::where('active_status', 0)
         ->with ('image')

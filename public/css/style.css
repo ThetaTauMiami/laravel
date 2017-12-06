@@ -3,6 +3,10 @@ body {
     padding-top: 50px;
 }
 
+body, html{
+  background-size: cover;
+}
+
 * {
     border-radius: 0 !important;
 }
@@ -54,7 +58,7 @@ body {
     margin-bottom: 0;
     background-size: cover;
     text-shadow:
-	   -1px -1px 0 #000,  
+	   -1px -1px 0 #000,
 	    1px -1px 0 #000,
 	    -1px 1px 0 #000,
 	     1px 1px 0 #000;

@@ -18,6 +18,35 @@
     @endif
     <br>
     <div class="container">
+      <!--<table class="table table-responsive">
+        <thead>
+          <tr>
+            <th style="text-align: center">Sunday</th>
+            <th style="text-align: center">Monday</th>
+            <th style="text-align: center">Tuesday</th>
+            <th style="text-align: center">Wednesday</th>
+            <th style="text-align: center">Thursday</th>
+            <th style="text-align: center">Friday</th>
+            <th style="text-align: center">Saturday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div style="background-color: red"> EVENT </div>
+              <div style="background-color: blue"> EVENT </div>
+            </td>
+            <td>
+              <div style="background-color: green"> EVENT </div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>-->
         <div clas="row">
             <table class="table table-striped table-hover table-bordered table-responsive">
                 <thead>
