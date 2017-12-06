@@ -8,7 +8,7 @@
 
 
 
-            </div>
+  </div>
 
 
 
@@ -80,6 +80,11 @@
             </div>
         </div>
 		-->
+    <div class="container">
+          <div class="row">
+              <h1 style="color: #5B0000; text-align: center">The Recruitment Process</h1>
+            </div>
+    </div>
     @foreach ($recruitment_events as $event)
     <hr>
     <br>
@@ -160,7 +165,7 @@
         </div>
     </div>
 
-
+-->
     <br><br><br><br>
     <div class ="container" style="text-align: center;">
       <a href="createRecruitmentEvent">
