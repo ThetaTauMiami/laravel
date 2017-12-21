@@ -28,7 +28,6 @@ class ProfileController extends Controller
     //if someone tries to go to '/editprofile, redirects to /editprofile/$id'
     function editMyProfile(){
       $profile_id = Auth::id();
-      //$loggedinuser = Auth::user();
       return editProfile($profile_id);
     }
 
@@ -56,19 +55,16 @@ class ProfileController extends Controller
     //editProfile page
     function editProfile(User $user){
       return view('pages.editProfile', compact('user'));
-
     }
 
     //updates user values, and if an image has been uploaded, stores it and creates a thumbnail
     function update(Request $request, User $user){
       //$user->update($request->all());
-      if($user->id == Auth::id() || isExecOrAdmin()){
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->school_class = $request->school_class;
-        $user->major = $request->major;
-        $user->minor = $request->minor;
-      }
+      $user->email = $request->email;
+      $user->phone = $request->phone;
+      $user->school_class = $request->school_class;
+      $user->major = $request->major;
+      $user->minor = $request->minor;
 
       //UPDATE RESUME SCHTUFF
       if($request->resume){

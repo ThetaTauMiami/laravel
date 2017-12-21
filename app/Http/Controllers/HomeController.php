@@ -252,7 +252,8 @@ class HomeController extends Controller
         $pnm->save();
 
         $complete = 1;
-        return view('pages.recruitment')->with('complete', $complete);
+        $recruitment_events = RecruitmentEvent::with("image")->get();
+        return view('pages.recruitment',compact('recruitment_events'))->with('complete',$complete);
     }
 
 

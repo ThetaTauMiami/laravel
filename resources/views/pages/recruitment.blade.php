@@ -8,12 +8,12 @@
 
 
 
-            </div>
 
 
 
 
-    <!--<div class="container">
+
+    <div class="container">
         <div class="row">
             <h1 style="color: #5B0000; text-align: center">Ready to Join Our Brotherhood?</h1>
             <hr>
@@ -46,7 +46,7 @@
                 @endif
             </div>
         </div>
-    </div>-->
+    </div>
 
     <!--<div class="container">
         <div class="row">
@@ -160,7 +160,7 @@
         </div>
     </div>
 
-
+-->
     <br><br><br><br>
     <div class ="container" style="text-align: center;">
       <a href="createRecruitmentEvent">
