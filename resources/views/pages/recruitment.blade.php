@@ -6,13 +6,6 @@
     </div>
     <br>
 
-
-
-
-
-
-
-
     <div class="container">
         <div class="row">
             <h1 style="color: #5B0000; text-align: center">Ready to Join Our Brotherhood?</h1>
@@ -80,6 +73,11 @@
             </div>
         </div>
 		-->
+    <div class="container">
+          <div class="row">
+              <h1 style="color: #5B0000; text-align: center">The Recruitment Process</h1>
+            </div>
+    </div>
     @foreach ($recruitment_events as $event)
     <hr>
     <br>
