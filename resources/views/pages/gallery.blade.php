@@ -27,6 +27,12 @@
 			</div>
 			@endif
 
+      <div class="col-md-8 col-md-offset-2" align="center">
+        <h3>{{$semester_name}}
+         </h3>
+      </div>
+
+
 			@if(count($errors) == 0)
 			<div id="uploader" style="display:none" class="col-md-8 col-md-offset-2">
 			@elseif(count($errors) > 0)
@@ -56,11 +62,6 @@
 							<label for="is_public" class="col-md-4 control-label">Is Public?</label>
 							<input type="checkbox" name="is_public" value="Public" checked/>
 						</div>
-
-						<!--<div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-							<label for="image" class="col-md-4 control-label">Image</label>
-							<input type="file" id="image" name="image" accept="image/*"/>
-						</div>-->
 
                 <button type="submit" class="btn">Submit</button>
             </form>
@@ -107,13 +108,25 @@
 										<p style="max-height: 18px; text-overflow: ellipsis; overflow:auto;"> {{ $album->name }} </p>
                 </a>
             </div>
-            <?php } ?>
+          <?php }?>
 					@endforeach
 
-                </div>
+        </div>
+
+        <ul class="pagination">
+          @if($semester_id != $currentSemester)
+          <li class="page-item"><a class="page-link" href="/gallery/semester/{{$semester_id + 1}}">Next</a></li>
+          @endif
+
+          @if($semester_id != 1)
+          <li class="page-item"><a class="page-link" href="/gallery/semester/{{$semester_id - 1}}">Previous</a></li>
+          @endif
+
+        </ul>
+
     </div>
 
-
+  </div>
 
     <!-- /.container -->
 @stop

@@ -8,13 +8,15 @@ use App\Album;
 use App\SpecialEvent;
 use App\Attendee;
 use App\Pnm;
+use App\RecruitmentEvent;
 use Illuminate\Http\Request;
 //use App\Http\Controllers\Auth;
 use Auth;
 use DB;
 use Carbon\Carbon;
 use Mail;
-use Response;
+use App\Image;
+use Intervention\Image\ImageManagerStatic as Imager;
 
 class HomeController extends Controller
 {
@@ -101,8 +103,17 @@ class HomeController extends Controller
 
 
     public function gallery() {
-        $albums = Album::with('images')->orderBy('created_at', 'desc')->get();
-        return view('pages.gallery', compact('albums'));
+      $semester = HomeController::getCurrentSemester();
+      return HomeController::gallerySemester($semester->id);
+    }
+
+    //TODO: Add checking for semesters that don't exist.
+
+    public function gallerySemester($semester_id){
+      $semester_name = HomeController::getSemesterByID($semester_id)->name;
+      $currentSemester = HomeController::getCurrentSemester()->id;
+      $albums = Album::with('images')->orderBy('created_at', 'desc')->where('semester_id', '=', $semester_id)->get();
+      return view('pages.gallery', compact('albums', 'semester_id', 'semester_name', 'currentSemester'));
     }
 
     public function events() {
@@ -114,9 +125,118 @@ class HomeController extends Controller
       return view('pages.events', compact('events'));
     }
 
-    public function recruitment() {
+    public function recruitment(){
       $complete = ['value' => 0];
-      return view('pages.recruitment')->with('complete', $complete);
+      //$recruitment_events = DB::table('recruitment_events')->get();
+      $recruitment_events = RecruitmentEvent::with("image")->get();
+      //die(var_dump($recruitment_events));
+      return view('pages.recruitment',compact('recruitment_events'))->with('complete',$complete);
+    }
+
+    public function createRecruitmentEvent(){
+        return view('pages.createRecruitment');
+    }
+
+    //Stores the new recruitment event in the database
+    protected function store(Request $request){
+      $this->validate($request, [
+          'title' => 'required',
+          'description' => 'required'
+        ]);
+      $recruitment_event = new RecruitmentEvent;
+
+      //RecruitmentEvent
+      if($request->image){
+        $img = $request->file('image');
+        $extension = $img->getClientOriginalExtension();
+        $fileName = $img->getClientOriginalName();//EventsController::generateRandomString();//$img->getClientOriginalName();
+        $publicPath = public_path();
+        $filePath = "uploads/RecruitmentEvent_Thumbs/{$fileName}";
+        $request['filepath'] = $filePath;
+
+
+        $img->move("uploads/RecruitmentEvent_Thumbs", $fileName);
+        //$im = Imager::make($filePath)->fit(350, 350)->save($filePath);
+          $im = Imager::make($filePath)->save($filePath);
+        $image = new Image;
+
+        $image->description = $request->description;
+        $image->file_path = $filePath;
+        $image->user_id = Auth::user()->id;
+        $image->thumb_path = $filePath;
+        $image->save();
+
+        $recruitment_event->image_id = $image->id;
+      }
+      $recruitment_event->title = $request->title;
+      $recruitment_event->description = $request->description;
+      $recruitment_event->location = $request->location;
+      //$recruitment_event->date_time = $request->date_time;
+      $recruitment_event->when = $request->when;
+      $recruitment_event->note = $request->note;
+      $recruitment_event->save();
+      //   $event = new Event;
+      return redirect('recruitment');
+    }
+
+
+
+    public function editRecruitmentEvent($id){
+      $recruitment_event = DB::table('recruitment_events')
+      ->where("id", "=", $id)
+      ->first();
+      return view('pages.editRecruitment' , compact('recruitment_event'));
+    }
+
+    //Saves the changes to the RecruitmentEvent
+    public function update(Request $request,  $id){
+
+      $this->validate($request,[
+        'title' => 'required',
+        'description' => 'required'
+      ]);
+      $recruitment_event1 = new RecruitmentEvent;
+      $recruitment_event1 = \App\RecruitmentEvent::where("id", "=", $id)->first();
+      //die(var_dump($recruitment_event1));
+      if($request->image){
+        $img = $request->file('image');
+        $extension = $img->getClientOriginalExtension();
+        $fileName = $img->getClientOriginalName();//EventsController::generateRandomString();//$img->getClientOriginalName();
+        $publicPath = public_path();
+        $filePath = "uploads/RecruitmentEvent_Thumbs/{$fileName}";
+        $request['filepath'] = $filePath;
+
+
+        $img->move("uploads/RecruitmentEvent_Thumbs", $fileName);
+        //$im = Imager::make($filePath)->fit(350, 350)->save($filePath);
+          $im = Imager::make($filePath)->save($filePath);
+        $image = new Image;
+
+        $image->description = $request->description;
+        $image->file_path = $filePath;
+        $image->user_id = Auth::user()->id;
+        $image->thumb_path = $filePath;
+        $image->save();
+
+        $recruitment_event1->image_id = $image->id;
+      }
+
+      $recruitment_event1->title = $request->title;
+      $recruitment_event1->description = $request->description;
+      $recruitment_event1->location = $request->location;
+      //$recruitment_event1->date_time = $request->date_time;
+      $recruitment_event1->when = $recruitment_event1->when;
+      $recruitment_event1->note = $request->note;
+      $recruitment_event1->save();
+      return redirect('recruitment');
+    }
+
+    public function deleteRecruitmentEvent($id){
+      //File::delete($recruitment_event->image_id);
+      DB::table('recruitment_events')
+      ->where("id", "=", $id)
+      ->delete();
+      return redirect('recruitment');
     }
 
 
@@ -141,7 +261,8 @@ class HomeController extends Controller
         $pnm->save();
 
         $complete = 1;
-        return view('pages.recruitment')->with('complete', $complete);
+        $recruitment_events = RecruitmentEvent::with("image")->get();
+        return view('pages.recruitment',compact('recruitment_events'))->with('complete',$complete);
     }
 
 
@@ -351,5 +472,9 @@ class HomeController extends Controller
       return $semester;
     }
 
+    public function getSemesterByID($semester_id){
+      $semester = DB::table('semesters')->where('id', '=', $semester_id)->first();
+      return $semester;
+    }
 
 }
