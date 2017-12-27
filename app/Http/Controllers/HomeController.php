@@ -58,14 +58,22 @@ class HomeController extends Controller
 
       $companies = [];
 
+      $linkedIn = new \Happyr\LinkedIn\LinkedIn(config('LINKEDIN_CLIENT_ID'), config('LINKEDIN_CLIENT_SECRET'));
+
       foreach ($users as $user) {
         if ($user->linkedin_token != "") {
-          $ln_user = Socialite::driver('linkedin')->userFromToken($user->linkedin_token);
-          array_push($companies, var_dump($ln_user));
+
+          $linkedIn->setAccessToken($user->linkedin_token);
+
+          $result = $linkedIn->get('v1/people/~:(positions)');
+
+          foreach($result['positions'] as $position) {
+            array_push($companies, $position[0]['company']['name']);
+          }
         }
       }
 
-      return var_dump($companies);
+      return $companies;
 
     }
 
