@@ -51,6 +51,23 @@ class HomeController extends Controller
         }
     }
 
+    function companies () {
+
+      $users = User::all();
+
+      $companies = [];
+
+      foreach ($users as $user) {
+        if ($user->linkedin_token != "") {
+          $ln_user = Socialite::driver('linkedin')->userFromToken($user->linkedin_token);
+          array_push($companies, var_dump($ln_user));
+        }
+      }
+
+      return var_dump($companies);
+
+    }
+
     function resume(User $user) {
       return Response::make(file_get_contents(public_path().'/'.$user->resume_path), 200, [
           'Content-Type' => 'application/pdf; filename="'.$user->first_name.' '.$user->last_name.' [Miami University - Theta Tau] Resume.pdf"',
