@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Mail;
 use App\Image;
 use Intervention\Image\ImageManagerStatic as Imager;
+use Socialite;
 
 class HomeController extends Controller
 {
