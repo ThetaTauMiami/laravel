@@ -95,9 +95,9 @@ class HomeController extends Controller
           if (empty($companies)) { $companies = []; }
 
           foreach($result['positions']['values'] as $position) {
-            $company = $position['company']['name'];
-            $location = $position['location']['name'];
-            $title = $position['title'];
+            $company = isset($position['company']['name']) ? $position['company']['name'] : "";
+            $location = isset($position['location']['name']) ? $position['location']['name'] : "";
+            $title = isset($position['title']) ? $position['title'] : "";
             if (!empty($company)){
               $entry = array('company'=>$company, 'location'=>$location, 'title'=>$title);
               if (!in_array($entry, $companies)){
