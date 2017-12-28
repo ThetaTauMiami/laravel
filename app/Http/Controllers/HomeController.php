@@ -56,6 +56,7 @@ class HomeController extends Controller
       $users = User::all();
 
       $companies = [];
+      $locations = [];
 
       foreach ($users as $user) {
 
@@ -64,15 +65,26 @@ class HomeController extends Controller
 
         foreach($user_companies as $position) {
 
-          array_push($companies, $position['company']);
-          // can also get locations here using same logic
+          if (!empty($position['company'])) {
+            array_push($companies, $position['company']);
+          }
+
+          if (!empty($position['location'])) {
+            if (in_array($position['location'], $locations)) {
+              if (!in_array($position['company'], $locations[$position['location']])) {
+                array_push($locations[$position['location']], $position['company']);
+              }
+            } else {
+              $locations[$position['location']] = array($position['company']);
+            }
+          }
         }
       }
 
       $companies = array_unique($companies);
       sort($companies);
 
-      return var_dump($companies);
+      return view('pages.companies', compact('companies', 'locations'));
 
     }
 
