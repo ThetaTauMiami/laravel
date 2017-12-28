@@ -53,12 +53,36 @@ class HomeController extends Controller
     }
 
     function companies () {
-
       $users = User::all();
 
       $companies = [];
 
+      foreach ($users as $user) {
+
+        $user_companies = $user->companies;
+        if(empty($user_companies)){ $user_companies = []; }
+
+        foreach($user_companies as $position) {
+
+          array_push($companies, $position['company']);
+          // can also get locations here using same logic
+        }
+      }
+
+      $companies = array_unique($companies);
+      sort($companies);
+
+      return var_dump($companies);
+
+    }
+
+    function updateCompanies () {
+
+      $users = User::all();
+
       $linkedIn = new \Happyr\LinkedIn\LinkedIn(config('LINKEDIN_CLIENT_ID'), config('LINKEDIN_CLIENT_SECRET'));
+
+      $num_updated = 0;
 
       foreach ($users as $user) {
         if ($user->linkedin_token != "") {
@@ -67,13 +91,29 @@ class HomeController extends Controller
 
           $result = $linkedIn->get('v1/people/~:(positions)');
 
-          foreach($result['positions'] as $position) {
-            array_push($companies, $position[0]['company']['name']);
+          $companies = $user->companies;
+          if (empty($companies)) { $companies = []; }
+
+          foreach($result['positions']['values'] as $position) {
+            $company = $position['company']['name'];
+            $location = $position['location']['name'];
+            $title = $position['title'];
+            if (!empty($company)){
+              $entry = array('company'=>$company, 'location'=>$location, 'title'=>$title);
+              if (!in_array($entry, $companies)){
+                array_push($companies, $entry);
+                $num_updated++;
+              }
+            }
           }
+
+          $user->companies = $companies;
+
+          $user->save();
         }
       }
 
-      return $companies;
+      return "{'num_updated':".$num_updated."}";
 
     }
 

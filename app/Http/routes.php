@@ -40,6 +40,7 @@ Route::get('resumes',      'HomeController@resumes');
 Route::post('resumes',      'HomeController@resumes');
 
 Route::get('companies',     'HomeController@companies');
+Route::get('companies/update',     'HomeController@updateCompanies');
 
 Route::get('alumni', 		'HomeController@alumni');
 Route::get('contact', 		'HomeController@contact');
