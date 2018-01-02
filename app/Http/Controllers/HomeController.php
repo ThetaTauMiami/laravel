@@ -143,7 +143,6 @@ class HomeController extends Controller
       }
 
       return "{'num_updated':".$num_updated."}";
->>>>>>> test
 
     }
 
