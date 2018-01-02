@@ -108,7 +108,7 @@ class HomeController extends Controller
           $companies = $user->companies;
           if (empty($companies)) { $companies = []; }
 
-          if ($empty($result['positions'])) {
+          if (empty($result['positions'])) {
 
             $user->linkedin_token = "";
             $user->save();
