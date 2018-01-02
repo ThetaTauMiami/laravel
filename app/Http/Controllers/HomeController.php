@@ -57,25 +57,27 @@ class HomeController extends Controller
 
       $companies = [];
       $locations = [];
+      $geos      = [];
 
       foreach ($users as $user) {
 
         $user_companies = $user->companies;
         if(empty($user_companies)){ $user_companies = []; }
 
-        foreach($user_companies as $position) {
+        foreach($user_companies as $company=>$position) {
 
-          if (!empty($position['company'])) {
-            array_push($companies, $position['company']);
+          if (!empty($company)) {
+            array_push($companies, $company);
           }
 
           if (!empty($position['location'])) {
             if (in_array($position['location'], $locations)) {
-              if (!in_array($position['company'], $locations[$position['location']])) {
-                array_push($locations[$position['location']], $position['company']);
+              if (!in_array($company, $locations[$position['location']])) {
+                array_push($locations[$position['location']], $company);
               }
             } else {
-              $locations[$position['location']] = array($position['company']);
+              $locations[$position['location']] = array($company);
+              $geos[$position['location']] = $position['geo'];
             }
           }
         }
@@ -84,7 +86,7 @@ class HomeController extends Controller
       $companies = array_unique($companies);
       sort($companies);
 
-      return view('pages.companies', compact('companies', 'locations'));
+      return view('pages.companies', compact('companies', 'locations', 'geos'));
 
     }
 
@@ -110,10 +112,25 @@ class HomeController extends Controller
             $company = isset($position['company']['name']) ? $position['company']['name'] : "";
             $location = isset($position['location']['name']) ? $position['location']['name'] : "";
             $title = isset($position['title']) ? $position['title'] : "";
+            $geo = "";
             if (!empty($company)){
-              $entry = array('company'=>$company, 'location'=>$location, 'title'=>$title);
-              if (!in_array($entry, $companies)){
-                array_push($companies, $entry);
+              $entry = array('location'=>$location, 'geo'=>$geo, 'title'=>$title);
+              if (empty($companies[$company]) || $companies[$company]['title'] != $entry['title']){
+                if (!empty($location)) {
+                  // google map geocode api url
+                  $url = "https://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($location)."&key=AIzaSyBTC5_W1_zdecXxVA0FAh2abf0IqPAhynw";
+                  $resp_json = file_get_contents($url);
+                  $resp = json_decode($resp_json, true);
+                  if($resp['status']=='OK'){
+                    $lat = $resp['results'][0]['geometry']['location']['lat'];
+                    $long = $resp['results'][0]['geometry']['location']['lng'];
+                    if($lat && $long){
+                      $geo = '{lat: '.$lat.', lng: '.$long.'}';
+                      $entry['geo'] = $geo;
+                    }
+                  }
+                }
+                $companies[$company] = $entry;
                 $num_updated++;
               }
             }

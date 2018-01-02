@@ -27,12 +27,12 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-10 col-lg-push-2 col-sm-9 col-sm-push-3 col-xs-12">
+        <div class="col-lg-8 col-lg-push-3 col-sm-9 col-sm-push-3 col-xs-12">
           <h2>Company Map</h2>
           <p>Click markers to view companies</p>
           <div id="map"></div>
         </div>
-        <div class="col-lg-2 col-lg-pull-10 col-sm-3 col-sm-pull-9 col-xs-12">
+        <div class=" col-lg-offset-1 col-lg-2 col-lg-pull-8 col-sm-3 col-sm-pull-9 col-xs-12">
           <h2>Company List</h2>
           @foreach ($companies as $company)
 
@@ -54,10 +54,10 @@
     });
     @foreach ($locations as $location => $companies_at_loc)
       var marker = new google.maps.Marker({
-        position: uluru,
+        position: {{$geos[$location]}},
         map: map
       });
-      makeInfoWindowEvent(map, "<h3><b>{{$location}}</b><h3>" , marker);
+      makeInfoWindowEvent(map, "<h3><b>{{$location}}</b></h3><p>{{implode('<br/>',$companies_at_loc)}}</p>" , marker);
     @endforeach
   }
 
