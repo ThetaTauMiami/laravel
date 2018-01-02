@@ -108,10 +108,8 @@ class HomeController extends Controller
           $companies = $user->companies;
           if (empty($companies)) { $companies = []; }
 
-          if (empty($result['positions'])) {
+          if (!isset($result['positions']['values']) || empty($result['positions']['values'])) {
 
-            $user->linkedin_token = "";
-            $user->save();
             continue; // linkedin token expired, maybe do something here in the future?
           }
 
