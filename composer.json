@@ -11,7 +11,11 @@
         "laravel/socialite": "^2.0",
         "doctrine/dbal": "^2.5",
         "intervention/image": "^2.3",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.2.1",
+        "php-http/curl-client": "^1.7",
+        "guzzlehttp/psr7": "^1.4",
+        "php-http/message": "^1.6",
+        "happyr/linkedin-api-client": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Mail;
 use App\Image;
 use Intervention\Image\ImageManagerStatic as Imager;
+use Socialite;
 
 class HomeController extends Controller
 {
@@ -52,19 +53,97 @@ class HomeController extends Controller
     }
 
     function companies () {
-
       $users = User::all();
 
       $companies = [];
+      $locations = [];
+      $geos      = [];
 
       foreach ($users as $user) {
-        if ($user->linkedin_token != "") {
-          $ln_user = Socialite::driver('linkedin')->userFromToken($user->linkedin_token);
-          array_push($companies, var_dump($ln_user));
+
+        $user_companies = $user->companies;
+        if(empty($user_companies)){ $user_companies = []; }
+
+        foreach($user_companies as $company=>$position) {
+
+          if (!empty($company)) {
+            array_push($companies, $company);
+          }
+
+          if (!empty($position['location'])) {
+            if (in_array($position['location'], $locations)) {
+              if (!in_array($company, $locations[$position['location']])) {
+                array_push($locations[$position['location']], $company);
+              }
+            } else {
+              $locations[$position['location']] = array($company);
+              $geos[$position['location']] = $position['geo'];
+            }
+          }
         }
       }
 
-      return var_dump($companies);
+      $companies = array_unique($companies);
+      sort($companies);
+
+      return view('pages.companies', compact('companies', 'locations', 'geos'));
+
+    }
+
+    function updateCompanies () {
+
+      $users = User::all();
+
+      $linkedIn = new \Happyr\LinkedIn\LinkedIn(config('LINKEDIN_CLIENT_ID'), config('LINKEDIN_CLIENT_SECRET'));
+
+      $num_updated = 0;
+
+      foreach ($users as $user) {
+        if ($user->linkedin_token != "") {
+
+          $linkedIn->setAccessToken($user->linkedin_token);
+
+          $result = $linkedIn->get('v1/people/~:(positions)');
+
+          $companies = $user->companies;
+          if (empty($companies)) { $companies = []; }
+
+          foreach($result['positions']['values'] as $position) {
+            $company = isset($position['company']['name']) ? $position['company']['name'] : "";
+            $location = isset($position['location']['name']) ? $position['location']['name'] : "";
+            $title = isset($position['title']) ? $position['title'] : "";
+            $geo = "";
+            if (!empty($company)){
+              $entry = array('location'=>$location, 'geo'=>$geo, 'title'=>$title);
+              if (empty($companies[$company]) || $companies[$company]['title'] != $entry['title']){
+                if (!empty($location)) {
+                  // google map geocode api url
+                  $url = "https://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($location)."&key=AIzaSyBTC5_W1_zdecXxVA0FAh2abf0IqPAhynw";
+                  $resp_json = file_get_contents($url);
+                  $resp = json_decode($resp_json, true);
+                  if($resp['status']=='OK'){
+                    $lat = $resp['results'][0]['geometry']['location']['lat'];
+                    $long = $resp['results'][0]['geometry']['location']['lng'];
+                    if($lat && $long){
+                      $geo = '{lat: '.$lat.', lng: '.$long.'}';
+                      $entry['geo'] = $geo;
+                    }
+                  }
+                }
+                $companies[$company] = $entry;
+                $num_updated++;
+              }
+            }
+          }
+
+          $user->companies = $companies;
+
+          $user->save();
+        }
+      }
+
+      return "{'num_updated':".$num_updated."}";
+>>>>>>> test
 
     }
 

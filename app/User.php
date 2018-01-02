@@ -13,6 +13,12 @@ class User extends Authenticatable
      */
 
 
+    // really REALLY cool feature of laravel to auto convert data type to db string
+    protected $casts = [
+      'companies' => 'array'
+    ];
+
+
     // protected $fillable = [
     //     'first_name','last_name', 'email', 'password','phone','image_id','resume_path','chapter_class','roll_number','school_class','major','minor'
     // ];
