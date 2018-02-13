@@ -13,7 +13,7 @@ class AddMajorsMinorsToUsersTable extends Migration
     public function up()
     {
       Schema::table('users', function ($table) {
-          $table->string('major')->default('Not Specified');
+          $table->string('major')->nullable();
           $table->string('minor')->nullable();
       });
     }

@@ -25,7 +25,7 @@ class ChangeTypeIdToString extends Migration
     public function down()
     {
       Schema::table('events', function ($table) {
-        $table->int('type_id')->change();
+        $table->integer('type_id')->change();
       });
     }
 }
