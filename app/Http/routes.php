@@ -69,7 +69,7 @@ Route::get('events/edit/{event}', 'EventsController@editEvent');
 Route::get('events/{event}/delete', 'EventsController@deleteEvent');
 
 Route::get('editProfile/{user}', 'ProfileController@editProfile');
-
+Route::get('editProfile/{user}/removeresume', 'ProfileController@removeResume');
 Route::get('editProfile', 'ProfileController@editMyProfile');
 
 Route::get('phpinfo',    'HomeController@phpinfo');
