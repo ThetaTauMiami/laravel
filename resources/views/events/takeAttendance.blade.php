@@ -34,7 +34,7 @@ function isMobile() {
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                     <input type="hidden" name="mobile" value="0"/>
                     <div class="subject-info-box-1">
-                      <select multiple="multiple" id='lstBox1' class="form-control" name="didNotAttend[]" >
+                      <select multiple="multiple" id='lstBox1' class="form-control" name="didNotAttend[]" onchange="markAttended();" >
                         @if($didNotAttend != NULL)
                         @foreach($didNotAttend as $user)
 
@@ -47,13 +47,11 @@ function isMobile() {
 
                     <div class="subject-info-arrows text-center">
                       <input type='button' id='btnAllRight' value='>>' class="btn btn-default" /><br />
-                      <input type='button' id='btnRight' value='>' class="btn btn-default" /><br />
-                      <input type='button' id='btnLeft' value='<' class="btn btn-default" /><br />
                       <input type='button' id='btnAllLeft' value='<<' class="btn btn-default" />
                     </div>
 
                     <div class="subject-info-box-2">
-                      <select multiple="multiple" id='lstBox2' class="form-control" name="attended[]" >
+                      <select multiple="multiple" id='lstBox2' class="form-control" name="attended[]" onchange="markNotAttended();" >
                         @if($attended != NULL)
                         @foreach($attended as $u)
 

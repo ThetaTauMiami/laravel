@@ -4,18 +4,30 @@
  *
  */
 
+
+function markAttended() {
+    var selectedOpts = $('#lstBox1 option:selected');
+    if (selectedOpts.length == 0) {
+
+        return;
+    }
+
+    $('#lstBox2').append($(selectedOpts).clone());
+    $(selectedOpts).remove();
+}
+
+function markNotAttended() {
+    var selectedOpts = $('#lstBox2 option:selected');
+    if (selectedOpts.length == 0) {
+
+        return;
+    }
+
+    $('#lstBox1').append($(selectedOpts).clone());
+    $(selectedOpts).remove();
+}
+
 (function () {
-    $('#btnRight').click(function (e) {
-        var selectedOpts = $('#lstBox1 option:selected');
-        if (selectedOpts.length == 0) {
-
-            e.preventDefault();
-        }
-
-        $('#lstBox2').append($(selectedOpts).clone());
-        $(selectedOpts).remove();
-        e.preventDefault();
-    });
 
     $('#btnAllRight').click(function (e) {
         var selectedOpts = $('#lstBox1 option');
@@ -25,18 +37,6 @@
         }
 
         $('#lstBox2').append($(selectedOpts).clone());
-        $(selectedOpts).remove();
-        e.preventDefault();
-    });
-
-    $('#btnLeft').click(function (e) {
-        var selectedOpts = $('#lstBox2 option:selected');
-        if (selectedOpts.length == 0) {
-
-            e.preventDefault();
-        }
-
-        $('#lstBox1').append($(selectedOpts).clone());
         $(selectedOpts).remove();
         e.preventDefault();
     });
